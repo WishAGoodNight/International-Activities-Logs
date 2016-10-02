@@ -102,6 +102,150 @@ public class  Log_Actions{
 	}
 
 
+public String findAuthor()
+{
+	String url = "jdbc:mysql://localhost:3306/library?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	ArrayList<String> list2= new ArrayList<String>();
+	String value=Name;
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	String sql = "SELECT * FROM Author where Name = '"+value+"'";  
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	String ID="";
+	while (rs.next()) { 
+		ID=rs.getString("AuthorID");
+	 } 
+	
+	sql="select * from Book where AuthorID="+ID;
+	ResultSet rs2 = stmt.executeQuery(sql); 
+    String ISBN=null;
+    String Title=null;
+    while(rs2.next()){
+    	ISBN=rs2.getString("ISBN");
+    	Title=rs2.getString("Title");
+    	list2.add(ISBN);
+    	list2.add(Title);
+    }
+	 rs2.close();
+	 rs.close();  
+	 conn.close();
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+this.list=list2;
+ServletRequest request=ServletActionContext.getRequest();
+HttpServletRequest req=(HttpServletRequest) request;
+HttpSession session=req.getSession();
+session.setAttribute("list",list);
+if(list.size()>0) return "SUCCESS";
+else return "FALSE";
+}
+
+public String bookdetail(){
+	
+	String url = "jdbc:mysql://localhost:3306/library?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	ArrayList<String> list2= new ArrayList<String>();
+	String value=Name;
+	System.out.println(Name);
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	String sql = "SELECT * FROM Book where Title = '"+value+"'";  
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	String ISBN=null;
+    String Title=null;
+    String AuthorID=null;
+    String Publisher=null;
+    String Publishdate=null;
+    String Price=null;
+    while(rs.next()){
+    	ISBN=rs.getString("ISBN");
+    	Title=rs.getString("Title");
+    	AuthorID=rs.getString("AuthorID");
+    	Publisher=rs.getString("Publisher");
+    	Publishdate=rs.getString("Publishdate");
+    	Price=rs.getString("Price");
+    	list2.add(ISBN);
+    	list2.add(Title);
+    	list2.add(AuthorID);
+    	list2.add(Publisher); 
+    	list2.add(Publishdate);
+    	list2.add(Price);
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+this.list=list2;
+ServletRequest request=ServletActionContext.getRequest();
+HttpServletRequest req=(HttpServletRequest) request;
+HttpSession session=req.getSession();
+session.setAttribute("list",list);
+if(list.size()>0) return "SUCCESS";
+else return "FALSE";
+
+}
+public String delete() {
+	connSQL();
+	String instruction="delete from Book where Title='"+Name+"'";
+	System.out.println(instruction);
+	try {
+	    System.out.println(instruction);
+		statement = conn.prepareStatement(instruction);
+		statement.executeUpdate();
+		return "SUCCESS";
+	} catch (Exception e) {
+		System.out.println("删除时出错：");
+		e.printStackTrace();
+	}
+	return "FALSE";
+}
+public String insertblog(){
+	connSQL();
+	System.out.println(getConference());
+	String instruction="insert into Items (InOrOut,Name,Conference,AcademicTeamwork,Exchange) Values ("
+	+isInOrOut()+",'"+getName()+"',"+getConference()+","+isAcademicTeamwork()+","+isExchange()+")";
+	System.out.println(instruction);
+	try {
+	    System.out.println(instruction);
+		statement = conn.prepareStatement(instruction);
+		//statement.executeUpdate();
+        
+	} catch (SQLException e) {
+		System.out.println("插入数据库时出错：");
+		e.printStackTrace();
+	} catch (Exception e) {
+		System.out.println("插入时出错：");
+		e.printStackTrace();
+	}
+	return "SUCCESS";
+}
+
+
+/*public String update(){
+	connSQL();
+	String instruction1="update Book set Title='"+getTitle()+"',Publisher='"+getPublisher()+"' , Publishdate='"+getPubishdate()+"',Price="+getPrice()+" where ISBN ="+getISBN();
+	try {
+	    System.out.println(instruction1);
+		statement = conn.prepareStatement(instruction1);
+		statement.executeUpdate();
+		return "SUCCESS";
+	} catch (Exception e) {
+		System.out.println("修改时出错：");
+		e.printStackTrace();
+	}
+	return "FALSE";
+
+}*/
 public int getID() {
 	return ID;
 }
@@ -111,32 +255,32 @@ public void setID(int iD) {
 public boolean isInOrOut() {
 	return InOrOut;
 }
-public void setInOrOut(boolean inOrOut) {
-	InOrOut = inOrOut;
+public void setInOrOut(boolean InOrOut) {
+	this.InOrOut = InOrOut;
 }
 public String getName() {
 	return Name;
 }
-public void setName(String name) {
-	Name = name;
+public void setName(String Name) {
+	this.Name = Name;
 }
-public boolean isConference() {
+public boolean getConference() {
 	return Conference;
 }
-public void setConference(boolean conference) {
-	Conference = conference;
+public void setConference(boolean Conference) {
+	this.Conference = Conference;
 }
 public boolean isAcademicTeamwork() {
 	return AcademicTeamwork;
 }
-public void setAcademicTeamwork(boolean academicTeamwork) {
-	AcademicTeamwork = academicTeamwork;
+public void setAcademicTeamwork(boolean AcademicTeamwork) {
+	this.AcademicTeamwork = AcademicTeamwork;
 }
 public boolean isExchange() {
 	return Exchange;
 }
-public void setExchange(boolean exchange) {
-	Exchange = exchange;
+public void setExchange(boolean Exchange) {
+	this.Exchange = Exchange;
 }
 public String getC_Title1() {
 	return c_Title1;
@@ -309,8 +453,8 @@ public void setE_Content2(String e_Content2) {
 public int getItem_end() {
 	return Item_end;
 }
-public void setItem_end(int item_end) {
-	Item_end = item_end;
+public void setItem_end(int Item_end) {
+	this.Item_end = Item_end;
 }
 }
 

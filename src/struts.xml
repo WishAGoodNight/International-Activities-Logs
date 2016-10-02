@@ -5,10 +5,14 @@
 
 <struts>
    <constant name="struts.devMode" value="true" />
-   <package name="struts_package" extends="struts-default">
-   
+   <package name="not know" extends="struts-default">
    
 
+         
+         <action name="newblog" class="WishAGoodDay.Log_Actions" method="insertblog">
+         <result name="SUCCESS">/success.jsp</result>
+         </action>
+         
    </package>
 
 </struts>

@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title> welcome to MySystem</title>
+<title> New Logs</title>
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -22,24 +22,22 @@ pageEncoding="UTF-8"%>
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			<h3>
-				欢迎来到国际合作日志管理系统
-			</h3> 
-			</br>
-			</br>
-			<button type="button" class="btn btn-block btn-lg btn-info">查询</button>
-			</br>
-			</br>
-			</br>
-			<div class="row clearfix">
-				<div class="col-md-6 column">
-					<div class="btn-group">
-					</div> <a href="newlog.jsp"><button type="button" class="btn btn-default">创建一个新的日志</button></a>
-				</div>
-				<div class="col-md-6 column">
-					 <button type="button" class="btn btn-default">查看已完成日志</button>
-				</div>
-			</div>
+			<h3 class="text-center text-success">
+				您已经成功创立项目！
+			</h3>
+		</div>
+	</div>
+</div>
+</br>
+</br>
+</br>
+</br>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h5 class="text-right text-warning">
+				<a href="index.jsp"><button type="button" class="btn btn-default">点击这里返回首页</button><a/>
+			</h5>
 		</div>
 	</div>
 </div>
