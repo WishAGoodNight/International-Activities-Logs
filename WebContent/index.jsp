@@ -37,11 +37,13 @@ pageEncoding="UTF-8"%>
 					</div> <a href="newlog.jsp"><button type="button" class="btn btn-default">创建一个新的日志</button></a>
 				</div>
 				<div class="col-md-6 column">
-					 <button type="button" class="btn btn-default">查看已完成日志</button>
+					 <a href=AllBlogs><button type="button" class="btn btn-default">查看所有日志</button></a>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+
 </body>
 </html>

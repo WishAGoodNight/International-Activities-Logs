@@ -23,7 +23,7 @@ pageEncoding="UTF-8"%>
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<h3 class="text-center text-success">
-				您已经成功创立项目！
+				您已经成功完成该操作！
 			</h3>
 		</div>
 	</div>

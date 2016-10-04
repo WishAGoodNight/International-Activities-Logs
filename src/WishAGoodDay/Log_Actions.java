@@ -5,6 +5,7 @@ package WishAGoodDay;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,9 +20,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
+
 import javax.servlet.http.HttpSession;
+import java.io.File;   
+import java.io.InputStream;   
+import java.io.FileInputStream;   
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
 public class  Log_Actions{
 	private Connection conn = null;
 	PreparedStatement statement = null;
@@ -34,7 +47,7 @@ public class  Log_Actions{
     int Item_end=0;
     //for conference
     String c_Title1;
-    String c_date;
+    String c_StartTime;
     String c_Position;
     String c_Sponsor;
     String c_Content1;
@@ -146,39 +159,50 @@ if(list.size()>0) return "SUCCESS";
 else return "FALSE";
 }
 
-public String bookdetail(){
+public String Logdetail(){
 	
-	String url = "jdbc:mysql://localhost:3306/library?characterEncoding=UTF-8";
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
 	String username = "root";
-	String password = "1234"; // 加载驱动程序以连接数据库 
+	String password = "1234"; // 加载驱动程序以连接数据库
 	ArrayList<String> list2= new ArrayList<String>();
-	String value=Name;
-	System.out.println(Name);
 	try { 
 	Class.forName("com.mysql.jdbc.Driver" ); 
 	conn = DriverManager.getConnection( url,username, password ); 
-	String sql = "SELECT * FROM Book where Title = '"+value+"'";  
+	String sql = "SELECT * FROM Items";  
 	Statement stmt= conn.createStatement();
 	ResultSet rs = stmt.executeQuery(sql); 
-	String ISBN=null;
-    String Title=null;
-    String AuthorID=null;
-    String Publisher=null;
-    String Publishdate=null;
-    String Price=null;
+	String ID=null;
+    String InOrOut=null;
+    String Name=null;
+    String Conference=null;
+    String AcademicTeamwork=null;
+    String Exchange=null;
+    String Item_end=null;
     while(rs.next()){
-    	ISBN=rs.getString("ISBN");
-    	Title=rs.getString("Title");
-    	AuthorID=rs.getString("AuthorID");
-    	Publisher=rs.getString("Publisher");
-    	Publishdate=rs.getString("Publishdate");
-    	Price=rs.getString("Price");
-    	list2.add(ISBN);
-    	list2.add(Title);
-    	list2.add(AuthorID);
-    	list2.add(Publisher); 
-    	list2.add(Publishdate);
-    	list2.add(Price);
+    	ID=rs.getString("ID");
+    	InOrOut=rs.getString("InOrOut");
+    	Name=rs.getString("Name");
+    	Conference=rs.getString("Conference");
+    	AcademicTeamwork=rs.getString("AcademicTeamwork");
+    	Exchange=rs.getString("Exchange");
+    	Item_end=rs.getString("Item_end");
+    	list2.add(ID);
+    	if(InOrOut.equals("0"))
+    	list2.add("外校来访");
+    	else
+    	list2.add("本校出访");
+    	list2.add(Name);
+    	if(Conference.equals("1"))
+    	list2.add("查看详情"); 
+    	else list2.add("无"); 
+    	if(AcademicTeamwork.equals("1"))
+    	list2.add("查看详情");
+    	else list2.add("无"); 
+    	if(Exchange.equals("1"))
+    	list2.add("查看详情");
+    	else list2.add("无"); 
+    	list2.add(Item_end);
+    	System.out.println(list2);
     }
 	 rs.close();  
 	}catch(Exception e)
@@ -190,9 +214,140 @@ ServletRequest request=ServletActionContext.getRequest();
 HttpServletRequest req=(HttpServletRequest) request;
 HttpSession session=req.getSession();
 session.setAttribute("list",list);
-if(list.size()>0) return "SUCCESS";
-else return "FALSE";
+return "SUCCESS";
 
+
+}
+
+public String Detail_c(){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	int value=ID;
+	String titletemp1="";
+	String titletemp2="";
+	String temp=null;
+	ArrayList<String> list2= new ArrayList<String>();
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	String sql = "SELECT * FROM Conference where ID =" + value;  
+	System.out.println(sql);
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	String ID=null;
+    String Title1=null;
+    String StartTime=null;
+    String Position=null;
+    String Sponsor=null;
+    String Content1=null;
+    Blob Contenttemp=null;
+    String End=null;
+    String Title2=null;
+    String Endtime=null;
+    String Content2=null;
+    String Image=null;
+    while(rs.next()){
+    	ID=rs.getString("ID");
+    	list2.add(ID);
+    	Title1=rs.getString("Title1");
+    	titletemp1=Title1;
+    	list2.add(Title1);
+    	StartTime=rs.getString("StartTime");
+    	list2.add(StartTime);
+    	Position=rs.getString("Position");
+    	list2.add(Position);
+    	Sponsor=rs.getString("Sponsor");
+    	list2.add(Sponsor);
+    	Contenttemp=rs.getBlob("Content1");
+    	if(Contenttemp != null){
+			InputStream is = Contenttemp.getBinaryStream();
+			ByteArrayInputStream bais = (ByteArrayInputStream)is;
+			byte[] byte_data = new byte[bais.available()]; //bais.available()返回此输入流的字节数
+
+			bais.read(byte_data, 0,byte_data.length);//将输入流中的内容读到指定的数组
+			Content1 = new String(byte_data,"utf-8"); //再转为String，并使用指定的编码方式
+			is.close();
+		}
+
+		//Content1.replaceAll("\\r\\n","<br>" );
+	//	Content1.replaceAll("\\n","<br>" );
+		//Content1.replaceAll("\\r","<br>" );
+	//	Content1.replaceAll("s", "S");
+		System.out.println(Content1);
+		String tmp = "";
+		for (int i = 0; i < Content1.length(); i++) {
+			//System.out.printf("%c",Content1.charAt(i));
+			if (Content1.charAt(i) == ' ') {
+				tmp = tmp + "&nbsp;";
+			} else if (Content1.charAt(i) == '\n') {
+				tmp = tmp + "<br>";
+			} else {
+				tmp = tmp + Content1.charAt(i);
+			}
+		}
+		Content1 = tmp;
+		System.out.println(Content1);
+    	list2.add(Content1);
+    	End=rs.getString("End");
+    	list2.add(End);
+    	Title2=rs.getString("Title2");
+    	list2.add(Title2);
+    	titletemp2=Title2;
+    	Endtime=rs.getString("Endtime");
+    	list2.add(Endtime);
+    	Contenttemp=rs.getBlob("Content2");
+    	if(Contenttemp != null){
+			InputStream is = Contenttemp.getBinaryStream();
+			ByteArrayInputStream bais = (ByteArrayInputStream)is;
+			byte[] byte_data = new byte[bais.available()]; //bais.available()返回此输入流的字节数
+
+			bais.read(byte_data, 0,byte_data.length);//将输入流中的内容读到指定的数组
+			Content2 = new String(byte_data,"utf-8"); //再转为String，并使用指定的编码方式
+			is.close();
+		}
+    	list2.add(Content2);
+    	Image=rs.getString("Image");
+    	list2.add(Image);
+    	System.out.println(list2);
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+
+	
+this.list=list2;
+ServletRequest request=ServletActionContext.getRequest();
+HttpServletRequest req=(HttpServletRequest) request;
+HttpSession session=req.getSession();
+session.setAttribute("list",list);
+return "SUCCESS";
+}
+public String Edit_c(){
+	connSQL();
+	String instruction1="update Conference set Title1='"+getC_Title1()+"',StartTime='"+getC_StartTime()+"' ,Position='"+getC_Position()+
+			"',Sponsor='"+getC_Sponsor()+"',Content1='"+getC_Content1()+
+			"',Title2='"+getC_Title2()+
+			"',Endtime='"+getC_Endtime()+
+			"',Content2='"+getC_Content2()+
+			"',Image='"+getC_Image()+
+			"' where ID ="+getID();
+	System.out.print(instruction1);
+	try {
+		statement = conn.prepareStatement(instruction1);
+		statement.executeUpdate();
+		return "SUCCESS";
+	} catch (Exception e) {
+		System.out.println("修改时出错：");
+		e.printStackTrace();
+	}
+	return "SUCCESS";
+}
+private String getC_Image() {
+	// TODO Auto-generated method stub
+	return null;
 }
 public String delete() {
 	connSQL();
@@ -211,14 +366,16 @@ public String delete() {
 }
 public String insertblog(){
 	connSQL();
-	System.out.println(getConference());
-	String instruction="insert into Items (InOrOut,Name,Conference,AcademicTeamwork,Exchange) Values ("
-	+isInOrOut()+",'"+getName()+"',"+getConference()+","+isAcademicTeamwork()+","+isExchange()+")";
-	System.out.println(instruction);
+	int counter=0;
+	if(!isConference())counter++;
+	if(!isAcademicTeamwork())counter++;
+	if(!isExchange())counter++;
+	setItem_end(counter);
+	String instruction="insert into Items (InOrOut,Name,Conference,AcademicTeamwork,Exchange,Item_end) Values ("
+	+isInOrOut()+",'"+getName()+"',"+isConference()+","+isAcademicTeamwork()+","+isExchange()+","+getItem_end()+")";
 	try {
-	    System.out.println(instruction);
 		statement = conn.prepareStatement(instruction);
-		//statement.executeUpdate();
+		statement.executeUpdate();
         
 	} catch (SQLException e) {
 		System.out.println("插入数据库时出错：");
@@ -227,10 +384,109 @@ public String insertblog(){
 		System.out.println("插入时出错：");
 		e.printStackTrace();
 	}
+	String sql="select ID from Items where Name = '"+getName()+"'";
+	System.out.println(sql);
+	if(isConference())
+		create_c(sql);
+	if(isAcademicTeamwork())
+		create_a(sql);
+	if(isExchange())
+		create_e(sql);
 	return "SUCCESS";
 }
-
-
+public void create_c(String x){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	String value=null;
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(x); 
+	while(rs.next())
+    value=rs.getString("ID");
+    System.out.println(value);
+	rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+    String instruction="insert into Conference (ID) Value( "+value+")";
+    System.out.println(instruction);
+    try {
+		statement = conn.prepareStatement(instruction);
+		statement.executeUpdate();
+        
+	} catch (SQLException e) {
+		System.out.println("插入数据库时出错：");
+		e.printStackTrace();
+	} catch (Exception e) {
+		System.out.println("插入时出错：");
+		e.printStackTrace();
+	}
+}
+public void create_a(String x){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	String value=null;
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(x); 
+	while(rs.next())
+    value=rs.getString("ID");
+	rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+    String instruction="insert into AcademicTeamwork (ID) Value( "+value+")";
+    System.out.println(instruction);
+    try {
+		statement = conn.prepareStatement(instruction);
+		statement.executeUpdate();
+        
+	} catch (SQLException e) {
+		System.out.println("插入数据库时出错：");
+		e.printStackTrace();
+	} catch (Exception e) {
+		System.out.println("插入时出错：");
+		e.printStackTrace();
+	}
+}
+public void create_e(String x){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	String value=null;
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(x); 
+	while(rs.next())
+    value=rs.getString("ID");
+	rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+    String instruction="insert into Exchange (ID) Value( "+value+")";
+    try {
+		statement = conn.prepareStatement(instruction);
+		statement.executeUpdate();
+        
+	} catch (SQLException e) {
+		System.out.println("插入数据库时出错：");
+		e.printStackTrace();
+	} catch (Exception e) {
+		System.out.println("插入时出错：");
+		e.printStackTrace();
+	}
+}
 /*public String update(){
 	connSQL();
 	String instruction1="update Book set Title='"+getTitle()+"',Publisher='"+getPublisher()+"' , Publishdate='"+getPubishdate()+"',Price="+getPrice()+" where ISBN ="+getISBN();
@@ -264,7 +520,7 @@ public String getName() {
 public void setName(String Name) {
 	this.Name = Name;
 }
-public boolean getConference() {
+public boolean isConference() {
 	return Conference;
 }
 public void setConference(boolean Conference) {
@@ -288,11 +544,11 @@ public String getC_Title1() {
 public void setC_Title1(String c_Title1) {
 	this.c_Title1 = c_Title1;
 }
-public String getC_date() {
-	return c_date;
+public String getC_StartTime() {
+	return c_StartTime;
 }
-public void setC_date(String c_date) {
-	this.c_date = c_date;
+public void setC_StartTime(String c_StartTime) {
+	this.c_StartTime = c_StartTime;
 }
 public String getC_Position() {
 	return c_Position;

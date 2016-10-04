@@ -12,7 +12,18 @@
          <action name="newblog" class="WishAGoodDay.Log_Actions" method="insertblog">
          <result name="SUCCESS">/success.jsp</result>
          </action>
-         
+         <action name="AllBlogs" class="WishAGoodDay.Log_Actions" method="Logdetail">
+         <result name="SUCCESS">/SeeAll.jsp</result>
+         </action>
+         <action name="ConferenceDetail" class="WishAGoodDay.Log_Actions" method="Detail_c">
+         <result name="SUCCESS">/Detail_For_Conference.jsp</result>
+         </action>
+         <action name="ConferenceEdit" class="WishAGoodDay.Log_Actions" method="Detail_c">
+         <result name="SUCCESS">/Edit_Conference.jsp</result>
+         </action>
+          <action name="ConferenceEditDone" class="WishAGoodDay.Log_Actions" method="Edit_c">
+         <result name="SUCCESS">/success.jsp</result>
+         </action>
    </package>
 
 </struts>
