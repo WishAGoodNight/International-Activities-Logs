@@ -24,6 +24,24 @@
           <action name="ConferenceEditDone" class="WishAGoodDay.Log_Actions" method="Edit_c">
          <result name="SUCCESS">/success.jsp</result>
          </action>
+         <action name="AcademicTeamworkDetail" class="WishAGoodDay.Log_Actions" method="Detail_a">
+         <result name="SUCCESS">/Detail_For_AcademicTeamwork.jsp</result>
+         </action>
+         <action name="AcademicTeamworkEdit" class="WishAGoodDay.Log_Actions" method="Detail_a">
+         <result name="SUCCESS">/Edit_AcademicTeamwork.jsp</result>
+         </action>
+          <action name="AcademicTeamworkEditDone" class="WishAGoodDay.Log_Actions" method="Edit_a">
+         <result name="SUCCESS">/success.jsp</result>
+         </action>
+         <action name="ExchangeDetail" class="WishAGoodDay.Log_Actions" method="Detail_e">
+         <result name="SUCCESS">/Detail_For_Exchange.jsp</result>
+         </action>
+         <action name="ExchangeEdit" class="WishAGoodDay.Log_Actions" method="Detail_e">
+         <result name="SUCCESS">/Edit_Exchange.jsp</result>
+         </action>
+         <action name="ExchangeEditDone" class="WishAGoodDay.Log_Actions" method="Edit_e">
+         <result name="SUCCESS">/success.jsp</result>
+         </action>
    </package>
 
 </struts>

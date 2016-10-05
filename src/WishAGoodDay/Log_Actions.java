@@ -55,6 +55,7 @@ public class  Log_Actions{
     String c_Title2;
     String c_Endtime;
     String c_Content2;
+    String c_Image;
   //for academic
     String a_Title1;
     String a_StartTime;
@@ -65,17 +66,19 @@ public class  Log_Actions{
     String a_Endtime;
     int a_Expenditure;
     String a_Content2;
+    String a_Image;
     //for exchange student 
     String e_Title1;
     String e_StartTime;
     String e_Position;
-    int e_Funded;
+    String e_Funded;
     String e_Content1;
     boolean e_End;
     String e_Title2;
-    String e_date;
+    String e_Endtime;
     int e_Expenditure;
     String e_Content2;
+    String e_Image;
     
     public ArrayList<String> list=null;
 	// connect to MySQL
@@ -270,12 +273,9 @@ public String Detail_c(){
 			is.close();
 		}
 
-		//Content1.replaceAll("\\r\\n","<br>" );
-	//	Content1.replaceAll("\\n","<br>" );
-		//Content1.replaceAll("\\r","<br>" );
-	//	Content1.replaceAll("s", "S");
 		System.out.println(Content1);
 		String tmp = "";
+		if(Content1!=null)
 		for (int i = 0; i < Content1.length(); i++) {
 			//System.out.printf("%c",Content1.charAt(i));
 			if (Content1.charAt(i) == ' ') {
@@ -306,6 +306,19 @@ public String Detail_c(){
 			Content2 = new String(byte_data,"utf-8"); //再转为String，并使用指定的编码方式
 			is.close();
 		}
+    	tmp = "";
+    	if(Content2!=null)
+		for (int i = 0; i < Content2.length(); i++) {
+			//System.out.printf("%c",Content1.charAt(i));
+			if (Content2.charAt(i) == ' ') {
+				tmp = tmp + "&nbsp;";
+			} else if (Content2.charAt(i) == '\n') {
+				tmp = tmp + "<br>";
+			} else {
+				tmp = tmp + Content2.charAt(i);
+			}
+		}
+		Content2 = tmp;
     	list2.add(Content2);
     	Image=rs.getString("Image");
     	list2.add(Image);
@@ -345,10 +358,7 @@ public String Edit_c(){
 	}
 	return "SUCCESS";
 }
-private String getC_Image() {
-	// TODO Auto-generated method stub
-	return null;
-}
+
 public String delete() {
 	connSQL();
 	String instruction="delete from Book where Title='"+Name+"'";
@@ -394,6 +404,307 @@ public String insertblog(){
 		create_e(sql);
 	return "SUCCESS";
 }
+
+
+public String Detail_a(){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	int value=ID;
+	String titletemp1="";
+	String titletemp2="";
+	String temp=null;
+	ArrayList<String> list2= new ArrayList<String>();
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	String sql = "SELECT * FROM AcademicTeamwork where ID =" + value;  
+	System.out.println(sql);
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	String ID=null;
+    String Title1=null;
+    String StartTime=null;
+    String Position=null;
+    String Content1=null;
+    Blob Contenttemp=null;
+    String End=null;
+    String Title2=null;
+    String Endtime=null;
+    String Expenditure=null;
+    String Content2=null;
+    String Image=null;
+    while(rs.next()){
+    	ID=rs.getString("ID");
+    	list2.add(ID);
+    	Title1=rs.getString("Title1");
+    	titletemp1=Title1;
+    	list2.add(Title1);
+    	StartTime=rs.getString("StartTime");
+    	list2.add(StartTime);
+    	Position=rs.getString("Position");
+    	list2.add(Position);
+    	Contenttemp=rs.getBlob("Content1");
+    	if(Contenttemp != null){
+			InputStream is = Contenttemp.getBinaryStream();
+			ByteArrayInputStream bais = (ByteArrayInputStream)is;
+			byte[] byte_data = new byte[bais.available()]; //bais.available()返回此输入流的字节数
+
+			bais.read(byte_data, 0,byte_data.length);//将输入流中的内容读到指定的数组
+			Content1 = new String(byte_data,"utf-8"); //再转为String，并使用指定的编码方式
+			is.close();
+		}
+    	
+		String tmp = "";
+		if(Content1!=null)
+		for (int i = 0; i < Content1.length(); i++) {
+			//System.out.printf("%c",Content1.charAt(i));
+			if (Content1.charAt(i) == ' ') {
+				tmp = tmp + "&nbsp;";
+			} else if (Content1.charAt(i) == '\n') {
+				tmp = tmp + "<br>";
+			} else {
+				tmp = tmp + Content1.charAt(i);
+			}
+		}
+		
+		Content1 = tmp;
+		System.out.println(Content1);
+    	list2.add(Content1);
+    	End=rs.getString("End");
+    	list2.add(End);
+    	
+    	Title2=rs.getString("Title2");
+    	list2.add(Title2);
+    	titletemp2=Title2;
+    	Endtime=rs.getString("Endtime");
+    	list2.add(Endtime);
+    	Expenditure=rs.getString("Expenditure");
+    	list2.add(Expenditure);
+    	Contenttemp=rs.getBlob("Content2");
+    	if(Contenttemp != null){
+			InputStream is = Contenttemp.getBinaryStream();
+			ByteArrayInputStream bais = (ByteArrayInputStream)is;
+			byte[] byte_data = new byte[bais.available()]; //bais.available()返回此输入流的字节数
+
+			bais.read(byte_data, 0,byte_data.length);//将输入流中的内容读到指定的数组
+			Content2 = new String(byte_data,"utf-8"); //再转为String，并使用指定的编码方式
+			is.close();
+		}
+    	tmp = "";
+    	if(Content2!=null)
+		for (int i = 0; i < Content2.length(); i++) {
+			if (Content2.charAt(i) == ' ') {
+				tmp = tmp + "&nbsp;";
+			} else if (Content2.charAt(i) == '\n') {
+				tmp = tmp + "<br>";
+			} else {
+				tmp = tmp + Content2.charAt(i);
+			}
+		}
+		Content2 = tmp;
+    	list2.add(Content2);
+    	Image=rs.getString("Image");
+    	list2.add(Image);
+    	System.out.println(list2);
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+
+	
+this.list=list2;
+ServletRequest request=ServletActionContext.getRequest();
+HttpServletRequest req=(HttpServletRequest) request;
+HttpSession session=req.getSession();
+session.setAttribute("list",list);
+return "SUCCESS";
+}
+
+
+public String Edit_a(){
+	connSQL();
+	String instruction1="update AcademicTeamwork set Title1='"+getA_Title1()+"',StartTime='"+getA_StartTime()+"' ,Position='"+getA_Position()+
+			"',Content1='"+getA_Content1()+
+			"',Title2='"+getA_Title2()+
+			"',Endtime='"+getA_Endtime()+
+			"',Expenditure="+getA_Expenditure()+
+			",Content2='"+getA_Content2()+
+			"',Image='"+getA_Image()+
+			"' where ID ="+getID();
+	System.out.print(instruction1);
+	try {
+		statement = conn.prepareStatement(instruction1);
+		statement.executeUpdate();
+		return "SUCCESS";
+	} catch (Exception e) {
+		System.out.println("修改时出错：");
+		e.printStackTrace();
+	}
+	return "SUCCESS";
+}
+
+
+
+
+public String Detail_e(){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	int value=ID;
+	String titletemp1="";
+	String titletemp2="";
+	String temp=null;
+	ArrayList<String> list2= new ArrayList<String>();
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	String sql = "SELECT * FROM Exchange where ID =" + value;  
+	System.out.println(sql);
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	String ID=null;
+    String Title1=null;
+    String StartTime=null;
+    String Position=null;
+    String Funded=null;
+    String Content1=null;
+    Blob Contenttemp=null;
+    String End=null;
+    String Title2=null;
+    String Endtime=null;
+    String Expenditure=null;
+    String Content2=null;
+    String Image=null;
+    while(rs.next()){
+    	ID=rs.getString("ID");
+    	list2.add(ID);
+    	Title1=rs.getString("Title1");
+    	titletemp1=Title1;
+    	list2.add(Title1);
+    	StartTime=rs.getString("StartTime");
+    	list2.add(StartTime);
+    	Position=rs.getString("Position");
+    	list2.add(Position);
+    	Funded=rs.getString("Funded");
+    	list2.add(Funded);
+    	Contenttemp=rs.getBlob("Content1");
+    	if(Contenttemp != null){
+			InputStream is = Contenttemp.getBinaryStream();
+			ByteArrayInputStream bais = (ByteArrayInputStream)is;
+			byte[] byte_data = new byte[bais.available()]; //bais.available()返回此输入流的字节数
+
+			bais.read(byte_data, 0,byte_data.length);//将输入流中的内容读到指定的数组
+			Content1 = new String(byte_data,"utf-8"); //再转为String，并使用指定的编码方式
+			is.close();
+		}
+    	
+		String tmp = "";
+		if(Content1!=null)
+		for (int i = 0; i < Content1.length(); i++) {
+			//System.out.printf("%c",Content1.charAt(i));
+			if (Content1.charAt(i) == ' ') {
+				tmp = tmp + "&nbsp;";
+			} else if (Content1.charAt(i) == '\n') {
+				tmp = tmp + "<br>";
+			} else {
+				tmp = tmp + Content1.charAt(i);
+			}
+		}
+		
+		Content1 = tmp;
+		System.out.println(Content1);
+    	list2.add(Content1);
+    	End=rs.getString("End");
+    	list2.add(End);
+    	
+    	Title2=rs.getString("Title2");
+    	list2.add(Title2);
+    	titletemp2=Title2;
+    	Endtime=rs.getString("Endtime");
+    	list2.add(Endtime);
+    	Expenditure=rs.getString("Expenditure");
+    	list2.add(Expenditure);
+    	Contenttemp=rs.getBlob("Content2");
+    	if(Contenttemp != null){
+			InputStream is = Contenttemp.getBinaryStream();
+			ByteArrayInputStream bais = (ByteArrayInputStream)is;
+			byte[] byte_data = new byte[bais.available()]; //bais.available()返回此输入流的字节数
+
+			bais.read(byte_data, 0,byte_data.length);//将输入流中的内容读到指定的数组
+			Content2 = new String(byte_data,"utf-8"); //再转为String，并使用指定的编码方式
+			is.close();
+		}
+    	tmp = "";
+    	if(Content2!=null)
+		for (int i = 0; i < Content2.length(); i++) {
+			if (Content2.charAt(i) == ' ') {
+				tmp = tmp + "&nbsp;";
+			} else if (Content2.charAt(i) == '\n') {
+				tmp = tmp + "<br>";
+			} else {
+				tmp = tmp + Content2.charAt(i);
+			}
+		}
+		Content2 = tmp;
+    	list2.add(Content2);
+    	Image=rs.getString("Image");
+    	list2.add(Image);
+    	System.out.println(list2);
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+
+	
+this.list=list2;
+ServletRequest request=ServletActionContext.getRequest();
+HttpServletRequest req=(HttpServletRequest) request;
+HttpSession session=req.getSession();
+session.setAttribute("list",list);
+return "SUCCESS";
+}
+
+public String Edit_e(){
+	connSQL();
+	String instruction1="update Exchange set Title1='"+getE_Title1()+"',StartTime='"+getE_StartTime()+"' ,Position='"+getE_Position()+
+			"',Funded='"+getE_Funded()+
+			"',Content1='"+getE_Content1()+
+			"',Title2='"+getE_Title2()+
+			"',Endtime='"+getE_Endtime()+
+			"',Expenditure="+getE_Expenditure()+
+			",Content2='"+getE_Content2()+
+			"',Image='"+getE_Image()+
+			"' where ID ="+getID();
+	
+	
+	try {
+		statement = conn.prepareStatement(instruction1);
+		statement.executeUpdate();
+		return "SUCCESS";
+	} catch (Exception e) {
+		System.out.println("修改时出错：");
+		e.printStackTrace();
+	}
+	return "SUCCESS";
+}
+
+
+
+
+
+
+
+
+
+
+
 public void create_c(String x){
 	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
 	String username = "root";
@@ -487,26 +798,12 @@ public void create_e(String x){
 		e.printStackTrace();
 	}
 }
-/*public String update(){
-	connSQL();
-	String instruction1="update Book set Title='"+getTitle()+"',Publisher='"+getPublisher()+"' , Publishdate='"+getPubishdate()+"',Price="+getPrice()+" where ISBN ="+getISBN();
-	try {
-	    System.out.println(instruction1);
-		statement = conn.prepareStatement(instruction1);
-		statement.executeUpdate();
-		return "SUCCESS";
-	} catch (Exception e) {
-		System.out.println("修改时出错：");
-		e.printStackTrace();
-	}
-	return "FALSE";
 
-}*/
 public int getID() {
 	return ID;
 }
-public void setID(int iD) {
-	ID = iD;
+public void setID(int ID) {
+	this.ID = ID;
 }
 public boolean isInOrOut() {
 	return InOrOut;
@@ -664,10 +961,10 @@ public String getE_Position() {
 public void setE_Position(String e_Position) {
 	this.e_Position = e_Position;
 }
-public int getE_Funded() {
+public String getE_Funded() {
 	return e_Funded;
 }
-public void setE_Funded(int e_Funded) {
+public void setE_Funded(String e_Funded) {
 	this.e_Funded = e_Funded;
 }
 public String getE_Content1() {
@@ -688,11 +985,11 @@ public String getE_Title2() {
 public void setE_Title2(String e_Title2) {
 	this.e_Title2 = e_Title2;
 }
-public String getE_date() {
-	return e_date;
+public String getE_Endtime() {
+	return e_Endtime;
 }
-public void setE_date(String e_date) {
-	this.e_date = e_date;
+public void setE_Endtime(String e_Endtime) {
+	this.e_Endtime = e_Endtime;
 }
 public int getE_Expenditure() {
 	return e_Expenditure;
@@ -712,6 +1009,26 @@ public int getItem_end() {
 public void setItem_end(int Item_end) {
 	this.Item_end = Item_end;
 }
+public String getA_Image() {
+	return a_Image;
+}
+public void setA_Image(String a_Image) {
+	this.a_Image = a_Image;
+}
+public String getC_Image() {
+	// TODO Auto-generated method stub
+	return c_Image;
+}
+public void setC_Image(String c_Image) {
+	this.c_Image = c_Image;
+}
+public String getE_Image() {
+	return e_Image;
+}
+public void setE_Image(String e_Image) {
+	this.e_Image = e_Image;
+}
+
 }
 
 

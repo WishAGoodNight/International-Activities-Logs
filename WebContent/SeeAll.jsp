@@ -76,13 +76,13 @@ out.print("<td>"+str2+"</td>");
 
 i++; str2=(String)list.get(i);
 if(str2.equals("查看详情"))
-out.print(" <td><a href=detail_a?ID="+str1+ ">" + str2 + "</a></td>");
+out.print(" <td><a href=AcademicTeamworkDetail?ID="+str1+ ">" + str2 + "</a></td>");
 else
 out.print("<td>"+str2+"</td>");
 
 i++; str2=(String)list.get(i);
 if(str2.equals("查看详情"))
-out.print(" <td><a href=detail_e?ID="+str1+ ">" + str2 + "</a></td>");
+out.print(" <td><a href=ExchangeDetail?ID="+str1+ ">" + str2 + "</a></td>");
 else
 out.print("<td>"+str2+"</td>");
 

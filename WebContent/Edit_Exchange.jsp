@@ -20,7 +20,7 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form action="ConferenceEditDone" method="post">
+<form action="ExchangeEditDone" method="post">
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -41,24 +41,24 @@ i++;
 String str=null;
 if(i<list.size()){
 str=(String)list.get(i);
-out.print("<label>标题</label><input name=\"c_Title1\" type=\"text\" class=\"form-control\"  value = \""+str+"\"   required/>");
+out.print("<label>标题</label><input name=\"e_Title1\" type=\"text\" class=\"form-control\"  value = \""+str+"\"   required/>");
 i++;}
 if(i<list.size()){
 str=(String)list.get(i);
-out.print("<label>开始时间</label><input name=\"c_StartTime\" type=\"date\" class=\"form-control\"  value = \""+str+"\"   required/>");
+out.print("<label>开始时间</label><input name=\"e_StartTime\" type=\"date\" class=\"form-control\"  value = \""+str+"\"   required/>");
 i++;}
 if(i<list.size()){
 str=(String)list.get(i);
-out.print("<label>地点</label><input name=\"c_Position\" type=\"text\" class=\"form-control\"  value = \""+str+"\"   required/>");
+out.print("<label>地点</label><input name=\"e_Position\" type=\"text\" class=\"form-control\"  value = \""+str+"\"   required/>");
 i++;}
 if(i<list.size()){
 str=(String)list.get(i);
-out.print("<label>赞助人</label><input name=\"c_Sponsor\" type=\"text\" class=\"form-control\"  value = \""+str+"\"   required/>");
+out.print("<label>资助来源</label><input name=\"e_Funded\" type=\"text\" class=\"form-control\"  value = \""+str+"\"   required/>");
 i++;}
 //<textarea class="form-control" rows="3"></textarea>
 if(i<list.size()){
 str=(String)list.get(i);
-out.print("<label>内容</label><textarea name=\"c_Content1\" type=\"text\" class=\"form-control\"  id=\"c_Content1\"    rows=\"20\" required/>"+str +"</textarea>");
+out.print("<label>内容</label><textarea name=\"e_Content1\" type=\"text\" class=\"form-control\"      rows=\"20\" required/>"+str+"</textarea>");
 i++;}
 
 %>
@@ -84,17 +84,23 @@ i++;}
 					 i++;
 str=(String)list.get(i);
 if(str!=null)
-out.print("<label>标题</label><input name=\"c_Title2\" type=\"text\" class=\"form-control\"  value = \""+str+"\"  />");
-else out.print("<label>标题</label><input name=\"c_Title2\" type=\"text\" class=\"form-control\"  value = \"\"  />");
+out.print("<label>标题</label><input name=\"e_Title2\" type=\"text\" class=\"form-control\"  value = \""+str+"\"  />");
+else out.print("<label>标题</label><input name=\"e_Title2\" type=\"text\" class=\"form-control\"  value = \"\"  />");
 i++;
 str=(String)list.get(i);
-out.print("<label>结束时间</label><input name=\"c_Endtime\" type=\"date\" class=\"form-control\"  value = \""+str+"\"  />");
+out.print("<label>结束时间</label><input name=\"e_Endtime\" type=\"date\" class=\"form-control\"  value = \""+str+"\"  />");
 i++;
 str=(String)list.get(i);
-out.print("<label>内容</label><textarea name=\"c_Content2\" type=\"text\" class=\"form-control\"   rows=\"20\"/>"+str+"</textarea>");
+out.print("<label>实际花费</label><input name=\"e_Expenditure\" type=\"number\" class=\"form-control\"  value = \""+str+"\"  />");
+%>
+(单位：RMB)<br>
+<% 
 i++;
 str=(String)list.get(i);
-out.print("<label>图片</label><input name=\"c_Image\" type=\"text\" class=\"form-control\"  value = \""+str+"\"  />");
+out.print("<label>内容</label><textarea name=\"e_Content2\" type=\"text\" class=\"form-control\"    rows=\"20\"/>"+str+"</textarea>");
+i++;
+str=(String)list.get(i);
+out.print("<label>图片</label><input name=\"e_Image\" type=\"text\" class=\"form-control\"  value = \""+str+"\"  />");
 					 %>
 				</li>
 			</ul>
