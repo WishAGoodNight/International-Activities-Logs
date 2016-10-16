@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+   <constant name="struts.devMode" value="true" />
+   <package name="not know" extends="struts-default">
+   
+
+         
+         <action name="newblog" class="WishAGoodDay.Log_Actions" method="insertblog">
+         <result name="SUCCESS">/success.jsp</result>
+         </action>
+         <action name="AllBlogs" class="WishAGoodDay.Log_Actions" method="Logdetail">
+         <result name="SUCCESS">/SeeAll.jsp</result>
+         </action>
+         <action name="ConferenceDetail" class="WishAGoodDay.Log_Actions" method="Detail_c">
+         <result name="SUCCESS">/Detail_For_Conference.jsp</result>
+         </action>
+         <action name="ConferenceEdit" class="WishAGoodDay.Log_Actions" method="Detail_c">
+         <result name="SUCCESS">/Edit_Conference.jsp</result>
+         </action>
+          <action name="ConferenceEditDone" class="WishAGoodDay.Log_Actions" method="Edit_c">
+         <result name="SUCCESS">/success.jsp</result>
+         </action>
+         <action name="AcademicTeamworkDetail" class="WishAGoodDay.Log_Actions" method="Detail_a">
+         <result name="SUCCESS">/Detail_For_AcademicTeamwork.jsp</result>
+         </action>
+         <action name="AcademicTeamworkEdit" class="WishAGoodDay.Log_Actions" method="Detail_a">
+         <result name="SUCCESS">/Edit_AcademicTeamwork.jsp</result>
+         </action>
+          <action name="AcademicTeamworkEditDone" class="WishAGoodDay.Log_Actions" method="Edit_a">
+         <result name="SUCCESS">/success.jsp</result>
+         </action>
+         <action name="ExchangeDetail" class="WishAGoodDay.Log_Actions" method="Detail_e">
+         <result name="SUCCESS">/Detail_For_Exchange.jsp</result>
+         </action>
+         <action name="ExchangeEdit" class="WishAGoodDay.Log_Actions" method="Detail_e">
+         <result name="SUCCESS">/Edit_Exchange.jsp</result>
+         </action>
+         <action name="ExchangeEditDone" class="WishAGoodDay.Log_Actions" method="Edit_e">
+         <result name="SUCCESS">/success.jsp</result>
+         </action>
+          <action name="Search_Action" class="WishAGoodDay.Log_Actions" method="Search">
+         <result name="SUCCESS">/Search_show.jsp</result>
+         <result name="FALSE">/false_for_search.jsp</result>
+         </action>
+   </package>
+
+</struts>
