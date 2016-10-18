@@ -7,6 +7,32 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 <title> Conference details</title>
+<style type="text/css">  
+    </style>  
+    <script type="text/javascript">  
+        var goToWhere = function (where)  
+        {  
+            var me = this;  
+            me.site = [];  
+            me.sleep = me.sleep ? me.sleep : 16;  
+            me.fx = me.fx ? me.fx : 6;  
+            clearInterval (me.interval);  
+            var dh = document.documentElement.scrollHeight || document.body.scrollHeight;  
+            var height = !!where ? dh : 0;  
+            me.interval = setInterval (function ()  
+            {  
+                var top = document.documentElement.scrollTop || document.body.scrollTop;  
+                var speed = (height - top) / me.fx;  
+                if (speed === me.site[0])  
+                {  
+                    window.scrollTo (0, height);  
+                    clearInterval (me.interval);  
+                }  
+                window.scrollBy (0, speed);  
+                me.site.unshift (speed);  
+            }, me.sleep);  
+        };  
+    </script>  
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -20,8 +46,6 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-<<<<<<< HEAD
-=======
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -36,7 +60,6 @@ pageEncoding="UTF-8"%>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane" id="panel-705027">
->>>>>>> origin/searchdone
 <% 
 ArrayList<String>list=(ArrayList<String>)  session.getAttribute("list");
 int i=0;
@@ -47,25 +70,17 @@ String StartTime=(String)list.get(i);i++;
 String Position=(String)list.get(i);i++;
 String Content1=(String)list.get(i);i++;
 String End=(String)list.get(i);i++;
+String Item1=(String)list.get(i);i++;
 String Title2=(String)list.get(i);i++;
 String Endtime=(String)list.get(i);i++;
 String Expenditure=(String)list.get(i);i++;
 String Content2=(String)list.get(i);i++;
-String Image=(String)list.get(i);
+String Image=(String)list.get(i);i++;
+String Item2=(String)list.get(i);
 %>
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-<<<<<<< HEAD
-			<ul class="nav nav-tabs">
-				<li class="active">
-					 <a href="#">事前公告</a>
-				</li>
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-=======
->>>>>>> origin/searchdone
 			<div class="page-header">
 			
 				<h1>
@@ -107,25 +122,19 @@ String Image=(String)list.get(i);
 					out.print(Content1);
 					
 					%>
+					
 				</p>
 				<p>
 					<%  out.print(" <a class=\"btn btn-primary btn-large\"  href=AcademicTeamworkEdit?ID="+ID+ ">" +" Edit "+ "</a>");%>
 				</p>
+				<% if(Item1!=null)out.print("<a href=\""+Item1+"\">附件下载</a>");%>
 			</div>
 		</div>
 	</div>
 </div>
-<<<<<<< HEAD
-				</li>
-				<li class="active">
-					 <a href="#">事后记录</a>
-					 <div class="container">
-	<div class="row clearfix">
-=======
 					</div>
 					<div class="tab-pane active" id="panel-574844">
 <div class="row clearfix">
->>>>>>> origin/searchdone
 		<div class="col-md-12 column">
 			<div class="page-header">
 			
@@ -161,24 +170,33 @@ String Image=(String)list.get(i);
 				</h1>
 				<p>
 					<% out.print(Content2);%>
+					<%
+					if(Image!=null)
+					if(!Image.equals(""))
+					{
+						out.print("<br>");
+						int start=0;
+						int end=0;
+						for(int counter=0;counter+3<Image.length();counter++)
+						{
+							if(Image.charAt(counter+1)=='/'&&Image.charAt(counter+2)=='/'&&Image.charAt(counter+3)=='/')
+							{//out.print(Image.substring(start,counter+1));
+								out.print("<img src=\""+Image.substring(start,counter+1)+"\" width=\"800\">");
+							out.print("<br>");
+							start=counter+4;}
+							
+						}
+					}
+					%>
 				</p>
+				
 				<p>
 					 <%  out.print(" <a class=\"btn btn-primary btn-large\"  href=AcademicTeamworkEdit?ID="+ID+ ">" +" Edit "+ "</a>");%>
 				</p>
+				<% if(Item2!=null)out.print("<a href=\""+Item2+"\">附件下载</a>");%>
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
-</div>
-					 
-					 
-					 
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>
-=======
 					</div>
 				</div>
 			</div>
@@ -189,7 +207,6 @@ String Image=(String)list.get(i);
 				
 	
 
->>>>>>> origin/searchdone
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -204,5 +221,10 @@ String Image=(String)list.get(i);
 		</div>
 	</div>
 </div>
+<div  onclick="goToWhere(0)"  
+     style="border: 1px solid red; height:90px; width: 15px; position: fixed; cursor: pointer; right: 10px; bottom: 150px;">返回顶部</div>  
+<div  onclick="goToWhere(1)"  
+     style="border: 1px solid red; height: 90px; width: 15px; position: fixed; cursor: pointer; right: 10px; bottom: 30px;">前往底部</div>  
+</body>
 </body>
 </html>

@@ -42,13 +42,10 @@
          <action name="ExchangeEditDone" class="WishAGoodDay.Log_Actions" method="Edit_e">
          <result name="SUCCESS">/success.jsp</result>
          </action>
-<<<<<<< HEAD
-=======
           <action name="Search_Action" class="WishAGoodDay.Log_Actions" method="Search">
          <result name="SUCCESS">/Search_show.jsp</result>
          <result name="FALSE">/false_for_search.jsp</result>
          </action>
->>>>>>> origin/searchdone
    </package>
 
 </struts>

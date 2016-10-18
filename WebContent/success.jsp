@@ -28,18 +28,6 @@ pageEncoding="UTF-8"%>
 		</div>
 	</div>
 </div>
-<<<<<<< HEAD
-</br>
-</br>
-</br>
-</br>
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<h5 class="text-right text-warning">
-				<a href="index.jsp"><button type="button" class="btn btn-default">点击这里返回首页</button><a/>
-			</h5>
-=======
 <br>
 <br>
 <br>
@@ -55,7 +43,6 @@ pageEncoding="UTF-8"%>
 					 <a href=AllBlogs>AllBlogs</a>
 				</li>
 			</ul>
->>>>>>> origin/searchdone
 		</div>
 	</div>
 </div>

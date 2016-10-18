@@ -1,7 +1,6 @@
 package WishAGoodDay;
-
-
-
+import WishAGoodDay.FileUploadAction2.* ;
+import WishAGoodDay.FileUploadAction.* ;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +37,34 @@ import com.opensymphony.xwork2.ActionSupport;
 public class  Log_Actions{
 	private Connection conn = null;
 	PreparedStatement statement = null;
-<<<<<<< HEAD
-=======
+	//for fileupload
+    //注意，file并不是指前端jsp上传过来的文件本身，而是文件上传过来存放在临时文件夹下面的文件
+    private File file1;
+    //提交过来的file的名字
+    private String file1FileName;
+    //提交过来的file的MIME类型
+    private String file1ContentType;
+	
+    
+    private File file2;
+    //提交过来的file的名字
+    private String file2FileName;
+    //提交过来的file的MIME类型
+    private String file2ContentType;
+    
+    
+    
+    /*
+     * For pictures
+     * 
+     */
+  //这里用List来存放上传过来的文件，file同样指的是临时文件夹中的临时文件，而不是真正上传过来的文件
+    private List<File> Pic;
+    
+   //这个List存放的是文件的名字，和List<File>中的文件相对应
+    private List<String> PicFileName;
+    
+    private List<String> PicContentType;
 	//for search
 	String Search_Name;
 	String Search_Time1;
@@ -48,17 +73,13 @@ public class  Log_Actions{
 	boolean Search_AcademicTeamwork;
 	boolean Search_Exchange;
 	//for create
->>>>>>> origin/searchdone
 	int ID;
 	boolean InOrOut;
     String  Name;
 	boolean Conference;
 	boolean AcademicTeamwork;
     boolean Exchange;
-<<<<<<< HEAD
-=======
     
->>>>>>> origin/searchdone
     int Item_end=0;
     //for conference
     String c_Title1;
@@ -95,13 +116,12 @@ public class  Log_Actions{
     String e_Content2;
     String e_Image;
     
+    
+    
     public ArrayList<String> list=null;
-<<<<<<< HEAD
-=======
     public ArrayList<String> list_c=null;
     public ArrayList<String> list_a=null;
     public ArrayList<String> list_e=null;
->>>>>>> origin/searchdone
 	// connect to MySQL
     ArrayList<String> getList(){
     	return list;
@@ -139,53 +159,7 @@ public class  Log_Actions{
 	}
 
 
-<<<<<<< HEAD
-public String findAuthor()
-{
-	String url = "jdbc:mysql://localhost:3306/library?characterEncoding=UTF-8";
-	String username = "root";
-	String password = "1234"; // 加载驱动程序以连接数据库 
-	ArrayList<String> list2= new ArrayList<String>();
-	String value=Name;
-	try { 
-	Class.forName("com.mysql.jdbc.Driver" ); 
-	conn = DriverManager.getConnection( url,username, password ); 
-	String sql = "SELECT * FROM Author where Name = '"+value+"'";  
-	Statement stmt= conn.createStatement();
-	ResultSet rs = stmt.executeQuery(sql); 
-	String ID="";
-	while (rs.next()) { 
-		ID=rs.getString("AuthorID");
-	 } 
-	
-	sql="select * from Book where AuthorID="+ID;
-	ResultSet rs2 = stmt.executeQuery(sql); 
-    String ISBN=null;
-    String Title=null;
-    while(rs2.next()){
-    	ISBN=rs2.getString("ISBN");
-    	Title=rs2.getString("Title");
-    	list2.add(ISBN);
-    	list2.add(Title);
-    }
-	 rs2.close();
-	 rs.close();  
-	 conn.close();
-	}catch(Exception e)
-	{System.out.println("cannot find the driver!");
-	e.printStackTrace();
-    }
-this.list=list2;
-ServletRequest request=ServletActionContext.getRequest();
-HttpServletRequest req=(HttpServletRequest) request;
-HttpSession session=req.getSession();
-session.setAttribute("list",list);
-if(list.size()>0) return "SUCCESS";
-else return "FALSE";
-}
-=======
 
->>>>>>> origin/searchdone
 
 public String Logdetail(){
 	
@@ -247,7 +221,7 @@ return "SUCCESS";
 
 }
 
-public String Detail_c(){
+public String Detail_c() {
 	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
 	String username = "root";
 	String password = "1234"; // 加载驱动程序以连接数据库 
@@ -275,6 +249,8 @@ public String Detail_c(){
     String Endtime=null;
     String Content2=null;
     String Image=null;
+    String Item1=null;
+    String Item2=null;
     while(rs.next()){
     	ID=rs.getString("ID");
     	list2.add(ID);
@@ -316,6 +292,9 @@ public String Detail_c(){
     	list2.add(Content1);
     	End=rs.getString("End");
     	list2.add(End);
+ 
+    	Item1=rs.getString("Item1");
+       	list2.add(Item1);
     	Title2=rs.getString("Title2");
     	list2.add(Title2);
     	titletemp2=Title2;
@@ -347,7 +326,10 @@ public String Detail_c(){
     	list2.add(Content2);
     	Image=rs.getString("Image");
     	list2.add(Image);
+    	Item2=rs.getString("Item2");
+       	list2.add(Item2);
     	System.out.println(list2);
+    	
     }
 	 rs.close();  
 	}catch(Exception e)
@@ -355,7 +337,6 @@ public String Detail_c(){
 	e.printStackTrace();
     }
 
-	
 this.list=list2;
 ServletRequest request=ServletActionContext.getRequest();
 HttpServletRequest req=(HttpServletRequest) request;
@@ -363,7 +344,10 @@ HttpSession session=req.getSession();
 session.setAttribute("list",list);
 return "SUCCESS";
 }
-public String Edit_c(){
+
+
+
+public String Edit_c() throws Exception{
 	connSQL();
 	String instruction1="update Conference set Title1='"+getC_Title1()+"',StartTime='"+getC_StartTime()+"' ,Position='"+getC_Position()+
 			"',Sponsor='"+getC_Sponsor()+"',Content1='"+getC_Content1()+
@@ -376,29 +360,62 @@ public String Edit_c(){
 	try {
 		statement = conn.prepareStatement(instruction1);
 		statement.executeUpdate();
-		return "SUCCESS";
 	} catch (Exception e) {
 		System.out.println("修改时出错：");
 		e.printStackTrace();
 	}
+	if(getFile1FileName()!=null)
+	{
+	String url=FileUploadAction.execute1(getFile1(),getFile1FileName(),getFile1ContentType());
+	String instruction2="update Conference set Item1='" +url+"' where ID=" +getID();
+	System.out.println(instruction2);
+	try {
+		statement = conn.prepareStatement(instruction2);
+		statement.executeUpdate();
+	} catch (Exception e) {
+		System.out.println("修改时出错：");
+		e.printStackTrace();
+	}
+	}
+	
+	if(getFile2FileName()!=null)
+	{
+	String url=FileUploadAction.execute1(getFile2(),getFile2FileName(),getFile2ContentType());
+	String instruction3="update Conference set Item2='" +url+"' where ID=" +getID();
+	System.out.println(instruction3);
+	try {
+		statement = conn.prepareStatement(instruction3);
+		statement.executeUpdate();
+	} catch (Exception e) {
+		System.out.println("修改时出错：");
+		e.printStackTrace();
+	}
+	}
+	
+	
+	List<String> Names=getPicFileName();
+	//picture
+	if(Pic!=null)
+	{     
+		//for(int i=0;i<Pic.size();i++)
+			//System.out.println(Names.get(i));
+		String url=FileUploadAction2.execute1(getPic(),getPicFileName(),getPicContentType());
+		String instruction4="update Conference set Image='" +url+"' where ID=" +getID();
+		try {
+			statement = conn.prepareStatement(instruction4);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("修改时出错：");
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 	return "SUCCESS";
 }
 
-public String delete() {
-	connSQL();
-	String instruction="delete from Book where Title='"+Name+"'";
-	System.out.println(instruction);
-	try {
-	    System.out.println(instruction);
-		statement = conn.prepareStatement(instruction);
-		statement.executeUpdate();
-		return "SUCCESS";
-	} catch (Exception e) {
-		System.out.println("删除时出错：");
-		e.printStackTrace();
-	}
-	return "FALSE";
-}
+
 public String insertblog(){
 	connSQL();
 	int counter=0;
@@ -460,6 +477,8 @@ public String Detail_a(){
     String Expenditure=null;
     String Content2=null;
     String Image=null;
+    String Item1=null;
+    String Item2=null;
     while(rs.next()){
     	ID=rs.getString("ID");
     	list2.add(ID);
@@ -499,7 +518,8 @@ public String Detail_a(){
     	list2.add(Content1);
     	End=rs.getString("End");
     	list2.add(End);
-    	
+    	Item1=rs.getString("Item1");
+    	list2.add(Item1);
     	Title2=rs.getString("Title2");
     	list2.add(Title2);
     	titletemp2=Title2;
@@ -532,6 +552,8 @@ public String Detail_a(){
     	list2.add(Content2);
     	Image=rs.getString("Image");
     	list2.add(Image);
+    	Item2=rs.getString("Item2");
+    	list2.add(Item2);
     	System.out.println(list2);
     }
 	 rs.close();  
@@ -550,7 +572,7 @@ return "SUCCESS";
 }
 
 
-public String Edit_a(){
+public String Edit_a() throws Exception{
 	connSQL();
 	String instruction1="update AcademicTeamwork set Title1='"+getA_Title1()+"',StartTime='"+getA_StartTime()+"' ,Position='"+getA_Position()+
 			"',Content1='"+getA_Content1()+
@@ -564,11 +586,58 @@ public String Edit_a(){
 	try {
 		statement = conn.prepareStatement(instruction1);
 		statement.executeUpdate();
-		return "SUCCESS";
 	} catch (Exception e) {
 		System.out.println("修改时出错：");
 		e.printStackTrace();
 	}
+	
+	
+	if(getFile1FileName()!=null)
+	{
+	String url=FileUploadAction.execute1(getFile1(),getFile1FileName(),getFile1ContentType());
+	String instruction2="update AcademicTeamwork set Item1='" +url+"' where ID=" +getID();
+	System.out.println(instruction2);
+	try {
+		statement = conn.prepareStatement(instruction2);
+		statement.executeUpdate();
+	} catch (Exception e) {
+		System.out.println("修改时出错：");
+		e.printStackTrace();
+	}
+	}
+	
+	if(getFile2FileName()!=null)
+	{
+	String url=FileUploadAction.execute1(getFile2(),getFile2FileName(),getFile2ContentType());
+	String instruction3="update AcademicTeamwork set Item2='" +url+"' where ID=" +getID();
+	System.out.println(instruction3);
+	try {
+		statement = conn.prepareStatement(instruction3);
+		statement.executeUpdate();
+	} catch (Exception e) {
+		System.out.println("修改时出错：");
+		e.printStackTrace();
+	}
+	}
+	
+	List<String> Names=getPicFileName();
+	//picture
+	if(Pic!=null)
+	{     
+		//for(int i=0;i<Pic.size();i++)
+			//System.out.println(Names.get(i));
+		String url=FileUploadAction2.execute1(getPic(),getPicFileName(),getPicContentType());
+		String instruction4="update AcademicTeamwork set Image='" +url+"' where ID=" +getID();
+		try {
+			statement = conn.prepareStatement(instruction4);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("修改时出错：");
+			e.printStackTrace();
+		}
+	}
+	
+	
 	return "SUCCESS";
 }
 
@@ -605,6 +674,8 @@ public String Detail_e(){
     String Expenditure=null;
     String Content2=null;
     String Image=null;
+    String Item1=null;
+    String Item2=null;
     while(rs.next()){
     	ID=rs.getString("ID");
     	list2.add(ID);
@@ -646,7 +717,8 @@ public String Detail_e(){
     	list2.add(Content1);
     	End=rs.getString("End");
     	list2.add(End);
-    	
+    	Item1=rs.getString("Item1");
+    	list2.add(Item1);
     	Title2=rs.getString("Title2");
     	list2.add(Title2);
     	titletemp2=Title2;
@@ -679,6 +751,8 @@ public String Detail_e(){
     	list2.add(Content2);
     	Image=rs.getString("Image");
     	list2.add(Image);
+    	Item2=rs.getString("Item2");
+    	list2.add(Item2);
     	System.out.println(list2);
     }
 	 rs.close();  
@@ -696,7 +770,7 @@ session.setAttribute("list",list);
 return "SUCCESS";
 }
 
-public String Edit_e(){
+public String Edit_e() throws Exception{
 	connSQL();
 	String instruction1="update Exchange set Title1='"+getE_Title1()+"',StartTime='"+getE_StartTime()+"' ,Position='"+getE_Position()+
 			"',Funded='"+getE_Funded()+
@@ -712,11 +786,60 @@ public String Edit_e(){
 	try {
 		statement = conn.prepareStatement(instruction1);
 		statement.executeUpdate();
-		return "SUCCESS";
 	} catch (Exception e) {
 		System.out.println("修改时出错：");
 		e.printStackTrace();
 	}
+	
+	
+	if(getFile1FileName()!=null)
+	{
+	String url=FileUploadAction.execute1(getFile1(),getFile1FileName(),getFile1ContentType());
+	String instruction2="update Exchange set Item1='" +url+"' where ID=" +getID();
+	System.out.println(instruction2);
+	try {
+		statement = conn.prepareStatement(instruction2);
+		statement.executeUpdate();
+	} catch (Exception e) {
+		System.out.println("修改时出错：");
+		e.printStackTrace();
+	}
+	}
+	
+	if(getFile2FileName()!=null)
+	{
+	String url=FileUploadAction.execute1(getFile2(),getFile2FileName(),getFile2ContentType());
+	String instruction3="update Exchange set Item2='" +url+"' where ID=" +getID();
+	System.out.println(instruction3);
+	try {
+		statement = conn.prepareStatement(instruction3);
+		statement.executeUpdate();
+	} catch (Exception e) {
+		System.out.println("修改时出错：");
+		e.printStackTrace();
+	}
+	}
+	
+	
+	List<String> Names=getPicFileName();
+	//picture
+	if(Pic!=null)
+	{     
+		//for(int i=0;i<Pic.size();i++)
+			//System.out.println(Names.get(i));
+		String url=FileUploadAction2.execute1(getPic(),getPicFileName(),getPicContentType());
+		String instruction4="update Exchange set Image='" +url+"' where ID=" +getID();
+		try {
+			statement = conn.prepareStatement(instruction4);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("修改时出错：");
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 	return "SUCCESS";
 }
 
@@ -824,8 +947,6 @@ public void create_e(String x){
 	}
 }
 
-<<<<<<< HEAD
-=======
 
 public String Search(){
 	String instruction_c="";
@@ -1069,7 +1190,6 @@ deconnSQL();
 }
 
 
->>>>>>> origin/searchdone
 public int getID() {
 	return ID;
 }
@@ -1299,8 +1419,6 @@ public String getE_Image() {
 public void setE_Image(String e_Image) {
 	this.e_Image = e_Image;
 }
-<<<<<<< HEAD
-=======
 public String getSearch_Name() {
 	return Search_Name;
 }
@@ -1355,7 +1473,86 @@ public ArrayList<String> getList_e() {
 public void setList_e(ArrayList<String> list_e) {
 	this.list_e = list_e;
 }
->>>>>>> origin/searchdone
+
+
+
+
+
+public File getFile1()
+{
+    return file1;
+}
+
+public void setFile1(File file1)
+{
+    this.file1 = file1;
+}
+public String getFile1FileName()
+{
+    return file1FileName;
+}
+
+public void setFile1FileName(String file1FileName)
+{
+    this.file1FileName = file1FileName;
+}
+
+public String getFile1ContentType()
+{
+    return file1ContentType;
+}
+
+public void setFile1ContentType(String file1ContentType)
+{
+    this.file1ContentType = file1ContentType;
+}
+
+public File getFile2()
+{
+    return file2;
+}
+
+public void setFile2(File file2)
+{
+    this.file2 = file2;
+}
+public String getFile2FileName()
+{
+    return file2FileName;
+}
+
+public void setFile2FileName(String file2FileName)
+{
+    this.file2FileName = file2FileName;
+}
+
+public String getFile2ContentType()
+{
+    return file2ContentType;
+}
+
+public void setFile2ContentType(String file2ContentType)
+{
+    this.file2ContentType = file2ContentType;
+}
+public List<File> getPic() {
+	return Pic;
+}
+public void setPic(List<File> Pic) {
+	this.Pic = Pic;
+}
+public List<String> getPicFileName() {
+	return PicFileName;
+}
+public void setPicFileName(List<String> PicFileName) {
+	this.PicFileName = PicFileName;
+}
+public List<String> getPicContentType() {
+	return PicContentType;
+}
+public void setPicContentType(List<String> PicContentType) {
+	this.PicContentType = PicContentType;
+}
 
 }
 

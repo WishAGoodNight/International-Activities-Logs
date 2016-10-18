@@ -25,31 +25,18 @@ pageEncoding="UTF-8"%>
 			<h3>
 				创建一个新的项目，请完成以下信息的填写：
 			</h3>
-<<<<<<< HEAD
-			</br>
-=======
 			<br>
->>>>>>> origin/searchdone
 			<form action="newblog">
 				<div class="form-group">
 					 <label for="exampleInputPassword1">Title</label><input type="text" name="Name" placeholder="这里输入项目名称" class="form-control" required/>
 				</div>
-<<<<<<< HEAD
-	           本校出访OR外校来访:     </br><input name ="InOrOut"  type="radio" value="true" checked>
-=======
 	           本校出访OR外校来访:     <br><input name ="InOrOut"  type="radio" value="true" checked>
->>>>>>> origin/searchdone
                本校出访&nbsp;
                <input name ="InOrOut" type="radio"  value="false">
                外校来访
                 
-<<<<<<< HEAD
-               </br>
-               </br>
-=======
                <br>
                <br>
->>>>>>> origin/searchdone
                参与活动：
                <input name = Conference type="checkbox"  value="true" >
                交流会议
@@ -57,13 +44,8 @@ pageEncoding="UTF-8"%>
                合作研究
                <input name = Exchange type="checkbox" value="true" >
                交换生项目 
-<<<<<<< HEAD
-               </br>
-               </br>
-=======
                <br>
                <br>
->>>>>>> origin/searchdone
                <button type="submit" class="btn btn-default">Submit</button>
 			</form>
 		</div>

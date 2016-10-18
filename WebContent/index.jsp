@@ -25,21 +25,6 @@ pageEncoding="UTF-8"%>
 			<h3>
 				欢迎来到国际合作日志管理系统
 			</h3> 
-<<<<<<< HEAD
-			</br>
-			</br>
-			<button type="button" class="btn btn-block btn-lg btn-info">查询</button>
-			</br>
-			</br>
-			</br>
-			<div class="row clearfix">
-				<div class="col-md-6 column">
-					<div class="btn-group">
-					</div> <a href="newlog.jsp"><button type="button" class="btn btn-default">创建一个新的日志</button></a>
-				</div>
-				<div class="col-md-6 column">
-					 <a href=AllBlogs><button type="button" class="btn btn-default">查看所有日志</button></a>
-=======
 			<br>
 			<br>
 <div class="container">
@@ -157,16 +142,10 @@ pageEncoding="UTF-8"%>
 							</p>
 						</div>
 					</div>
->>>>>>> origin/searchdone
 				</div>
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
-</div>
-
-
-=======
 
 			
 			
@@ -181,6 +160,5 @@ pageEncoding="UTF-8"%>
 
 
 <br><br><br><br>
->>>>>>> origin/searchdone
 </body>
 </html>

@@ -20,14 +20,25 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form action="ExchangeEditDone" method="post">
+<form action="ExchangeEditDone" method="post" enctype="multipart/form-data">
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			<ul class="nav nav-tabs">
-				<li class="active">
-					 <a href="#">事前公告</a>
-					 <div class="container">
+		
+		
+		<div class="tabbable" id="tabs-663860">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						 <a href="#panel-271268" data-toggle="tab">事前公告</a>
+					</li>
+					<li>
+						 <a href="#panel-248050" data-toggle="tab">事后记录</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="panel-271268">
+						<p>
+							<div class="container">
 	                 <div class="row clearfix">
 		             <div class="col-md-12 column">
 				<% 
@@ -59,11 +70,17 @@ i++;}
 if(i<list.size()){
 str=(String)list.get(i);
 out.print("<label>内容</label><textarea name=\"e_Content1\" type=\"text\" class=\"form-control\"      rows=\"20\" required/>"+str+"</textarea>");
+i++;
 i++;}
 
 %>
 
-				
+				                    <div class="form-group">
+					 <label for="exampleInputFile">添加文件</label><input type="file" name="file1" id="exampleInputFile" />
+					<p class="help-block">
+						这里添加压缩包
+					</p>
+				    </div>
 				
 				
 				
@@ -71,17 +88,17 @@ i++;}
 		</div>
 	</div>
 </div>
-
-				</li>
-				</br>
-		<li class="active">
-					  <a href="#">事后记录</a>
-					  <div class="container">
+						</p>
+					</div>
+					<div class="tab-pane" id="panel-248050">
+						<p>
+							<div class="container">
 	                 <div class="row clearfix">
 		             <div class="col-md-12 column">
 					 </br>
 					 <%
 					 i++;
+out.print("<label>ID</label><input type=\"text\" class=\"form-control\"  value = \""+str1+"\"  readonly required/>");
 str=(String)list.get(i);
 if(str!=null)
 out.print("<label>标题</label><input name=\"e_Title2\" type=\"text\" class=\"form-control\"  value = \""+str+"\"  />");
@@ -100,13 +117,19 @@ str=(String)list.get(i);
 out.print("<label>内容</label><textarea name=\"e_Content2\" type=\"text\" class=\"form-control\"    rows=\"20\"/>"+str+"</textarea>");
 i++;
 str=(String)list.get(i);
-out.print("<label>图片</label><input name=\"e_Image\" type=\"text\" class=\"form-control\"  value = \""+str+"\"  />");
+
 					 %>
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>
+					                     <div class="form-group">
+					 <label for="exampleInputFile">添加文件</label><input type="file" name="file2" id="exampleInputFile" />
+					<p class="help-block">
+						这里添加压缩包
+					</p>
+					 <label for="exampleInputFile">添加图片</label><input type="file" name="Pic" id="exampleInputFile"  multiple="true"/>(支持格式：png,jpg,gif,bmp)
+				    </div>
+						</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
