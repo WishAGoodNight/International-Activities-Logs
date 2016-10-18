@@ -20,23 +20,6 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-<<<<<<< HEAD
-=======
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<div class="tabbable" id="tabs-329239">
-				<ul class="nav nav-tabs">
-					<li>
-						 <a href="#panel-705027" data-toggle="tab">事前公告</a>
-					</li>
-					<li class="active">
-						 <a href="#panel-574844" data-toggle="tab">事后记录</a>
-					</li>
-				</ul>
-				<div class="tab-content">
-					<div class="tab-pane" id="panel-705027">
->>>>>>> origin/searchdone
 <% 
 ArrayList<String>list=(ArrayList<String>)  session.getAttribute("list");
 int i=0;
@@ -45,18 +28,17 @@ String ID=(String)list.get(i);i++;
 String Title1=(String)list.get(i);i++;
 String StartTime=(String)list.get(i);i++;
 String Position=(String)list.get(i);i++;
+String Sponsor=(String)list.get(i);i++;
 String Content1=(String)list.get(i);i++;
 String End=(String)list.get(i);i++;
 String Title2=(String)list.get(i);i++;
 String Endtime=(String)list.get(i);i++;
-String Expenditure=(String)list.get(i);i++;
 String Content2=(String)list.get(i);i++;
 String Image=(String)list.get(i);
 %>
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-<<<<<<< HEAD
 			<ul class="nav nav-tabs">
 				<li class="active">
 					 <a href="#">事前公告</a>
@@ -64,8 +46,6 @@ String Image=(String)list.get(i);
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-=======
->>>>>>> origin/searchdone
 			<div class="page-header">
 			
 				<h1>
@@ -81,6 +61,9 @@ String Image=(String)list.get(i);
 						<th>
 							地点
 						</th>
+						<th>
+							赞助
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -91,12 +74,15 @@ String Image=(String)list.get(i);
 						<td>
 							<%out.print(Position); %> 
 						</td>
+						<td>
+							<%out.print(Sponsor); %>
+						</td>
 					</tr>
 				</tbody>
 			</table>
 			<div class="jumbotron">
 				<h1>
-					Preview Of The Academic TeamWork：
+					Preview Of The Conference：
 				</h1>
 				<p>
 					<% 
@@ -109,23 +95,17 @@ String Image=(String)list.get(i);
 					%>
 				</p>
 				<p>
-					<%  out.print(" <a class=\"btn btn-primary btn-large\"  href=AcademicTeamworkEdit?ID="+ID+ ">" +" Edit "+ "</a>");%>
+					<%  out.print(" <a class=\"btn btn-primary btn-large\"  href=ConferenceEdit?ID="+ID+ ">" +" Edit "+ "</a>");%>
 				</p>
 			</div>
 		</div>
 	</div>
 </div>
-<<<<<<< HEAD
 				</li>
 				<li class="active">
 					 <a href="#">事后记录</a>
 					 <div class="container">
 	<div class="row clearfix">
-=======
-					</div>
-					<div class="tab-pane active" id="panel-574844">
-<div class="row clearfix">
->>>>>>> origin/searchdone
 		<div class="col-md-12 column">
 			<div class="page-header">
 			
@@ -139,9 +119,6 @@ String Image=(String)list.get(i);
 						<th>
 							结束时间
 						</th>
-						<th>
-							实际经费(RMB)
-						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -149,26 +126,23 @@ String Image=(String)list.get(i);
 						<td>
 							<%out.print(Endtime); %>
 						</td>
-												<td>
-							<%out.print(Expenditure); %> 
-						</td>
 					</tr>
 				</tbody>
 			</table>
 			<div class="jumbotron">
 				<h1>
-					Overview Of The Academic TeamWork：
+					Overview Of The Conference：
 				</h1>
 				<p>
 					<% out.print(Content2);%>
+					
 				</p>
 				<p>
-					 <%  out.print(" <a class=\"btn btn-primary btn-large\"  href=AcademicTeamworkEdit?ID="+ID+ ">" +" Edit "+ "</a>");%>
+					 <%  out.print(" <a class=\"btn btn-primary btn-large\"  href=ConferenceEdit?ID="+ID+ ">" +" Edit "+ "</a>");%>
 				</p>
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
 </div>
 					 
 					 
@@ -178,18 +152,6 @@ String Image=(String)list.get(i);
 		</div>
 	</div>
 </div>
-=======
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-				
-	
-
->>>>>>> origin/searchdone
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">

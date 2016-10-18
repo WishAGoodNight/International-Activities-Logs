@@ -20,6 +20,25 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
+<<<<<<< HEAD
+=======
+
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="tabbable" id="tabs-329239">
+				<ul class="nav nav-tabs">
+					<li>
+						 <a href="#panel-705027" data-toggle="tab">事前公告</a>
+					</li>
+					<li class="active">
+						 <a href="#panel-574844" data-toggle="tab">事后记录</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane" id="panel-705027">
+>>>>>>> origin/searchdone
 <% 
 ArrayList<String>list=(ArrayList<String>)  session.getAttribute("list");
 int i=0;
@@ -37,6 +56,7 @@ String Expenditure=(String)list.get(i);i++;
 String Content2=(String)list.get(i);i++;
 String Image=(String)list.get(i);
 %>
+<<<<<<< HEAD
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -44,6 +64,9 @@ String Image=(String)list.get(i);
 				<li class="active">
 					 <a href="#">事前公告</a>
 				</li>
+=======
+
+>>>>>>> origin/searchdone
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -98,10 +121,16 @@ String Image=(String)list.get(i);
 		</div>
 	</div>
 </div>
+<<<<<<< HEAD
 				</li>
 				<li class="active">
 					 <a href="#">事后记录</a>
 					 <div class="container">
+=======
+					</div>
+					<div class="tab-pane active" id="panel-574844">
+<div class="container">
+>>>>>>> origin/searchdone
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<div class="page-header">
@@ -149,12 +178,27 @@ String Image=(String)list.get(i);
 </div>
 					 
 					 
+<<<<<<< HEAD
 					 
 				</li>
 			</ul>
 		</div>
 	</div>
 </div>
+=======
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+>>>>>>> origin/searchdone
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">

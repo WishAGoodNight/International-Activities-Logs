@@ -38,12 +38,27 @@ import com.opensymphony.xwork2.ActionSupport;
 public class  Log_Actions{
 	private Connection conn = null;
 	PreparedStatement statement = null;
+<<<<<<< HEAD
+=======
+	//for search
+	String Search_Name;
+	String Search_Time1;
+	String Search_Time2;
+	boolean Search_Conference;
+	boolean Search_AcademicTeamwork;
+	boolean Search_Exchange;
+	//for create
+>>>>>>> origin/searchdone
 	int ID;
 	boolean InOrOut;
     String  Name;
 	boolean Conference;
 	boolean AcademicTeamwork;
     boolean Exchange;
+<<<<<<< HEAD
+=======
+    
+>>>>>>> origin/searchdone
     int Item_end=0;
     //for conference
     String c_Title1;
@@ -81,6 +96,12 @@ public class  Log_Actions{
     String e_Image;
     
     public ArrayList<String> list=null;
+<<<<<<< HEAD
+=======
+    public ArrayList<String> list_c=null;
+    public ArrayList<String> list_a=null;
+    public ArrayList<String> list_e=null;
+>>>>>>> origin/searchdone
 	// connect to MySQL
     ArrayList<String> getList(){
     	return list;
@@ -118,6 +139,7 @@ public class  Log_Actions{
 	}
 
 
+<<<<<<< HEAD
 public String findAuthor()
 {
 	String url = "jdbc:mysql://localhost:3306/library?characterEncoding=UTF-8";
@@ -161,6 +183,9 @@ session.setAttribute("list",list);
 if(list.size()>0) return "SUCCESS";
 else return "FALSE";
 }
+=======
+
+>>>>>>> origin/searchdone
 
 public String Logdetail(){
 	
@@ -799,6 +824,252 @@ public void create_e(String x){
 	}
 }
 
+<<<<<<< HEAD
+=======
+
+public String Search(){
+	String instruction_c="";
+	String instruction_a="";
+	String instruction_e="";
+	String Search_Time1=getSearch_Time1();
+	String Search_Time2=getSearch_Time2();
+	String Search_Name=getSearch_Name();
+	boolean Search_Conference=isSearch_Conference();
+	boolean Search_AcademicTeamwork=isSearch_AcademicTeamwork();
+	boolean isSearch_Exchange=isSearch_Exchange();
+	if((getSearch_Time1().equals("") || getSearch_Time2().equals(""))&&getSearch_Name().equals("")&&
+			isSearch_Conference()==false&&
+			isSearch_AcademicTeamwork()==false&&
+			isSearch_Exchange()==false)
+		return "FALSE";
+	String instruction=null;
+	String temp1="";
+	String temp2="";
+	String temp3="";
+	if(!getSearch_Time1().equals("") && !getSearch_Time2().equals(""))
+		for(int i=0;i<Search_Time1.length();i++)
+		{
+			if(Search_Time1.charAt(i)!='-')
+				{temp1=temp1+Search_Time1.charAt(i);
+				temp2=temp2+Search_Time2.charAt(i);
+				}
+		}
+	Search_Time2=temp2;
+	Search_Time1=temp1;
+	if(!Search_Name.equals(""))
+	{
+		for(int i=0;i<Search_Name.length();i++)
+		{
+			temp3=temp3+'%'+Search_Name.charAt(i);
+		}
+		temp3=temp3+'%';
+	}
+	Search_Name=temp3;
+	
+	//只有分类
+	 if(getSearch_Name().equals("")&&(getSearch_Time1().equals("") || getSearch_Time2().equals("")))
+	{
+		instruction_c="select * from Conference";
+		instruction_a="select * from AcademicTeamwork";
+		instruction_e="select * from Exchange";
+		}
+	//只有title
+	 else if(getSearch_Time1().equals("") || getSearch_Time2().equals(""))
+		{
+		instruction_c="select * from Conference  where Title1 like '"+Search_Name+"' or Title2 like '"
+				+ Search_Name+"'";
+		instruction_a="select * from AcademicTeamwork  where Title1 like '"+Search_Name+"' or Title2 like '"
+				+ Search_Name+"'";
+		instruction_e="select * from Exchange  where Title1 like '"+Search_Name+"' or Title2 like '"
+				+ Search_Name+"'";
+		}
+	//只有time
+	else if(getSearch_Name().equals(""))
+	{
+	instruction_c="select * from Conference  where StartTime >= "+Search_Time1+" and StartTime <= "
+			+ Search_Time2;
+	instruction_a="select * from AcademicTeamwork  where StartTime >= "+Search_Time1+" and StartTime <= "
+			+ Search_Time2;
+	instruction_e="select * from Exchange  where StartTime >= "+Search_Time1+" and StartTime <= "
+			+ Search_Time2;
+	}
+		//有time and title
+	else
+	{
+	instruction_c="select * from Conference  where (StartTime >= "+Search_Time1+" and StartTime <= "
+			+ Search_Time2+") and (Title1 like '"+Search_Name+"' or Title2 like '"
+			+ Search_Name+"')";
+	instruction_a="select * from AcademicTeamwork  where ( StartTime >= "+Search_Time1+" and StartTime <= "
+			+ Search_Time2+") and (Title1 like '"+Search_Name+"' or Title2 like '"
+			+ Search_Name+"')";
+	instruction_e="select * from Exchange  where (StartTime >= "+Search_Time1+" and StartTime <= "
+			+ Search_Time2+") and (Title1 like '"+Search_Name+"' or Title2 like '"
+			+ Search_Name+"')";
+		
+	}
+
+	//if(isSearch_Conference())
+	if((getSearch_Time1().equals("") || getSearch_Time2().equals("")))
+	System.out.println(instruction_c);
+		Conference_search(instruction_c,isSearch_Conference());
+	//if(isSearch_AcademicTeamwork())
+		AcademicTeamwork_search(instruction_a,Search_AcademicTeamwork);
+	//if(isSearch_Exchange())
+		Exchange_search(instruction_e,isSearch_Exchange());
+
+  //  System.out.println(list_c);
+  //  System.out.println(list_a);
+   // System.out.println(list_e);
+	return "SUCCESS";
+}
+
+public void Conference_search(String sql, boolean judge_c){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	ArrayList<String> list2= new ArrayList<String>();
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	System.out.println(sql);
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	String ID=null;
+    String Title1=null;
+    String StartTime=null;
+    String Position=null;
+    String Title2=null;
+    String Endtime=null;
+    if(judge_c)
+    list2.add("true");
+    else
+    	list2.add("false");
+    while(rs.next()){
+    	ID=rs.getString("ID");
+    	list2.add(ID);
+    	Title1=rs.getString("Title1");
+    	list2.add(Title1);
+    	StartTime=rs.getString("StartTime");
+    	list2.add(StartTime);
+    	Position=rs.getString("Position");
+    	list2.add(Position);
+    	Title2=rs.getString("Title2");
+    	list2.add(Title2);
+    	Endtime=rs.getString("Endtime");
+    	list2.add(Endtime);
+    	
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+this.list_c=list2;
+ServletRequest request=ServletActionContext.getRequest();
+HttpServletRequest req=(HttpServletRequest) request;
+HttpSession session=req.getSession();
+session.setAttribute("list_c",list_c);
+session.setAttribute("judge_c",judge_c);
+deconnSQL();
+}
+public void AcademicTeamwork_search(String sql,boolean judge_a){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	ArrayList<String> list2= new ArrayList<String>();
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	System.out.println(sql);
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	String ID=null;
+    String Title1=null;
+    String StartTime=null;
+    String Position=null;
+    String Title2=null;
+    String Endtime=null;
+    if(judge_a)
+        list2.add("true");
+    else
+    	list2.add("false");
+    while(rs.next()){
+    	ID=rs.getString("ID");
+    	list2.add(ID);
+    	Title1=rs.getString("Title1");
+    	list2.add(Title1);
+    	StartTime=rs.getString("StartTime");
+    	list2.add(StartTime);
+    	Position=rs.getString("Position");
+    	list2.add(Position);
+    	Title2=rs.getString("Title2");
+    	list2.add(Title2);
+    	Endtime=rs.getString("Endtime");
+    	list2.add(Endtime);
+    }
+    System.out.println(list2);
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+this.list_a=list2;
+ServletRequest request=ServletActionContext.getRequest();
+HttpServletRequest req=(HttpServletRequest) request;
+HttpSession session=req.getSession();
+session.setAttribute("list_a",list_a);
+deconnSQL();
+}
+public void Exchange_search(String sql,boolean  judge_e){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	ArrayList<String> list2= new ArrayList<String>();
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	System.out.println(sql);
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	String ID=null;
+    String Title1=null;
+    String StartTime=null;
+    String Position=null;
+    String Title2=null;
+    String Endtime=null;
+    if(judge_e)
+    	list2.add("true");
+    else 
+    	list2.add("false");
+    while(rs.next()){
+    	ID=rs.getString("ID");
+    	list2.add(ID);
+    	Title1=rs.getString("Title1");
+    	list2.add(Title1);
+    	StartTime=rs.getString("StartTime");
+    	list2.add(StartTime);
+    	Position=rs.getString("Position");
+    	list2.add(Position);
+    	Title2=rs.getString("Title2");
+    	list2.add(Title2);
+    	Endtime=rs.getString("Endtime");
+    	list2.add(Endtime);
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+this.list_e=list2;
+ServletRequest request=ServletActionContext.getRequest();
+HttpServletRequest req=(HttpServletRequest) request;
+HttpSession session=req.getSession();
+session.setAttribute("list_e",list_e);
+deconnSQL();
+}
+
+
+>>>>>>> origin/searchdone
 public int getID() {
 	return ID;
 }
@@ -1028,6 +1299,63 @@ public String getE_Image() {
 public void setE_Image(String e_Image) {
 	this.e_Image = e_Image;
 }
+<<<<<<< HEAD
+=======
+public String getSearch_Name() {
+	return Search_Name;
+}
+public void setSearch_Name(String Search_Name) {
+	this.Search_Name = Search_Name;
+}
+public String getSearch_Time1() {
+	return Search_Time1;
+}
+public void setSearch_Time1(String Search_Time1) {
+	this.Search_Time1 = Search_Time1;
+}
+public String getSearch_Time2() {
+	return Search_Time2;
+}
+public void setSearch_Time2(String Search_Time2) {
+	this.Search_Time2 = Search_Time2;
+}
+public boolean isSearch_Conference() {
+	return Search_Conference;
+}
+public void setSearch_Conference(boolean Search_Conference) {
+	this.Search_Conference = Search_Conference;
+}
+public boolean isSearch_AcademicTeamwork() {
+	return Search_AcademicTeamwork;
+}
+public void setSearch_AcademicTeamwork(boolean Search_AcademicTeamwork) {
+	this.Search_AcademicTeamwork = Search_AcademicTeamwork;
+}
+public boolean isSearch_Exchange() {
+	return Search_Exchange;
+}
+public void setSearch_Exchange(boolean Search_Exchange) {
+	this.Search_Exchange = Search_Exchange;
+}
+public ArrayList<String> getList_c() {
+	return list_c;
+}
+public void setList_c(ArrayList<String> list_c) {
+	this.list_c = list_c;
+}
+public ArrayList<String> getList_a() {
+	return list_a;
+}
+public void setList_a(ArrayList<String> list_a) {
+	this.list_a = list_a;
+}
+public ArrayList<String> getList_e() {
+	return list_e;
+}
+public void setList_e(ArrayList<String> list_e) {
+	this.list_e = list_e;
+}
+>>>>>>> origin/searchdone
 
 }
 
