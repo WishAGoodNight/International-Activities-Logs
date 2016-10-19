@@ -1,0 +1,100 @@
+# 这个 viminfo 文件是由 Vim 7.4 所产生。
+# 如果想要自行修改请特别小心！
+
+# 文件被写的时候 ‘encoding’ 的值
+*encoding=utf-8
+
+
+# hlsearch on (H) or off (h):
+~h
+# 命令行 历史记录 (从新到旧)：
+:q!
+
+# 查找字符串 历史记录 (从新到旧)：
+
+# 表达式 历史记录 (从新到旧)：
+
+# 输入行 历史记录 (从新到旧)：
+
+# 输入行 历史记录 (从新到旧)：
+
+# 寄存器:
+""-	CHAR	0
+	#
+
+# 文件标记:
+'0  1  0  ./bin/startup
+'1  60  1  /opt/apache-tomcat-8.5.5/bin/startup.sh
+'2  1  0  /opt/apache-tomcat-8.5.5/bin/startup.sh
+
+# 跳转列表 (从新到旧):
+-'  1  0  ./bin/startup
+-'  60  1  /opt/apache-tomcat-8.5.5/bin/startup.sh
+-'  1  0  /opt/apache-tomcat-8.5.5/bin/startup.sh
+-'  60  1  /opt/apache-tomcat-8.5.5/bin/startup.sh
+-'  1  0  /opt/apache-tomcat-8.5.5/bin/startup.sh
+
+# 文件内的标记历史记录 (从新到旧):
+
+> ./bin/startup
+	"	1	0
+	.	1	0
+	+	1	0
+
+> /opt/apache-tomcat-8.5.5/bin/startup.sh
+	"	60	1
+	^	60	2
+	.	60	2
+	+	1	0
+	+	57	2
+	+	60	2
+个 viminfo 文件是由 Vim 7.4 所产生。
+# 如果想要自行修改请特别小心！
+
+# 文件被写的时候 ‘encoding’ 的值
+*encoding=utf-8
+
+
+# hlsearch on (H) or off (h):
+~h
+# 命令行 历史记录 (从新到旧)：
+:q!
+
+# 查找字符串 历史记录 (从新到旧)：
+
+# 表达式 历史记录 (从新到旧)：
+
+# 输入行 历史记录 (从新到旧)：
+
+# 输入行 历史记录 (从新到旧)：
+
+# 寄存器:
+""-	CHAR	0
+	#
+
+# 文件标记:
+'0  1  0  ./bin/startup
+'1  60  1  /opt/apache-tomcat-8.5.5/bin/startup.sh
+'2  1  0  /opt/apache-tomcat-8.5.5/bin/startup.sh
+
+# 跳转列表 (从新到旧):
+-'  1  0  ./bin/startup
+-'  60  1  /opt/apache-tomcat-8.5.5/bin/startup.sh
+-'  1  0  /opt/apache-tomcat-8.5.5/bin/startup.sh
+-'  60  1  /opt/apache-tomcat-8.5.5/bin/startup.sh
+-'  1  0  /opt/apache-tomcat-8.5.5/bin/startup.sh
+
+# 文件内的标记历史记录 (从新到旧):
+
+> ./bin/startup
+	"	1	0
+	.	1	0
+	+	1	0
+
+> /opt/apache-tomcat-8.5.5/bin/startup.sh
+	"	60	1
+	^	60	2
+	.	60	2
+	+	1	0
+	+	57	2
+	+	

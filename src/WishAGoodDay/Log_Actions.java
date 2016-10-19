@@ -72,6 +72,7 @@ public class  Log_Actions{
 	boolean Search_Conference;
 	boolean Search_AcademicTeamwork;
 	boolean Search_Exchange;
+	boolean Search_Others;
 	//for create
 	int ID;
 	boolean InOrOut;
@@ -79,7 +80,7 @@ public class  Log_Actions{
 	boolean Conference;
 	boolean AcademicTeamwork;
     boolean Exchange;
-    
+    boolean Others;
     int Item_end=0;
     //for conference
     String c_Title1;
@@ -115,13 +116,24 @@ public class  Log_Actions{
     int e_Expenditure;
     String e_Content2;
     String e_Image;
-    
+    //for others
+    String o_Title1;
+    String o_StartTime;
+    String o_Position;
+    String o_Kind;
+    String o_Content1;
+    boolean o_End;
+    String o_Title2;
+    String o_Endtime;
+    String o_Content2;
+    String o_Image;
     
     
     public ArrayList<String> list=null;
     public ArrayList<String> list_c=null;
     public ArrayList<String> list_a=null;
     public ArrayList<String> list_e=null;
+    public ArrayList<String> list_o=null;
 	// connect to MySQL
     ArrayList<String> getList(){
     	return list;
@@ -179,6 +191,7 @@ public String Logdetail(){
     String Conference=null;
     String AcademicTeamwork=null;
     String Exchange=null;
+    String Others=null;
     String Item_end=null;
     while(rs.next()){
     	ID=rs.getString("ID");
@@ -187,6 +200,7 @@ public String Logdetail(){
     	Conference=rs.getString("Conference");
     	AcademicTeamwork=rs.getString("AcademicTeamwork");
     	Exchange=rs.getString("Exchange");
+    	Others=rs.getString("Others");
     	Item_end=rs.getString("Item_end");
     	list2.add(ID);
     	if(InOrOut.equals("0"))
@@ -203,6 +217,12 @@ public String Logdetail(){
     	if(Exchange.equals("1"))
     	list2.add("查看详情");
     	else list2.add("无"); 
+    	
+    	if(Others.equals("1"))
+        list2.add("查看详情"); 
+        else list2.add("无"); 
+    	
+    	
     	list2.add(Item_end);
     	System.out.println(list2);
     }
@@ -423,8 +443,8 @@ public String insertblog(){
 	if(!isAcademicTeamwork())counter++;
 	if(!isExchange())counter++;
 	setItem_end(counter);
-	String instruction="insert into Items (InOrOut,Name,Conference,AcademicTeamwork,Exchange,Item_end) Values ("
-	+isInOrOut()+",'"+getName()+"',"+isConference()+","+isAcademicTeamwork()+","+isExchange()+","+getItem_end()+")";
+	String instruction="insert into Items (InOrOut,Name,Conference,AcademicTeamwork,Exchange,Item_end,Others) Values ("
+	+isInOrOut()+",'"+getName()+"',"+isConference()+","+isAcademicTeamwork()+","+isExchange()+","+getItem_end()+","+isOthers()+")";
 	try {
 		statement = conn.prepareStatement(instruction);
 		statement.executeUpdate();
@@ -444,6 +464,8 @@ public String insertblog(){
 		create_a(sql);
 	if(isExchange())
 		create_e(sql);
+	if(isOthers())
+		create_o(sql);
 	return "SUCCESS";
 }
 
@@ -946,22 +968,55 @@ public void create_e(String x){
 		e.printStackTrace();
 	}
 }
-
+public void create_o(String x){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	String value=null;
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(x); 
+	while(rs.next())
+    value=rs.getString("ID");
+    System.out.println(value);
+	rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+    String instruction="insert into Others (ID) Value( "+value+")";
+    System.out.println(instruction);
+    try {
+		statement = conn.prepareStatement(instruction);
+		statement.executeUpdate();
+        
+	} catch (SQLException e) {
+		System.out.println("插入数据库时出错：");
+		e.printStackTrace();
+	} catch (Exception e) {
+		System.out.println("插入时出错：");
+		e.printStackTrace();
+	}
+}
 
 public String Search(){
 	String instruction_c="";
 	String instruction_a="";
 	String instruction_e="";
+	String instruction_o="";
 	String Search_Time1=getSearch_Time1();
 	String Search_Time2=getSearch_Time2();
 	String Search_Name=getSearch_Name();
 	boolean Search_Conference=isSearch_Conference();
 	boolean Search_AcademicTeamwork=isSearch_AcademicTeamwork();
-	boolean isSearch_Exchange=isSearch_Exchange();
+	boolean Search_Exchange=isSearch_Exchange();
+	boolean Search_Others=isSearch_Others();
 	if((getSearch_Time1().equals("") || getSearch_Time2().equals(""))&&getSearch_Name().equals("")&&
 			isSearch_Conference()==false&&
 			isSearch_AcademicTeamwork()==false&&
-			isSearch_Exchange()==false)
+			isSearch_Exchange()==false&&isSearch_Others()==false)
 		return "FALSE";
 	String instruction=null;
 	String temp1="";
@@ -993,6 +1048,7 @@ public String Search(){
 		instruction_c="select * from Conference";
 		instruction_a="select * from AcademicTeamwork";
 		instruction_e="select * from Exchange";
+		instruction_o="select * from Others";
 		}
 	//只有title
 	 else if(getSearch_Time1().equals("") || getSearch_Time2().equals(""))
@@ -1003,6 +1059,8 @@ public String Search(){
 				+ Search_Name+"'";
 		instruction_e="select * from Exchange  where Title1 like '"+Search_Name+"' or Title2 like '"
 				+ Search_Name+"'";
+		instruction_o="select * from Others  where Title1 like '"+Search_Name+"' or Title2 like '"
+				+ Search_Name+"'";
 		}
 	//只有time
 	else if(getSearch_Name().equals(""))
@@ -1012,6 +1070,8 @@ public String Search(){
 	instruction_a="select * from AcademicTeamwork  where StartTime >= "+Search_Time1+" and StartTime <= "
 			+ Search_Time2;
 	instruction_e="select * from Exchange  where StartTime >= "+Search_Time1+" and StartTime <= "
+			+ Search_Time2;
+	instruction_o="select * from Others  where StartTime >= "+Search_Time1+" and StartTime <= "
 			+ Search_Time2;
 	}
 		//有time and title
@@ -1026,18 +1086,20 @@ public String Search(){
 	instruction_e="select * from Exchange  where (StartTime >= "+Search_Time1+" and StartTime <= "
 			+ Search_Time2+") and (Title1 like '"+Search_Name+"' or Title2 like '"
 			+ Search_Name+"')";
-		
+	instruction_o="select * from Others  where (StartTime >= "+Search_Time1+" and StartTime <= "
+			+ Search_Time2+") and (Title1 like '"+Search_Name+"' or Title2 like '"
+			+ Search_Name+"')";	
 	}
 
 	//if(isSearch_Conference())
-	if((getSearch_Time1().equals("") || getSearch_Time2().equals("")))
-	System.out.println(instruction_c);
+	//if((getSearch_Time1().equals("") || getSearch_Time2().equals("")))
+	//System.out.println(instruction_c);
 		Conference_search(instruction_c,isSearch_Conference());
 	//if(isSearch_AcademicTeamwork())
 		AcademicTeamwork_search(instruction_a,Search_AcademicTeamwork);
 	//if(isSearch_Exchange())
 		Exchange_search(instruction_e,isSearch_Exchange());
-
+		Others_search(instruction_o,isSearch_Others());
   //  System.out.println(list_c);
   //  System.out.println(list_a);
    // System.out.println(list_e);
@@ -1188,7 +1250,246 @@ HttpSession session=req.getSession();
 session.setAttribute("list_e",list_e);
 deconnSQL();
 }
+public void Others_search(String sql, boolean judge_o){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	ArrayList<String> list2= new ArrayList<String>();
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	System.out.println(sql);
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	String ID=null;
+    String Title1=null;
+    String StartTime=null;
+    String Position=null;
+    String Title2=null;
+    String Endtime=null;
+    if(judge_o)
+    list2.add("true");
+    else
+    	list2.add("false");
+    while(rs.next()){
+    	ID=rs.getString("ID");
+    	list2.add(ID);
+    	Title1=rs.getString("Title1");
+    	list2.add(Title1);
+    	StartTime=rs.getString("StartTime");
+    	list2.add(StartTime);
+    	Position=rs.getString("Position");
+    	list2.add(Position);
+    	Title2=rs.getString("Title2");
+    	list2.add(Title2);
+    	Endtime=rs.getString("Endtime");
+    	list2.add(Endtime);
+    	
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+this.list_o=list2;
+ServletRequest request=ServletActionContext.getRequest();
+HttpServletRequest req=(HttpServletRequest) request;
+HttpSession session=req.getSession();
+session.setAttribute("list_o",list_o);
+session.setAttribute("judge_o",judge_o);
+deconnSQL();
+}
 
+
+public String Detail_o() {
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	int value=ID;
+	String titletemp1="";
+	String titletemp2="";
+	String temp=null;
+	ArrayList<String> list2= new ArrayList<String>();
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	String sql = "SELECT * FROM Others where ID =" + value;  
+	System.out.println(sql);
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	String ID=null;
+    String Title1=null;
+    String StartTime=null;
+    String Position=null;
+    String Kind=null;
+    String Content1=null;
+    Blob Contenttemp=null;
+    String End=null;
+    String Title2=null;
+    String Endtime=null;
+    String Content2=null;
+    String Image=null;
+    String Item1=null;
+    String Item2=null;
+    while(rs.next()){
+    	ID=rs.getString("ID");
+    	list2.add(ID);
+    	Title1=rs.getString("Title1");
+    	titletemp1=Title1;
+    	list2.add(Title1);
+    	StartTime=rs.getString("StartTime");
+    	list2.add(StartTime);
+    	Position=rs.getString("Position");
+    	list2.add(Position);
+    	Kind=rs.getString("Kind");
+    	list2.add(Kind);
+    	Contenttemp=rs.getBlob("Content1");
+    	if(Contenttemp != null){
+			InputStream is = Contenttemp.getBinaryStream();
+			ByteArrayInputStream bais = (ByteArrayInputStream)is;
+			byte[] byte_data = new byte[bais.available()]; //bais.available()返回此输入流的字节数
+
+			bais.read(byte_data, 0,byte_data.length);//将输入流中的内容读到指定的数组
+			Content1 = new String(byte_data,"utf-8"); //再转为String，并使用指定的编码方式
+			is.close();
+		}
+
+		System.out.println(Content1);
+		String tmp = "";
+		if(Content1!=null)
+		for (int i = 0; i < Content1.length(); i++) {
+			//System.out.printf("%c",Content1.charAt(i));
+			if (Content1.charAt(i) == ' ') {
+				tmp = tmp + "&nbsp;";
+			} else if (Content1.charAt(i) == '\n') {
+				tmp = tmp + "<br>";
+			} else {
+				tmp = tmp + Content1.charAt(i);
+			}
+		}
+		Content1 = tmp;
+		System.out.println(Content1);
+    	list2.add(Content1);
+    	End=rs.getString("End");
+    	list2.add(End);
+ 
+    	Item1=rs.getString("Item1");
+       	list2.add(Item1);
+    	Title2=rs.getString("Title2");
+    	list2.add(Title2);
+    	titletemp2=Title2;
+    	Endtime=rs.getString("Endtime");
+    	list2.add(Endtime);
+    	Contenttemp=rs.getBlob("Content2");
+    	if(Contenttemp != null){
+			InputStream is = Contenttemp.getBinaryStream();
+			ByteArrayInputStream bais = (ByteArrayInputStream)is;
+			byte[] byte_data = new byte[bais.available()]; //bais.available()返回此输入流的字节数
+
+			bais.read(byte_data, 0,byte_data.length);//将输入流中的内容读到指定的数组
+			Content2 = new String(byte_data,"utf-8"); //再转为String，并使用指定的编码方式
+			is.close();
+		}
+    	tmp = "";
+    	if(Content2!=null)
+		for (int i = 0; i < Content2.length(); i++) {
+			//System.out.printf("%c",Content1.charAt(i));
+			if (Content2.charAt(i) == ' ') {
+				tmp = tmp + "&nbsp;";
+			} else if (Content2.charAt(i) == '\n') {
+				tmp = tmp + "<br>";
+			} else {
+				tmp = tmp + Content2.charAt(i);
+			}
+		}
+		Content2 = tmp;
+    	list2.add(Content2);
+    	Image=rs.getString("Image");
+    	list2.add(Image);
+    	Item2=rs.getString("Item2");
+       	list2.add(Item2);
+    	System.out.println(list2);
+    	
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+
+this.list=list2;
+ServletRequest request=ServletActionContext.getRequest();
+HttpServletRequest req=(HttpServletRequest) request;
+HttpSession session=req.getSession();
+session.setAttribute("list",list);
+return "SUCCESS";
+}
+public String Edit_o() throws Exception{
+	connSQL();
+	String instruction1="update Others set Title1='"+getO_Title1()+"',StartTime='"+getO_StartTime()+"' ,Position='"+getO_Position()+
+			"',Kind='"+getO_Kind()+"',Content1='"+getO_Content1()+
+			"',Title2='"+getO_Title2()+
+			"',Endtime='"+getO_Endtime()+
+			"',Content2='"+getO_Content2()+
+			"',Image='"+getO_Image()+
+			"' where ID ="+getID();
+	System.out.print(instruction1);
+	try {
+		statement = conn.prepareStatement(instruction1);
+		statement.executeUpdate();
+	} catch (Exception e) {
+		System.out.println("修改时出错：");
+		e.printStackTrace();
+	}
+	if(getFile1FileName()!=null)
+	{
+	String url=FileUploadAction.execute1(getFile1(),getFile1FileName(),getFile1ContentType());
+	String instruction2="update Others set Item1='" +url+"' where ID=" +getID();
+	System.out.println(instruction2);
+	try {
+		statement = conn.prepareStatement(instruction2);
+		statement.executeUpdate();
+	} catch (Exception e) {
+		System.out.println("修改时出错：");
+		e.printStackTrace();
+	}
+	}
+	
+	if(getFile2FileName()!=null)
+	{
+	String url=FileUploadAction.execute1(getFile2(),getFile2FileName(),getFile2ContentType());
+	String instruction3="update Others set Item2='" +url+"' where ID=" +getID();
+	System.out.println(instruction3);
+	try {
+		statement = conn.prepareStatement(instruction3);
+		statement.executeUpdate();
+	} catch (Exception e) {
+		System.out.println("修改时出错：");
+		e.printStackTrace();
+	}
+	}
+	
+	
+	List<String> Names=getPicFileName();
+	//picture
+	if(Pic!=null)
+	{     
+		//for(int i=0;i<Pic.size();i++)
+			//System.out.println(Names.get(i));
+		String url=FileUploadAction2.execute1(getPic(),getPicFileName(),getPicContentType());
+		String instruction4="update Others set Image='" +url+"' where ID=" +getID();
+		try {
+			statement = conn.prepareStatement(instruction4);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("修改时出错：");
+			e.printStackTrace();
+		}
+	}
+	
+	
+	return "SUCCESS";
+}
 
 public int getID() {
 	return ID;
@@ -1407,7 +1708,7 @@ public void setA_Image(String a_Image) {
 	this.a_Image = a_Image;
 }
 public String getC_Image() {
-	// TODO Auto-generated method stub
+	//  Auto-generated method stub
 	return c_Image;
 }
 public void setC_Image(String c_Image) {
@@ -1552,6 +1853,78 @@ public List<String> getPicContentType() {
 }
 public void setPicContentType(List<String> PicContentType) {
 	this.PicContentType = PicContentType;
+}
+public String getO_Title1() {
+	return o_Title1;
+}
+public void setO_Title1(String o_Title1) {
+	this.o_Title1 = o_Title1;
+}
+public String getO_StartTime() {
+	return o_StartTime;
+}
+public void setO_StartTime(String o_StartTime) {
+	this.o_StartTime = o_StartTime;
+}
+public String getO_Position() {
+	return o_Position;
+}
+public void setO_Position(String o_Position) {
+	this.o_Position = o_Position;
+}
+public String getO_Kind() {
+	return o_Kind;
+}
+public void setO_Kind(String o_Kind) {
+	this.o_Kind = o_Kind;
+}
+public String getO_Content1() {
+	return o_Content1;
+}
+public void setO_Content1(String o_Content1) {
+	this.o_Content1 = o_Content1;
+}
+public boolean isO_End() {
+	return o_End;
+}
+public void setO_End(boolean o_End) {
+	this.o_End = o_End;
+}
+public String getO_Title2() {
+	return o_Title2;
+}
+public void setO_Title2(String o_Title2) {
+	this.o_Title2 = o_Title2;
+}
+public String getO_Endtime() {
+	return o_Endtime;
+}
+public void setO_Endtime(String o_Endtime) {
+	this.o_Endtime = o_Endtime;
+}
+public String getO_Content2() {
+	return o_Content2;
+}
+public void setO_Content2(String o_Content2) {
+	this.o_Content2 = o_Content2;
+}
+public String getO_Image() {
+	return o_Image;
+}
+public void setO_Image(String o_Image) {
+	this.o_Image = o_Image;
+}
+public boolean isOthers() {
+	return Others;
+}
+public void setOthers(boolean others) {
+	Others = others;
+}
+public boolean isSearch_Others() {
+	return Search_Others;
+}
+public void setSearch_Others(boolean Search_Others) {
+	this.Search_Others = Search_Others;
 }
 
 }

@@ -49,6 +49,9 @@ pageEncoding="UTF-8"%>
                  <label class="checkbox-inline">
                  <input type="checkbox"  name = Search_Exchange  value="true">上课授课
                  </label>
+                 <label class="checkbox-inline">
+                 <input type="checkbox"  name = Search_Others  value="true">其他事项
+                 </label>
                  <br>
                  <br>
                  <br>

@@ -44,6 +44,8 @@ pageEncoding="UTF-8"%>
                合作研究
                <input name = Exchange type="checkbox" value="true" >
                交换生项目 
+               <input name = Others type="checkbox" value="true" >
+               其他事程
                <br>
                <br>
                <button type="submit" class="btn btn-default">Submit</button>

@@ -47,7 +47,9 @@ pageEncoding="UTF-8"%>
 						<th>
 							上课授课
 						</th>
-
+						<th>
+							其他事程
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -86,6 +88,11 @@ out.print(" <td><a href=ExchangeDetail?ID="+str1+ ">" + str2 + "</a></td>");
 else
 out.print("<td>"+str2+"</td>");
 
+i++; str2=(String)list.get(i);
+if(str2.equals("查看详情"))
+out.print(" <td><a href=OthersDetail?ID="+str1+ ">" + str2 + "</a></td>");
+else
+out.print("<td>"+str2+"</td>");
 
 i++;i++;
 

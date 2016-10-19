@@ -42,9 +42,18 @@
          <action name="ExchangeEditDone" class="WishAGoodDay.Log_Actions" method="Edit_e">
          <result name="SUCCESS">/success.jsp</result>
          </action>
+         <action name="OthersDetail" class="WishAGoodDay.Log_Actions" method="Detail_o">
+         <result name="SUCCESS">/Detail_For_Others.jsp</result>
+         </action>
           <action name="Search_Action" class="WishAGoodDay.Log_Actions" method="Search">
          <result name="SUCCESS">/Search_show.jsp</result>
          <result name="FALSE">/false_for_search.jsp</result>
+         </action>
+         <action name="OthersEdit" class="WishAGoodDay.Log_Actions" method="Detail_o">
+         <result name="SUCCESS">/Edit_Others.jsp</result>
+         </action>
+         <action name="OthersEditDone" class="WishAGoodDay.Log_Actions" method="Edit_o">
+         <result name="SUCCESS">/success.jsp</result>
          </action>
    </package>
 
