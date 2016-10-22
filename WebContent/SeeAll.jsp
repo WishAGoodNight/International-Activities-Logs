@@ -6,6 +6,16 @@ pageEncoding="UTF-8"%>
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+                   <style type="text/css"> 
+					#footer {
+						position: absolute;
+						bottom: 0;
+						width: 100%;
+						height: 60px;/*脚部的高度*/
+						clear:both;
+					}</style>
+
+<link href="animate.css" rel="stylesheet" type="text/css"/>
 <title> See All The Logs</title>
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -23,10 +33,10 @@ pageEncoding="UTF-8"%>
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			<h3 class="text-success">
+			<h3 class="text-success animated fadeInDown">
 				以下是您创建的所有日志：
 			</h3>
-			<table class="table table-striped">
+			<table class="table table-striped alert alert-info animated fadeInDown" >
 				<thead>
 					<tr>
 						<th>
@@ -103,6 +113,22 @@ i++;i++;
 			</table>
 		</div>
 	</div>
+</div>
+<div id="footer"> 
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="breadcrumb">
+				<li>
+					 <a href="index.jsp">Home</a>
+				</li>
+				<li>
+					 <a href=AllBlogs>AllBlogs</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
 </div>
 </body>
 </html>

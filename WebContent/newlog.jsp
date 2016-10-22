@@ -6,6 +6,16 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 <title> New Logs</title>
+                   <style type="text/css"> 
+					#footer {
+						position: absolute;
+						bottom: 0;
+						width: 100%;
+						height: 60px;/*脚部的高度*/
+						clear:both;
+					}</style>
+
+
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -53,6 +63,7 @@ pageEncoding="UTF-8"%>
 		</div>
 	</div>
 </div>
+<div id="footer"> 
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -66,6 +77,7 @@ pageEncoding="UTF-8"%>
 			</ul>
 		</div>
 	</div>
+</div>
 </div>
 </body>
 </html>

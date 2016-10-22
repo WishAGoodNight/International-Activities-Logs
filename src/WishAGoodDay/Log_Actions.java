@@ -139,7 +139,8 @@ public class  Log_Actions{
     	return list;
     }
 	public void connSQL() {
-		String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+		String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8&useSSL=false";
+		
 		String username = "root";
 		String password = "1234"; // 加载驱动程序以连接数据库 
 		try { 
@@ -415,7 +416,7 @@ public String Edit_c() throws Exception{
 	
 	List<String> Names=getPicFileName();
 	//picture
-	if(Pic!=null)
+	if(getPic()!=null)
 	{     
 		//for(int i=0;i<Pic.size();i++)
 			//System.out.println(Names.get(i));
@@ -644,7 +645,7 @@ public String Edit_a() throws Exception{
 	
 	List<String> Names=getPicFileName();
 	//picture
-	if(Pic!=null)
+	if(getPic()!=null)
 	{     
 		//for(int i=0;i<Pic.size();i++)
 			//System.out.println(Names.get(i));
@@ -845,7 +846,7 @@ public String Edit_e() throws Exception{
 	
 	List<String> Names=getPicFileName();
 	//picture
-	if(Pic!=null)
+	if(getPic()!=null)
 	{     
 		//for(int i=0;i<Pic.size();i++)
 			//System.out.println(Names.get(i));
@@ -1472,7 +1473,7 @@ public String Edit_o() throws Exception{
 	
 	List<String> Names=getPicFileName();
 	//picture
-	if(Pic!=null)
+	if(getPic()!=null)
 	{     
 		//for(int i=0;i<Pic.size();i++)
 			//System.out.println(Names.get(i));

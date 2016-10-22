@@ -5,6 +5,8 @@ pageEncoding="UTF-8"%>
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="animate.css" rel="stylesheet" type="text/css"/>
+
 <title> welcome to MySystem</title>
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -19,67 +21,32 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<div id="Layer1" style="position:absolute; width:100%; height:100%; z-index:-1">    
+<img src="image/hit.jpg" height="100%" width="100%"/>    
+</div>    
+
+
+
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			<h3>
-				欢迎来到国际合作日志管理系统
-			</h3> 
+		<br>
+			<h1  style="font-family: helvetica, sans-serif;
+color: #797D7A;
+font-size: 2em;
+font-weight: bold;">
+				INTERNATIONAL ACTIVITY LOGS FOR HIT
+			</h1> 
 			<br>
 			<br>
 <div class="container">
 	<div class="row clearfix">
-		<div class="col-md-6 column">
-			<div class="carousel slide" id="carousel-984756">
-				<ol class="carousel-indicators">
-					<li class="active" data-slide-to="0" data-target="#carousel-984756">
-					</li>
-					<li data-slide-to="1" data-target="#carousel-984756">
-					</li>
-					<li data-slide-to="2" data-target="#carousel-984756">
-					</li>
-				</ol>
-				<div class="carousel-inner">
-					<div class="item active">
-						<img width="800" height="600"    src="image/img1.png" />
-						<div class="carousel-caption">
-							<h4>
-								我校与外校签订联合培养计划
-							</h4>
-							<p>
-								哈尔滨工业大学与CMU，UIUC等世界名校签订了研究生和本科生的联合培养计划，为我校学生未来的发展搭建了良好的平台；
-							</p>
-						</div>
-					</div>
-					<div class="item">
-						<img width="800" height="600"  src="image/img1.jpg" />
-						<div class="carousel-caption">
-							<h4>
-								国际文化狂欢节
-							</h4>
-							<p>
-								每年的9月初，我校会开展国际文化狂欢，来自各地的留学生会摆摊展示自己国家的文化，图为我校学生和留学生其乐融融；
-							</p>
-						</div>
-					</div>
-					<div class="item">
-						<img width="800" height="600"  src="image/img3.jpg" />
-						<div class="carousel-caption">
-							<h4>
-								国际文化狂欢节
-							</h4>
-							<p>
-								每年的9月初，我校会开展国际文化狂欢，来自各地的留学生会摆摊展示自己国家的文化，图为我校学生和留学生其乐融融；
-							</p>
-						</div>
-					</div>
-				</div> <a class="left carousel-control" href="#carousel-984756" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-984756" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-			</div>
-		</div>
-		<div class="col-md-6 column">
-		<div class="btn-group">
-		</div>
-		<h4  style="color:green;font-family:黑体;">创建和编辑您的日志：</h4>
+		<div class="col-md-12 column animated fadeIn">
+		<h4  style="font-family: helvetica, sans-serif;
+color: #FFFFFF;
+font-weight: bold;
+">创建和编辑您的日志：</h4>
 		<br>
 		<br>
 		<a href="newlog.jsp"><button type="button" class="btn btn-default">创建一个新的日志</button></a>
@@ -103,7 +70,7 @@ pageEncoding="UTF-8"%>
 			<div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			<div class="row">
+			<div class="row animated fadeIn" >
 				<div class="col-md-4">
 					<div class="thumbnail">
 						<img alt="300x200"  src="image/image1.jpg" />
