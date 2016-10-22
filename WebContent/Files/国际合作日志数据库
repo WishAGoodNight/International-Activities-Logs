@@ -1,0 +1,136 @@
+create database IAL character set utf8;
+create table Items
+	(
+		ID int unsigned not null auto_increment primary key,
+		InOrOut boolean not null,
+                Name char(50) not null,
+		Conference boolean not null,
+		AcademicTeamwork boolean not null,
+                Exchange boolean not null,
+                Others boolean not null,
+                Item_end int null default 0     ----not used
+                
+	);
+//InOrOut  true=我校出访 false=外校来访
+
+
+create table Conference
+	(
+		ID int unsigned not null auto_increment primary key,
+                Title1 char(50),
+                StartTime date,
+                Position char(50),
+		Sponsor char(50),
+                Content1 blob,
+
+
+                End boolean null default false,
+                Title2 char(50),
+                Endtime char(50),
+                Content2 blob,
+                Image char(200),
+                Item1 char(100),
+                Item2 char(100)
+	); 
+
+
+
+create table AcademicTeamwork
+	(
+		ID int unsigned not null auto_increment primary key,
+                Title1 char(50),
+                StartTime date,
+                Position char(50),
+                Content1 blob,
+
+                End boolean null default false,
+                Title2 char(50),
+                Endtime char(50),
+                Expenditure int null default 0,
+                Content2 blob,
+                Image char(200),
+                Item1 char(100),
+                Item2 char(100)
+	);
+
+
+create table Exchange
+	(
+		ID int unsigned not null auto_increment primary key,
+                Title1 char(50),
+                StartTime date,
+                Position char(50),
+                Funded char(50),            ----奖学金来源
+                Content1 blob,
+
+                End boolean null default false,
+                Title2 char(50),
+                Endtime char(50),
+                Expenditure int null default 0,
+                Content2 blob,
+                Image char(200),
+                Item1 char(100),
+                Item2 char(100) 
+	);
+
+create table User(
+                UserID char(20) not null primary key,
+                Email char(50),
+                Passport char(20) 
+        
+   );
+
+create table Others
+	(
+		ID int unsigned not null auto_increment primary key,
+                Title1 char(50),
+                StartTime date,
+                Position char(50),
+		Kind char(50),    --事项种类
+                Content1 blob,
+
+
+                End boolean null default false,
+                Title2 char(50),
+                Endtime char(50),
+                Content2 blob,
+                Image char(200),
+                Item1 char(100),
+                Item2 char(100)
+	); 
+
+select studentID 学号,Sname 姓名,Sex 性别,cardID 身份证号,class 班级 from TStudent where Sname like '%茂%';
+select sname 姓名 from `TStudent` where Studentid in (select StudentID from `TScore` where mark>90 and subjectID in (select subjectID from `TSubject` where subJectName='计算机网络'));
+select sname 姓名 from `TStudent` where Studentid in (select StudentID from `TScore` where mark>90 and subjectID in (select subjectID from `TSubject` where subJectName='计算机网络'))
+
+
+
+
+
+
+0) 
+        
+   );
+
+create table Others
+	(
+		ID int unsigned not null auto_increment primary key,
+                Title1 char(50),
+                StartTime date,
+                Position char(50),
+		Kind char(50),    --事项种类
+                Content1 blob,
+
+
+                End boolean null default false,
+                Title2 char(50),
+                Endtime char(50),
+                Content2 blob,
+                Image char(200),
+                Item1 char(100),
+                Item2 char(100)
+	); 
+
+select studentID 学号,Sname 姓名,Sex 性别,cardID 身份证号,class 班级 from TStudent where Sname like '%茂%';
+select sname 姓名 from `TStudent` where Studentid in (select StudentID from `TScore` where mark>90 and subjectID in (select subjectID from `TSubject` where subJectName='计算机网络'));
+select sname 姓名 from `TStudent` where Studentid in (sele

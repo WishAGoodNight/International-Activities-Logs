@@ -5,6 +5,19 @@ pageEncoding="UTF-8"%>
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+                   <style type="text/css"> 
+					#footer {
+						position: absolute;
+						bottom: 0;
+						width: 100%;
+						height: 60px;/*脚部的高度*/
+						clear:both;
+					}</style>
+
+<link href="animate.css" rel="stylesheet" type="text/css"/>
+
+
+
 <title> New Logs</title>
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -19,19 +32,33 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			<h3 class="text-center text-success">
+			<h3 class="text-center text-success animated zoomInUp">
 				您已经成功完成该操作！
 			</h3>
 		</div>
 	</div>
 </div>
+
+<script language="javascript" type="text/javascript">   
+  
+
+// 以下方式定时跳转  
+  
+setTimeout("javascript:location.href='index.jsp'", 2000);   
+  
+</script>  
+
+
 <br>
 <br>
 <br>
 <br>
+<div id="footer"> 
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -45,6 +72,7 @@ pageEncoding="UTF-8"%>
 			</ul>
 		</div>
 	</div>
+</div>
 </div>
 </body>
 </html>

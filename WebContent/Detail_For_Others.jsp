@@ -9,6 +9,15 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 <title> Conference details</title>
+                   <style type="text/css"> 
+					#footer {
+						position: absolute;
+						bottom: 0;
+						width: 100%;
+						height: 60px;/*脚部的高度*/
+						clear:both;
+					}</style>
+
 <style type="text/css">  
     </style>  
     <script type="text/javascript">  
@@ -233,6 +242,7 @@ String Item2=(String)list.get(i);
 					 
 					 
 
+<div id="footer"> 
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -246,6 +256,7 @@ String Item2=(String)list.get(i);
 			</ul>
 		</div>
 	</div>
+</div>
 </div>
 <div  onclick="goToWhere(0)"  
      style="border: 1px solid red; height:90px; width: 15px; position: fixed; cursor: pointer; right: 10px; bottom: 150px;">返回顶部</div>  

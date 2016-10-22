@@ -11,7 +11,7 @@ public class FileUploadAction extends ActionSupport
 
     
 
-    public static String LOCATION="/home/sion/Software/eclipse/workplace/International_Activity_Logs/WebContent/Files/";
+    public static String LOCATION="/home/sion/eclipse/workplace/International_Activity_Logs/WebContent/Files/";
   //if windows, uses \\
     public static String Seperator="/";
 
