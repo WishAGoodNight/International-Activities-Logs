@@ -6,6 +6,7 @@ pageEncoding="UTF-8"%>
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="animate.css" rel="stylesheet" type="text/css"/>
 <title> Conference details</title>
                    <style type="text/css"> 
 					#footer {
@@ -210,14 +211,42 @@ String Item2=(String)list.get(i);
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+
+
+  <div class="animated pulse">
+	  <h3>
+              相关阅读
+	  </h3>
+<% 
+ArrayList<String>reference=(ArrayList<String>)  session.getAttribute("reference");
+int j=0;int k=1;
+if(reference.size()>0){
+while(j<reference.size())
+{
+String str1=(String)reference.get(j);
+
+j++;
+String str2=(String)reference.get(j);
+if(!str1.equals(ID)){
+if(!str2.equals("null&")&&!str2.equals("&")&&!str2.equals("null&null")){
+out.print("<h4 class=\"alert  alert-info\">"+k+":");
+out.print("<a href=AcademicTeamworkDetail?ID="+str1+">"+str2+"</a></h4>");
+k++;}
+}
+j++;
+
+
+}}
+if(k==1)
+	out.print("<h4 class=\"alert  alert-info\">"+"暂无</h4>");
+%>				
+	
+</div>
+</div>
 </div>
 
-				
-	
-
-<div id="footer"> 
+<br>
+<br>
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -232,7 +261,7 @@ String Item2=(String)list.get(i);
 		</div>
 	</div>
 </div>
-</div>
+
 <div  onclick="goToWhere(0)"  
      style="border: 1px solid red; height:90px; width: 15px; position: fixed; cursor: pointer; right: 10px; bottom: 150px;">返回顶部</div>  
 <div  onclick="goToWhere(1)"  

@@ -40,32 +40,7 @@ font-weight: bold;">
 			</h1> 
 			<br>
 			<br>
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column animated fadeIn">
-		<h4  style="font-family: helvetica, sans-serif;
-color: #FFFFFF;
-font-weight: bold;
-">创建和编辑您的日志：</h4>
-		<br>
-		<br>
-		<a href="newlog.jsp"><button type="button" class="btn btn-default">创建一个新的日志</button></a>
-		<br>
-		<br>
-        <a href=AllBlogs><button type="button" class="btn btn-default">点击查看所有日志</button></a>
-		</div>
-		</div>
-		</div>
-		</div>
-	</div>
-</div>
-
-
-
-	
-<br>
-<br>
-
+			
 			
 			<div class="container">
 	<div class="row clearfix">
@@ -113,15 +88,41 @@ font-weight: bold;
 			</div>
 		</div>
 	</div>
+			
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column animated fadeIn">
+		<h4  style="font-family: helvetica, sans-serif;
+color: #FFFFFF;
+font-weight: bold;
+">创建和编辑您的日志：</h4>
+		<br>
+		<br>
+			 <a href="Search.jsp"><button type="button" class="btn btn-block btn-lg btn-info">查询</button></a>
+			<br>
+			<br>
+		<a href="newlog.jsp"><button type="button" class="btn btn-default">创建一个新的日志</button></a>
+		<br>
+		<br>
+        <a href=AllBlogs><button type="button" class="btn btn-default">点击查看所有日志</button></a>
+		</div>
+		</div>
+		</div>
+
+
+
+
+	
+<br>
+<br>
 
 			
 			
 			
 			
 			
-			 <a href="Search.jsp"><button type="button" class="btn btn-block btn-lg btn-info">查询</button></a>
-			<br>
-			<br>
+			
+
 			<br>
 </div>
 

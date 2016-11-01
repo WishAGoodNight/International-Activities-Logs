@@ -130,6 +130,7 @@ public class  Log_Actions{
     
     
     public ArrayList<String> list=null;
+    public ArrayList<String> reference=null;
     public ArrayList<String> list_c=null;
     public ArrayList<String> list_a=null;
     public ArrayList<String> list_e=null;
@@ -254,8 +255,8 @@ public String Detail_c() {
 	try { 
 	Class.forName("com.mysql.jdbc.Driver" ); 
 	conn = DriverManager.getConnection( url,username, password ); 
-	String sql = "SELECT * FROM Conference where ID =" + value;  
-	System.out.println(sql);
+	String sql = "select * FROM Conference where ID =" + value;  
+	//System.out.println(sql);
 	Statement stmt= conn.createStatement();
 	ResultSet rs = stmt.executeQuery(sql); 
 	String ID=null;
@@ -357,7 +358,7 @@ public String Detail_c() {
 	{System.out.println("cannot find the driver!");
 	e.printStackTrace();
     }
-
+	reference_c();
 this.list=list2;
 ServletRequest request=ServletActionContext.getRequest();
 HttpServletRequest req=(HttpServletRequest) request;
@@ -366,6 +367,46 @@ session.setAttribute("list",list);
 return "SUCCESS";
 }
 
+
+public void reference_c(){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	
+	
+	
+	String sql = "SELECT * FROM Conference order by id desc limit 0,10;";  
+	System.out.println(sql);
+	ArrayList<String> reference1= new ArrayList<String>();
+	try{
+		Class.forName("com.mysql.jdbc.Driver" ); 
+		conn = DriverManager.getConnection( url,username, password ); 
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	String ID=null;
+    String Title=null;
+    
+    int counter=0;
+    while(rs.next()&&counter<=10){
+    	ID=rs.getString("ID");
+    	Title=rs.getString("Title1")+"&"+rs.getString("Title2");
+    	reference1.add(ID);
+		reference1.add(Title);
+		
+    	counter++;
+    }
+    System.out.println(reference1);
+    rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    } 
+	this.reference=reference1;
+	ServletRequest request=ServletActionContext.getRequest();
+	HttpServletRequest req=(HttpServletRequest) request;
+	HttpSession session=req.getSession();
+	session.setAttribute("reference",reference);
+}
 
 
 public String Edit_c() throws Exception{
@@ -585,7 +626,7 @@ public String Detail_a(){
 	e.printStackTrace();
     }
 
-	
+reference_a();
 this.list=list2;
 ServletRequest request=ServletActionContext.getRequest();
 HttpServletRequest req=(HttpServletRequest) request;
@@ -593,7 +634,45 @@ HttpSession session=req.getSession();
 session.setAttribute("list",list);
 return "SUCCESS";
 }
-
+public void reference_a(){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	
+	
+	
+	String sql = "SELECT * FROM AcademicTeamwork order by id desc limit 0,10;";  
+	System.out.println(sql);
+	ArrayList<String> reference1= new ArrayList<String>();
+	try{
+		Class.forName("com.mysql.jdbc.Driver" ); 
+		conn = DriverManager.getConnection( url,username, password ); 
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	String ID=null;
+    String Title=null;
+    
+    int counter=0;
+    while(rs.next()&&counter<=10){
+    	ID=rs.getString("ID");
+    	Title=rs.getString("Title1")+"&"+rs.getString("Title2");
+    	reference1.add(ID);
+		reference1.add(Title);
+		
+    	counter++;
+    }
+    System.out.println(reference1);
+    rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    } 
+	this.reference=reference1;
+	ServletRequest request=ServletActionContext.getRequest();
+	HttpServletRequest req=(HttpServletRequest) request;
+	HttpSession session=req.getSession();
+	session.setAttribute("reference",reference);
+}
 
 public String Edit_a() throws Exception{
 	connSQL();
@@ -784,7 +863,7 @@ public String Detail_e(){
 	e.printStackTrace();
     }
 
-	
+reference_e();
 this.list=list2;
 ServletRequest request=ServletActionContext.getRequest();
 HttpServletRequest req=(HttpServletRequest) request;
@@ -793,6 +872,45 @@ session.setAttribute("list",list);
 return "SUCCESS";
 }
 
+public void reference_e(){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	
+	
+	
+	String sql = "SELECT * FROM Exchange order by id desc limit 0,10;";  
+	System.out.println(sql);
+	ArrayList<String> reference1= new ArrayList<String>();
+	try{
+		Class.forName("com.mysql.jdbc.Driver" ); 
+		conn = DriverManager.getConnection( url,username, password ); 
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	String ID=null;
+    String Title=null;
+    
+    int counter=0;
+    while(rs.next()&&counter<=10){
+    	ID=rs.getString("ID");
+    	Title=rs.getString("Title1")+"&"+rs.getString("Title2");
+    	reference1.add(ID);
+		reference1.add(Title);
+		
+    	counter++;
+    }
+    System.out.println(reference1);
+    rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    } 
+	this.reference=reference1;
+	ServletRequest request=ServletActionContext.getRequest();
+	HttpServletRequest req=(HttpServletRequest) request;
+	HttpSession session=req.getSession();
+	session.setAttribute("reference",reference);
+}
 public String Edit_e() throws Exception{
 	connSQL();
 	String instruction1="update Exchange set Title1='"+getE_Title1()+"',StartTime='"+getE_StartTime()+"' ,Position='"+getE_Position()+
@@ -1417,7 +1535,7 @@ public String Detail_o() {
 	{System.out.println("cannot find the driver!");
 	e.printStackTrace();
     }
-
+	 reference_o();
 this.list=list2;
 ServletRequest request=ServletActionContext.getRequest();
 HttpServletRequest req=(HttpServletRequest) request;
@@ -1425,6 +1543,52 @@ HttpSession session=req.getSession();
 session.setAttribute("list",list);
 return "SUCCESS";
 }
+
+
+public void reference_o(){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	
+	
+	
+	String sql = "SELECT * FROM Others order by id desc limit 0,10;";  
+	System.out.println(sql);
+	ArrayList<String> reference1= new ArrayList<String>();
+	try{
+		Class.forName("com.mysql.jdbc.Driver" ); 
+		conn = DriverManager.getConnection( url,username, password ); 
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	String ID=null;
+    String Title=null;
+    
+    int counter=0;
+    while(rs.next()&&counter<=10){
+    	ID=rs.getString("ID");
+    	Title=rs.getString("Title1")+"&"+rs.getString("Title2");
+    	reference1.add(ID);
+		reference1.add(Title);
+		
+    	counter++;
+    }
+    System.out.println(reference1);
+    rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    } 
+	this.reference=reference1;
+	ServletRequest request=ServletActionContext.getRequest();
+	HttpServletRequest req=(HttpServletRequest) request;
+	HttpSession session=req.getSession();
+	session.setAttribute("reference",reference);
+}
+
+
+
+
+
 public String Edit_o() throws Exception{
 	connSQL();
 	String instruction1="update Others set Title1='"+getO_Title1()+"',StartTime='"+getO_StartTime()+"' ,Position='"+getO_Position()+
