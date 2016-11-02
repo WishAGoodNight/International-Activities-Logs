@@ -6,6 +6,7 @@ pageEncoding="UTF-8"%>
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="animate.css" rel="stylesheet" type="text/css"/>
 <title> See All The Logs</title>
                    <style type="text/css"> 
 					#footer {
@@ -34,7 +35,7 @@ ArrayList<String>list_a=(ArrayList<String>)  session.getAttribute("list_a");
 ArrayList<String>list_e=(ArrayList<String>)  session.getAttribute("list_e");
 ArrayList<String>list_o=(ArrayList<String>)  session.getAttribute("list_o");
 %>
-			<div class="page-header">
+			<div class="page-header animated fadeInLeft">
 				<h1>
 					查询结果 <small>按照事项类别顺序排列</small>
 				</h1>
@@ -42,7 +43,7 @@ ArrayList<String>list_o=(ArrayList<String>)  session.getAttribute("list_o");
 <!--  For Conference-->
 
                 <% if((String)list_c.get(0)=="true")
-                out.print("<div class=\"alert alert-dismissable alert-info\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\" disabled=\"true\">Conference Logs</button>");%>
+                out.print("<div class=\"alert alert-dismissable alert-info  animated fadeInLeft\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\" disabled=\"true\">Conference Logs</button>");%>
 	
 			<table class="table table-striped">
 				<thead>
@@ -96,7 +97,7 @@ i++;
 
 
                 <% if((String)list_a.get(0)=="true")
-                out.print("<div class=\"alert alert-dismissable alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\" disabled=\"true\">AcademicTeamwork Logs</button>");%>
+                out.print("<div class=\"alert alert-dismissable alert-success animated fadeInLeft\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\" disabled=\"true\">AcademicTeamwork Logs</button>");%>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -148,7 +149,7 @@ i++;
 
 
 			                <% if((String)list_e.get(0)=="true")
-                out.print("<div class=\"alert alert-dismissable alert-warning\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\" disabled=\"true\">Exchange Logs</button>");%>
+                out.print("<div class=\"alert alert-dismissable alert-warning animated fadeInLeft\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\" disabled=\"true\">Exchange Logs</button>");%>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -199,7 +200,7 @@ i++;
 
 	
                 <% if((String)list_o.get(0)=="true")
-                out.print("<div class=\"alert alert-dismissable alert-danger\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\" disabled=\"true\">Others Logs</button>");%>
+                out.print("<div class=\"alert alert-dismissable alert-danger animated fadeInLeft\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\" disabled=\"true\">Others Logs</button>");%>
 	
 			<table class="table table-striped">
 				<thead>

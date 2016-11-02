@@ -64,9 +64,7 @@ pageEncoding="UTF-8"%>
 	</div>
 </div>
 <div id="footer"> 
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
+
 			<ul class="breadcrumb">
 				<li>
 					 <a href="index.jsp">Home</a>
@@ -76,8 +74,6 @@ pageEncoding="UTF-8"%>
 				</li>
 			</ul>
 		</div>
-	</div>
-</div>
-</div>
+
 </body>
 </html>

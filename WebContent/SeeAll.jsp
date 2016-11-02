@@ -114,10 +114,7 @@ i++;i++;
 		</div>
 	</div>
 </div>
-<div id="footer"> 
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
+
 			<ul class="breadcrumb">
 				<li>
 					 <a href="index.jsp">Home</a>
@@ -126,9 +123,6 @@ i++;i++;
 					 <a href=AllBlogs>AllBlogs</a>
 				</li>
 			</ul>
-		</div>
-	</div>
-</div>
-</div>
+
 </body>
 </html>
