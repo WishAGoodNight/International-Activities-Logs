@@ -16,9 +16,18 @@ pageEncoding="UTF-8"%>
 						height: 60px;/*脚部的高度*/
 						clear:both;
 					}</style>
+<link href="css/maps.css" rel="stylesheet">
+<link href="css/zzsc2.css" rel="stylesheet">
+<script type="text/javascript" src="js/form.js"></script>
+<script type="text/javascript" src="js/maps.js"></script>
+<script type="text/javascript">$(document).ready(function(){$().orion({speed: 500,animation: "zoom"});});</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+<link href='css/css.css' rel='stylesheet' type='text/css'>
+
 
 <!-- 新 Bootstrap 核心 CSS 文件 -->
-<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- 可选的Bootstrap主题文件（一般不使用） -->
 <script src="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>
@@ -30,6 +39,12 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+
+
+
+
+
 <% ArrayList<String>list_c=(ArrayList<String>)  session.getAttribute("list_c");
 ArrayList<String>list_a=(ArrayList<String>)  session.getAttribute("list_a");
 ArrayList<String>list_e=(ArrayList<String>)  session.getAttribute("list_e");

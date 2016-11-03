@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
 <link href="animate.css" rel="stylesheet" type="text/css"/>
 
 <!-- 新 Bootstrap 核心 CSS 文件 -->
-<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- 可选的Bootstrap主题文件（一般不使用） -->
 <script src="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>
@@ -51,21 +51,6 @@ setTimeout("javascript:location.href='newlog.jsp'", 3000);
 <br>
 <br>
 <br>
-<div id="footer"> 
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<ul class="breadcrumb">
-				<li>
-					 <a href="index.jsp">Home</a>
-				</li>
-				<li>
-					 <a href=AllBlogs>AllBlogs</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>
-</div>
+ 
 </body>
 </html>

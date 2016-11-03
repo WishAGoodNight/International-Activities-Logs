@@ -9,6 +9,17 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 <link href="animate.css" rel="stylesheet" type="text/css"/>
+
+<link href="css/maps.css" rel="stylesheet">
+<link href="css/zzsc2.css" rel="stylesheet">
+<script type="text/javascript" src="js/form.js"></script>
+<script type="text/javascript" src="js/maps.js"></script>
+<script type="text/javascript">$(document).ready(function(){$().orion({speed: 500,animation: "zoom"});});</script>
+<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+<link href='css/css.css' rel='stylesheet' type='text/css'>
+
+
+<link href="animate.css" rel="stylesheet" type="text/css"/>
 <title> Conference details</title>
                    <style type="text/css"> 
 					#footer {
@@ -46,7 +57,7 @@ pageEncoding="UTF-8"%>
         };  
     </script>  
 <!-- 新 Bootstrap 核心 CSS 文件 -->
-<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- 可选的Bootstrap主题文件（一般不使用） -->
 <script src="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>
@@ -59,6 +70,28 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 
+<div class="content">
+	<ul class="orion-menu green">
+		<li class="active"><a href="index.jsp">Home</a></li>
+		<li><a href="newlog.jsp">NewLogs</a></li>
+		<li><a href=AllBlogs>AllLogs</a></li>
+		<li><a href="Search.jsp">Search</a></li>
+		<li><a href="Settings1.jsp">Settings</a></li>
+
+		<li class="search">
+		<form action="Search_Action">
+			<input type="text" name="Search_Name"  class="search" />
+			<input type="hidden" name="Search_Time1"/>
+			<input type="hidden"  name = "Search_Conference" value="true" />
+			<input type="hidden" name="Search_AcademicTeamwork" value="true"/>
+			<input type="hidden" name="Search_Exchange" value="true"/>
+			<input type="hidden" name="Search_Others" value="true"/>
+			</form>
+			
+		</li>
+		
+	</ul>
+</div>
 
 <div class="container">
 	<div class="row clearfix">
@@ -74,7 +107,6 @@ pageEncoding="UTF-8"%>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane" id="panel-705027">
-
 <% 
 ArrayList<String>list=(ArrayList<String>)  session.getAttribute("list");
 int i=0;
@@ -95,9 +127,7 @@ String Image=(String)list.get(i);i++;
 String Item2=(String)list.get(i);
 %>
 
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
+ 
 			<div class="page-header">
 			
 				<h1>
@@ -165,9 +195,7 @@ String Item2=(String)list.get(i);
 				
 				
 			</div>
-		</div>
-	</div>
-</div>
+ 
 
 					</div>
 					<div class="tab-pane active" id="panel-574844">
@@ -272,24 +300,8 @@ if(k==1)
 <br>
 <br>
 
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<ul class="breadcrumb">
-				<li>
-					 <a href="index.jsp">Home</a>
-				</li>
-				<li>
-					 <a href=AllBlogs>AllBlogs</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>
 
-<div  onclick="goToWhere(0)"  
-     style="border: 1px solid red; height:90px; width: 15px; position: fixed; cursor: pointer; right: 10px; bottom: 150px;">返回顶部</div>  
-<div  onclick="goToWhere(1)"  
-     style="border: 1px solid red; height: 90px; width: 15px; position: fixed; cursor: pointer; right: 10px; bottom: 30px;">前往底部</div>  
+<div  onclick="goToWhere(0)"   style="position: fixed; cursor: pointer; right: 10px; bottom: 150px;"><img  style="width:70px;height:70px;" src="image/top.png" /></div>  
+<div  onclick="goToWhere(1)"   style="position: fixed; cursor: pointer; right: 10px; bottom: 30px;"><img  style="width:70px;height:70px;" src="image/bottum.png" /></div>  
 </body>
 </html>

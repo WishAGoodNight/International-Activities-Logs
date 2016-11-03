@@ -6,9 +6,19 @@ pageEncoding="UTF-8"%>
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="css/maps.css" rel="stylesheet">
+<link href="css/zzsc2.css" rel="stylesheet">
+<script type="text/javascript" src="js/form.js"></script>
+<script type="text/javascript" src="js/maps.js"></script>
+<script type="text/javascript">$(document).ready(function(){$().orion({speed: 500,animation: "zoom"});});</script>
+<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+<link href='css/css.css' rel='stylesheet' type='text/css'>
+
+
+
 <title> Conference Edit</title>
 <!-- 新 Bootstrap 核心 CSS 文件 -->
-<link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- 可选的Bootstrap主题文件（一般不使用） -->
 <script src="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>
@@ -20,6 +30,30 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<div class="content">
+	<ul class="orion-menu green">
+		<li class="active"><a href="index.jsp">Home</a></li>
+		<li><a href="newlog.jsp">NewLogs</a></li>
+		<li><a href=AllBlogs>AllLogs</a></li>
+		<li><a href="Search.jsp">Search</a></li>
+		<li><a href="Settings1.jsp">Settings</a></li>
+
+		<li class="search">
+		<form action="Search_Action">
+			<input type="text" name="Search_Name"  class="search" />
+			<input type="hidden" name="Search_Time1"/>
+			<input type="hidden"  name = "Search_Conference" value="true" />
+			<input type="hidden" name="Search_AcademicTeamwork" value="true"/>
+			<input type="hidden" name="Search_Exchange" value="true"/>
+			<input type="hidden" name="Search_Others" value="true"/>
+			</form>
+		</li>
+	</ul>
+</div>
+
+
+
 <form action="ConferenceEditDone" method="post" enctype="multipart/form-data">
 <div class="container">
 	<div class="row clearfix">
@@ -37,9 +71,7 @@ pageEncoding="UTF-8"%>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="panel-895933">
-						 <div class="container">
-	                 <div class="row clearfix">
-		             <div class="col-md-12 column">
+                    <br>
 				<% 
 ArrayList<String>list=(ArrayList<String>)  session.getAttribute("list");
 
@@ -83,19 +115,16 @@ i++;}
 				
 				
 			
-		</div>
-	</div>
-</div>
+ 
 
 					</div>
 					<div class="tab-pane" id="panel-828736">
-                     <div class="container">
-	                 <div class="row clearfix">
-		             <div class="col-md-12 column">
-					 </br>
+ 
+					 <br>
 					 <%
 					 i++;
 				     i++;
+out.print("<label>ID</label><input type=\"text\" class=\"form-control\"  value = \""+str1+"\"  readonly required/>");
 str=(String)list.get(i);
 if(str!=null)
 out.print("<label>标题</label><input name=\"c_Title2\" type=\"text\" class=\"form-control\"  value = \""+str+"\"  />");
@@ -122,9 +151,7 @@ str=(String)list.get(i);
 		</div>
 	</div>
 </div>
-					</div>
-				</div>
-			</div>
+ 
 			
 		
 <button type="submit" class="btn btn-default">Submit</button>
