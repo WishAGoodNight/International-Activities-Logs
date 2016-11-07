@@ -94,40 +94,70 @@ font-weight: bold;">
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column animated fadeIn">
+					<div class="row clearfix">
+				<div class="col-md-6 column">
+				     		<h4  style="font-family: helvetica, sans-serif;
+color: #FFFFFF;
+font-weight: bold;
+">在这里您能干些什么：</h4>
+<div class="container" style="padding: 100px 50px 10px;" >
+	<button type="button" class="btn btn-default" title="Search"  
+			data-container="body" data-toggle="popover" data-placement="left" 
+			data-content="在这里进行多维度查询，找到您所需要的日志内容">
+		多维查询窗口
+	</button>
+	<button type="button" class="btn btn-primary" title="Create New Logs"  
+			data-container="body" data-toggle="popover" data-placement="top" 
+			data-content="对您创建的日志进行编辑和维护，删除">
+		管理和编辑您的日志
+	</button>
+	<button type="button" class="btn btn-success" title="See All Logs"  
+			data-container="body" data-toggle="popover" data-placement="bottom" 
+			data-content="查看本地用户或者所有用户创立的所有日志">
+		查看个人和所有日志
+	</button>
+	<button type="button" class="btn btn-warning" title="Related Contents"  
+			data-container="body" data-toggle="popover" data-placement="right" 
+			data-content="您可以查看最近时间的相关内容">
+		查看日志相关的内容
+	</button>
+</div>
+<script>
+$(function () { 
+	$("[data-toggle='popover']").popover();
+});
+</script>
+				
+				
+				
+				
+		
+				</div>
+				<div class="col-md-3 column">
+				</div>
+				<div class="col-md-3 column">
+   		
+				
+				
 		<h4  style="font-family: helvetica, sans-serif;
 color: #FFFFFF;
 font-weight: bold;
-">创建和编辑您的日志：</h4>
+">开始您的日志之旅</h4>
 		<br>
-		<br>
-			 <a href="Search.jsp"><button type="button" class="btn btn-block btn-lg btn-info">查询</button></a>
+			 <a href="Search.jsp"><button type="button" class="btn btn-primary">查&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;询&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;志</button></a>
 			<br>
 			<br>
-		<a href="newlog.jsp"><button type="button" class="btn btn-default">创建一个新的日志</button></a>
+		<a href="newlog.jsp"><button type="button" class="btn btn-info">创建一个新的日志</button></a>
 		<br>
 		<br>
-        <a href=AllBlogs><button type="button" class="btn btn-default">点击查看所有日志</button></a>
-		</div>
-		</div>
+        <a href=AllBlogs><button type="button" class="btn btn-warning">查看管理所有日志</button></a>
 		</div>
 
-
-
-
-	
-<br>
-<br>
-
-			
-			
-			
-			
-			
-			
-
-			<br>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-
 
 <br><br><br><br>
 </body>

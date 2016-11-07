@@ -14,7 +14,16 @@ pageEncoding="UTF-8"%>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
 <link href='css/css.css' rel='stylesheet' type='text/css'>
-
+<script>
+function Delete() {
+	var msg = "您真的确定要删除吗？";
+	if (confirm(msg)==true){
+	return true;
+	}else{
+	return false;
+	}
+	}
+</script>
 
 
 <link href="animate.css" rel="stylesheet" type="text/css"/>
@@ -60,9 +69,9 @@ pageEncoding="UTF-8"%>
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<h3 class="text-success animated fadeInDown">
-				以下是本校所有日志：
+				以下是个人日志：
 			</h3>
-			  <a class="btn btn-primary btn-large" href="SeeAllUser.jsp">点击查看个人日志</a>
+			  <a class="btn btn-primary btn-large" href=AllBlogs>点击查看所有日志</a>
 			  <br>
 			   <br>
 			<table class="table table-striped alert alert-info animated fadeInDown" >
@@ -88,6 +97,9 @@ pageEncoding="UTF-8"%>
 						</th>
 						<th>
 							其他事程
+						</th>
+						<th>
+						    删除事项
 						</th>
 					</tr>
 				</thead>
@@ -133,6 +145,7 @@ out.print(" <td><a href=OthersDetail?ID="+str1+ ">" + str2 + "</a></td>");
 else
 out.print("<td>"+str2+"</td>");
 
+out.print("<td>"+"<h4><a onclick=\"javascript:return Delete();\"  href=DeleteLogs?ID="+str1+"><span class=\"label label-danger\">删除</span></a></h4>"+"</td>");
 i++;i++;
 
 	}

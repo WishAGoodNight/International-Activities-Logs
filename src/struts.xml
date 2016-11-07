@@ -55,6 +55,9 @@
          <action name="OthersEditDone" class="WishAGoodDay.Log_Actions" method="Edit_o">
          <result name="SUCCESS">/success.jsp</result>
          </action>
+         <action name="DeleteLogs" class="WishAGoodDay.Log_Actions" method="Delete">
+         <result name="SUCCESS">/success.jsp</result>
+         </action>
    </package>
 
 </struts>

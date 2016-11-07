@@ -1656,6 +1656,104 @@ public String Edit_o() throws Exception{
 	return "SUCCESS";
 }
 
+
+
+
+public String Delete()
+{
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; 
+	String sql = "SELECT * FROM Items where ID =" +ID;  
+	int value=ID;
+	  String Conference=null;
+	    String AcademicTeamwork=null;
+	    String Exchange=null;
+	    String Others=null;
+	System.out.println(sql);
+	try{
+		Class.forName("com.mysql.jdbc.Driver" ); 
+		conn = DriverManager.getConnection( url,username, password );
+	
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	
+  
+    while(rs.next()){
+    System.out.println("--------------------");
+    Conference=rs.getString("Conference");
+    System.out.println("--------------------");
+    AcademicTeamwork=rs.getString("AcademicTeamwork");
+    Exchange=rs.getString("Exchange");
+    Others=rs.getString("Others");
+
+    }
+    rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+	return "FALSE";
+	}
+	
+	if(AcademicTeamwork.equals("1"))
+	{
+		String instruction="delete from AcademicTeamwork where ID="+value;
+		try {
+			statement = conn.prepareStatement(instruction);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("修改时出错：");
+			e.printStackTrace();
+		}
+		
+	}
+	if(Exchange.equals("1"))
+	{
+		String instruction="delete from Exchange where ID="+value;
+		try {
+			statement = conn.prepareStatement(instruction);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("修改时出错：");
+			e.printStackTrace();
+		}
+		
+	}
+	if(Others.equals("1"))
+	{
+		String instruction="delete from Others where ID="+value;
+		try {
+			statement = conn.prepareStatement(instruction);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("修改时出错：");
+			e.printStackTrace();
+		}
+		
+	}
+	if(Conference.equals("1"))
+	{
+		String instruction="delete from Conference where ID="+value;
+		try {
+			statement = conn.prepareStatement(instruction);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("修改时出错：");
+			e.printStackTrace();
+		}
+		
+	}
+	String instruction="delete from Items where ID="+value;
+	try {
+		statement = conn.prepareStatement(instruction);
+		statement.executeUpdate();
+	} catch (Exception e) {
+		System.out.println("修改时出错：");
+		e.printStackTrace();
+	}
+	return "SUCCESS";
+}
+
 public int getID() {
 	return ID;
 }
