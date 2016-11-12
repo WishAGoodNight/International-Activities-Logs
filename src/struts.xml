@@ -58,6 +58,23 @@
          <action name="DeleteLogs" class="WishAGoodDay.Log_Actions" method="Delete">
          <result name="SUCCESS">/success.jsp</result>
          </action>
+         
+          <action name="OthersShow" class="WishAGoodDay.Log_Actions" method="Show_o">
+         <result name="SUCCESS">/Show_Others.jsp</result>
+         <result name="FALSE">/False.jsp</result>
+         </action>
+         <action name="CreateOthers" class="WishAGoodDay.Log_Actions" method="Create_o">
+         <result name="SUCCESS">/success.jsp</result>
+         <result name="FALSE">/False.jsp</result>
+         </action>
+         <action name="ConferenceShow" class="WishAGoodDay.Log_Actions" method="Show_c">
+         <result name="SUCCESS">/Show_Conference.jsp</result>
+         <result name="FALSE">/False.jsp</result>
+         </action>
+         <action name="CreateConference" class="WishAGoodDay.Log_Actions" method="Create_c">
+         <result name="SUCCESS">/success.jsp</result>
+         <result name="FALSE">/False.jsp</result>
+         </action>
    </package>
 
 </struts>

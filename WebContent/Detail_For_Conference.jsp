@@ -111,7 +111,7 @@ pageEncoding="UTF-8"%>
 ArrayList<String>list=(ArrayList<String>)  session.getAttribute("list");
 int i=0;
 	
-String ID=(String)list.get(i);i++;
+String Number=(String)list.get(i);i++;
 String Title1=(String)list.get(i);i++;
 String StartTime=(String)list.get(i);i++;
 String Position=(String)list.get(i);i++;
@@ -131,7 +131,7 @@ String Item2=(String)list.get(i);
 			<div class="page-header">
 			
 				<h1>
-					<% out.print(Title1);%><small><%out.print("ID="+ID) ;%></small>
+					<% out.print(Title1);%><small><%out.print("Number="+Number) ;%></small>
 				</h1>
 			</div>
 			<table class="table">
@@ -177,7 +177,7 @@ String Item2=(String)list.get(i);
 					%>
 				</p>		
 				<p>
-					<%out.print(" <a class=\"btn btn-primary btn-large\"  href=ConferenceEdit?ID="+ID+ ">" +" Edit "+ "</a>");%>
+					<%out.print(" <a class=\"btn btn-primary btn-large\"  href=ConferenceEdit?Number="+Number+ ">" +" Edit "+ "</a>");%>
 				</p>
 				
 	            
@@ -203,7 +203,7 @@ String Item2=(String)list.get(i);
 			<div class="page-header">
 			
 				<h1>
-					<% out.print(Title2);%><small><%out.print("ID="+ID) ;%></small>
+					<% out.print(Title2);%><small><%out.print("Number="+Number) ;%></small>
 				</h1>
 			</div>
 			<table class="table">
@@ -248,7 +248,7 @@ String Item2=(String)list.get(i);
 					%>
 				</p>
 				<p>
-					 <%  out.print(" <a class=\"btn btn-primary btn-large\"  href=ConferenceEdit?ID="+ID+ ">" +" Edit "+ "</a>");%>
+					 <%  out.print(" <a class=\"btn btn-primary btn-large\"  href=ConferenceEdit?Number="+Number+ ">" +" Edit "+ "</a>");%>
 				</p>
 				 <% if(Item2!=null)out.print("<a href=\""+Item2+"\">附件下载</a>");%>
 			</div>
@@ -272,7 +272,7 @@ String str1=(String)reference.get(j);
 
 j++;
 String str2=(String)reference.get(j);
-if(!str1.equals(ID)){
+if(!str1.equals(Number)){
 if(!str2.equals("null&")&&!str2.equals("&")&&!str2.equals("null&null"))
 {
 out.print("<h4 class=\"alert  alert-info\">"+k+":");
