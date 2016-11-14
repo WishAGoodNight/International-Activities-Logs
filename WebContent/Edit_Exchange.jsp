@@ -83,7 +83,7 @@ ArrayList<String>list=(ArrayList<String>)  session.getAttribute("list");
 	
 int i=0;
 String str1=(String)list.get(i);
-out.print("<label>ID</label><input name=\"ID\" type=\"text\" class=\"form-control\"  value = \""+str1+"\"  readonly required/>");
+out.print("<label>Number</label><input name=\"Number\" type=\"text\" class=\"form-control\"  value = \""+str1+"\"  readonly required/>");
 i++;
 String str=null;
 if(i<list.size()){
@@ -129,7 +129,7 @@ i++;}
 					 <br>
 					 <%
 					 i++;
-out.print("<label>ID</label><input type=\"text\" class=\"form-control\"  value = \""+str1+"\"  readonly required/>");
+out.print("<label>Number</label><input type=\"text\" class=\"form-control\"  value = \""+str1+"\"  readonly required/>");
 str=(String)list.get(i);
 if(str!=null)
 out.print("<label>标题</label><input name=\"e_Title2\" type=\"text\" class=\"form-control\"  value = \""+str+"\"  />");

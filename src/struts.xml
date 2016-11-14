@@ -75,6 +75,22 @@
          <result name="SUCCESS">/success.jsp</result>
          <result name="FALSE">/False.jsp</result>
          </action>
+         <action name="AcademicTeamworkShow" class="WishAGoodDay.Log_Actions" method="Show_a">
+         <result name="SUCCESS">/Show_AcademicTeamwork.jsp</result>
+         <result name="FALSE">/False.jsp</result>
+         </action>
+         <action name="CreateAcademicTeamwork" class="WishAGoodDay.Log_Actions" method="Create_a">
+         <result name="SUCCESS">/success.jsp</result>
+         <result name="FALSE">/False.jsp</result>
+         </action>
+         <action name="ExchangeShow" class="WishAGoodDay.Log_Actions" method="Show_e">
+         <result name="SUCCESS">/Show_Exchange.jsp</result>
+         <result name="FALSE">/False.jsp</result>
+         </action>
+         <action name="CreateExchange" class="WishAGoodDay.Log_Actions" method="Create_e">
+         <result name="SUCCESS">/success.jsp</result>
+         <result name="FALSE">/False.jsp</result>
+         </action>
    </package>
 
 </struts>

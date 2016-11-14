@@ -49,7 +49,7 @@ pageEncoding="UTF-8"%>
 
 // 以下方式定时跳转  
   
-setTimeout("javascript:location.href='index.jsp'", 2000);   
+setTimeout("javascript:location.href='index.jsp'", 1000);   
   
 </script>  
 

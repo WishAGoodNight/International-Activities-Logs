@@ -518,7 +518,7 @@ public String Detail_a(){
 	String username = "root";
 
 	String password = "1234"; // 加载驱动程序以连接数据库 
-	int value=ID;
+	int value=Number;
 	String titletemp1="";
 	String titletemp2="";
 	String temp=null;
@@ -526,11 +526,11 @@ public String Detail_a(){
 	try { 
 	Class.forName("com.mysql.jdbc.Driver" ); 
 	conn = DriverManager.getConnection( url,username, password ); 
-	String sql = "SELECT * FROM AcademicTeamwork where ID =" + value;  
+	String sql = "SELECT * FROM AcademicTeamwork where Number =" + value;  
 	System.out.println(sql);
 	Statement stmt= conn.createStatement();
 	ResultSet rs = stmt.executeQuery(sql); 
-	String ID=null;
+	String Number=null;
     String Title1=null;
     String StartTime=null;
     String Position=null;
@@ -545,8 +545,8 @@ public String Detail_a(){
     String Item1=null;
     String Item2=null;
     while(rs.next()){
-    	ID=rs.getString("ID");
-    	list2.add(ID);
+    	Number=rs.getString("Number");
+    	list2.add(Number);
     	Title1=rs.getString("Title1");
     	titletemp1=Title1;
     	list2.add(Title1);
@@ -650,14 +650,14 @@ public void reference_a(){
 		conn = DriverManager.getConnection( url,username, password ); 
 	Statement stmt= conn.createStatement();
 	ResultSet rs = stmt.executeQuery(sql); 
-	String ID=null;
+	String Number=null;
     String Title=null;
     
     int counter=0;
     while(rs.next()&&counter<=10){
-    	ID=rs.getString("ID");
+    	Number=rs.getString("Number");
     	Title=rs.getString("Title1")+"&"+rs.getString("Title2");
-    	reference1.add(ID);
+    	reference1.add(Number);
 		reference1.add(Title);
 		
     	counter++;
@@ -684,7 +684,7 @@ public String Edit_a() throws Exception{
 			"',Expenditure="+getA_Expenditure()+
 			",Content2='"+getA_Content2()+
 			"',Image='"+getA_Image()+
-			"' where ID ="+getID();
+			"' where Number ="+getNumber();
 	System.out.print(instruction1);
 	try {
 		statement = conn.prepareStatement(instruction1);
@@ -698,7 +698,7 @@ public String Edit_a() throws Exception{
 	if(getFile1FileName()!=null)
 	{
 	String url=FileUploadAction.execute1(getFile1(),getFile1FileName(),getFile1ContentType());
-	String instruction2="update AcademicTeamwork set Item1='" +url+"' where ID=" +getID();
+	String instruction2="update AcademicTeamwork set Item1='" +url+"' where Number=" +getNumber();
 	System.out.println(instruction2);
 	try {
 		statement = conn.prepareStatement(instruction2);
@@ -712,7 +712,7 @@ public String Edit_a() throws Exception{
 	if(getFile2FileName()!=null)
 	{
 	String url=FileUploadAction.execute1(getFile2(),getFile2FileName(),getFile2ContentType());
-	String instruction3="update AcademicTeamwork set Item2='" +url+"' where ID=" +getID();
+	String instruction3="update AcademicTeamwork set Item2='" +url+"' where Number=" +getNumber();
 	System.out.println(instruction3);
 	try {
 		statement = conn.prepareStatement(instruction3);
@@ -730,7 +730,7 @@ public String Edit_a() throws Exception{
 		//for(int i=0;i<Pic.size();i++)
 			//System.out.println(Names.get(i));
 		String url=FileUploadAction2.execute1(getPic(),getPicFileName(),getPicContentType());
-		String instruction4="update AcademicTeamwork set Image='" +url+"' where ID=" +getID();
+		String instruction4="update AcademicTeamwork set Image='" +url+"' where Number=" +getNumber();
 		try {
 			statement = conn.prepareStatement(instruction4);
 			statement.executeUpdate();
@@ -752,7 +752,7 @@ public String Detail_e(){
 	String username = "root";
 
 	String password = "1234"; // 加载驱动程序以连接数据库 
-	int value=ID;
+	int value=Number;
 	String titletemp1="";
 	String titletemp2="";
 	String temp=null;
@@ -760,11 +760,11 @@ public String Detail_e(){
 	try { 
 	Class.forName("com.mysql.jdbc.Driver" ); 
 	conn = DriverManager.getConnection( url,username, password ); 
-	String sql = "SELECT * FROM Exchange where ID =" + value;  
+	String sql = "SELECT * FROM Exchange where Number =" + value;  
 	System.out.println(sql);
 	Statement stmt= conn.createStatement();
 	ResultSet rs = stmt.executeQuery(sql); 
-	String ID=null;
+	String Number=null;
     String Title1=null;
     String StartTime=null;
     String Position=null;
@@ -780,8 +780,8 @@ public String Detail_e(){
     String Item1=null;
     String Item2=null;
     while(rs.next()){
-    	ID=rs.getString("ID");
-    	list2.add(ID);
+    	Number=rs.getString("Number");
+    	list2.add(Number);
     	Title1=rs.getString("Title1");
     	titletemp1=Title1;
     	list2.add(Title1);
@@ -888,14 +888,14 @@ public void reference_e(){
 		conn = DriverManager.getConnection( url,username, password ); 
 	Statement stmt= conn.createStatement();
 	ResultSet rs = stmt.executeQuery(sql); 
-	String ID=null;
+	String Number=null;
     String Title=null;
     
     int counter=0;
     while(rs.next()&&counter<=10){
-    	ID=rs.getString("ID");
+    	Number=rs.getString("Number");
     	Title=rs.getString("Title1")+"&"+rs.getString("Title2");
-    	reference1.add(ID);
+    	reference1.add(Number);
 		reference1.add(Title);
 		
     	counter++;
@@ -922,7 +922,7 @@ public String Edit_e() throws Exception{
 			"',Expenditure="+getE_Expenditure()+
 			",Content2='"+getE_Content2()+
 			"',Image='"+getE_Image()+
-			"' where ID ="+getID();
+			"' where Number ="+getNumber();
 	
 	
 	try {
@@ -937,7 +937,7 @@ public String Edit_e() throws Exception{
 	if(getFile1FileName()!=null)
 	{
 	String url=FileUploadAction.execute1(getFile1(),getFile1FileName(),getFile1ContentType());
-	String instruction2="update Exchange set Item1='" +url+"' where ID=" +getID();
+	String instruction2="update Exchange set Item1='" +url+"' where Number=" +getNumber();
 	System.out.println(instruction2);
 	try {
 		statement = conn.prepareStatement(instruction2);
@@ -951,7 +951,7 @@ public String Edit_e() throws Exception{
 	if(getFile2FileName()!=null)
 	{
 	String url=FileUploadAction.execute1(getFile2(),getFile2FileName(),getFile2ContentType());
-	String instruction3="update Exchange set Item2='" +url+"' where ID=" +getID();
+	String instruction3="update Exchange set Item2='" +url+"' where Number=" +getNumber();
 	System.out.println(instruction3);
 	try {
 		statement = conn.prepareStatement(instruction3);
@@ -970,7 +970,7 @@ public String Edit_e() throws Exception{
 		//for(int i=0;i<Pic.size();i++)
 			//System.out.println(Names.get(i));
 		String url=FileUploadAction2.execute1(getPic(),getPicFileName(),getPicContentType());
-		String instruction4="update Exchange set Image='" +url+"' where ID=" +getID();
+		String instruction4="update Exchange set Image='" +url+"' where Number=" +getNumber();
 		try {
 			statement = conn.prepareStatement(instruction4);
 			statement.executeUpdate();
@@ -1171,6 +1171,58 @@ public String Create_c(){
 	}
     return "SUCCESS";
 }
+
+public String Create_a(){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	int value=ID;
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+    String instruction="insert into AcademicTeamwork (ID) Value( "+value+")";
+    try {
+		statement = conn.prepareStatement(instruction);
+		statement.executeUpdate();
+	} catch (SQLException e) {
+		System.out.println("插入数据库时出错：");
+		e.printStackTrace();
+	} catch (Exception e) {
+		System.out.println("插入时出错：");
+		e.printStackTrace();
+	}
+    return "SUCCESS";
+}
+
+public String Create_e(){
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	int value=ID;
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+    String instruction="insert into Exchange (ID) Value( "+value+")";
+    try {
+		statement = conn.prepareStatement(instruction);
+		statement.executeUpdate();
+	} catch (SQLException e) {
+		System.out.println("插入数据库时出错：");
+		e.printStackTrace();
+	} catch (Exception e) {
+		System.out.println("插入时出错：");
+		e.printStackTrace();
+	}
+    return "SUCCESS";
+}
 public String Search(){
 	String instruction_c="";
 	String instruction_a="";
@@ -1287,7 +1339,7 @@ public void Conference_search(String sql, boolean judge_c){
 	System.out.println(sql);
 	Statement stmt= conn.createStatement();
 	ResultSet rs = stmt.executeQuery(sql); 
-	String ID=null;
+	String Number=null;
     String Title1=null;
     String StartTime=null;
     String Position=null;
@@ -1298,8 +1350,8 @@ public void Conference_search(String sql, boolean judge_c){
     else
     	list2.add("false");
     while(rs.next()){
-    	ID=rs.getString("ID");
-    	list2.add(ID);
+    	Number=rs.getString("Number");
+    	list2.add(Number);
     	Title1=rs.getString("Title1");
     	list2.add(Title1);
     	StartTime=rs.getString("StartTime");
@@ -1336,7 +1388,7 @@ public void AcademicTeamwork_search(String sql,boolean judge_a){
 	System.out.println(sql);
 	Statement stmt= conn.createStatement();
 	ResultSet rs = stmt.executeQuery(sql); 
-	String ID=null;
+	String Number=null;
     String Title1=null;
     String StartTime=null;
     String Position=null;
@@ -1347,8 +1399,8 @@ public void AcademicTeamwork_search(String sql,boolean judge_a){
     else
     	list2.add("false");
     while(rs.next()){
-    	ID=rs.getString("ID");
-    	list2.add(ID);
+    	Number=rs.getString("Number");
+    	list2.add(Number);
     	Title1=rs.getString("Title1");
     	list2.add(Title1);
     	StartTime=rs.getString("StartTime");
@@ -1384,7 +1436,7 @@ public void Exchange_search(String sql,boolean  judge_e){
 	System.out.println(sql);
 	Statement stmt= conn.createStatement();
 	ResultSet rs = stmt.executeQuery(sql); 
-	String ID=null;
+	String Number=null;
     String Title1=null;
     String StartTime=null;
     String Position=null;
@@ -1395,8 +1447,8 @@ public void Exchange_search(String sql,boolean  judge_e){
     else 
     	list2.add("false");
     while(rs.next()){
-    	ID=rs.getString("ID");
-    	list2.add(ID);
+    	Number=rs.getString("Number");
+    	list2.add(Number);
     	Title1=rs.getString("Title1");
     	list2.add(Title1);
     	StartTime=rs.getString("StartTime");
@@ -1431,7 +1483,7 @@ public void Others_search(String sql, boolean judge_o){
 	System.out.println(sql);
 	Statement stmt= conn.createStatement();
 	ResultSet rs = stmt.executeQuery(sql); 
-	String ID=null;
+	String Number=null;
     String Title1=null;
     String StartTime=null;
     String Position=null;
@@ -1442,8 +1494,8 @@ public void Others_search(String sql, boolean judge_o){
     else
     	list2.add("false");
     while(rs.next()){
-    	ID=rs.getString("ID");
-    	list2.add(ID);
+    	Number=rs.getString("Number");
+    	list2.add(Number);
     	Title1=rs.getString("Title1");
     	list2.add(Title1);
     	StartTime=rs.getString("StartTime");
@@ -1904,10 +1956,103 @@ session.setAttribute("list",show_list);
 return "SUCCESS";
 	}
 
+public String Show_a()
+{
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库
+	int value =ID;
+	ArrayList<String> list2= new ArrayList<String>();
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	String sql = "SELECT * FROM AcademicTeamwork where ID = "+value ;  
+	Statement stmt= conn.createStatement();
+	
+	ResultSet rs = stmt.executeQuery(sql);
+	
+	String Number=null;
+    String Title1=null;
+    String Title2=null;
+    String ID=null;
+    int counter=0;
+    while(rs.next()){
+    	
+    	ID=rs.getString("ID");
+    	Number=rs.getString("Number");
+    	Title1=rs.getString("Title1");
+    	Title2=rs.getString("Title2");
+    	if(counter==0)
+    	list2.add(ID);
+    	list2.add(Number);
+    	list2.add(Title1);
+    	list2.add(Title2);
+    	counter++;
+    	System.out.println(list2);
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+	return "FALSE";
+    }
+this.show_list=list2;
+ServletRequest request=ServletActionContext.getRequest();
+HttpServletRequest req=(HttpServletRequest) request;
+HttpSession session=req.getSession();
+session.setAttribute("list",show_list);
+return "SUCCESS";
+	}
 
 
 
-
+public String Show_e()
+{
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库
+	int value =ID;
+	ArrayList<String> list2= new ArrayList<String>();
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	String sql = "SELECT * FROM Exchange where ID = "+value ;  
+	Statement stmt= conn.createStatement();
+	
+	ResultSet rs = stmt.executeQuery(sql);
+	
+	String Number=null;
+    String Title1=null;
+    String Title2=null;
+    String ID=null;
+    int counter=0;
+    while(rs.next()){
+    	
+    	ID=rs.getString("ID");
+    	Number=rs.getString("Number");
+    	Title1=rs.getString("Title1");
+    	Title2=rs.getString("Title2");
+    	if(counter==0)
+    	list2.add(ID);
+    	list2.add(Number);
+    	list2.add(Title1);
+    	list2.add(Title2);
+    	counter++;
+    	System.out.println(list2);
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+	return "FALSE";
+    }
+this.show_list=list2;
+ServletRequest request=ServletActionContext.getRequest();
+HttpServletRequest req=(HttpServletRequest) request;
+HttpSession session=req.getSession();
+session.setAttribute("list",show_list);
+return "SUCCESS";
+	}
 
 public int getID() {
 	return ID;

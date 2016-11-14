@@ -64,7 +64,7 @@ ArrayList<String>list_o=(ArrayList<String>)  session.getAttribute("list_o");
 				<thead>
 					<tr>
 						<% if((String)list_c.get(0)=="true")
-                out.print("<th width=\"5%\">ID</th><th width=\"30%\">公告标题</th><th width=\"10%\">开始时间</th><th width=\"15%\">地点</th><th width=\"30%\">总结标题</th><th width=\"10%\">结束时间</th>");%>
+                out.print("<th width=\"5%\">Number</th><th width=\"30%\">公告标题</th><th width=\"10%\">开始时间</th><th width=\"15%\">地点</th><th width=\"30%\">总结标题</th><th width=\"10%\">结束时间</th>");%>
 	
 
 					</tr>
@@ -81,7 +81,7 @@ String str1=(String)list_c.get(i);
 out.print("<tr><td>"+str1+"</td>");
 i++;
 String str2=(String)list_c.get(i);
-out.print("<td><a href=ConferenceDetail?ID="+str1+ ">" + str2 + "</a></td>");
+out.print("<td><a href=ConferenceDetail?Number="+str1+ ">" + str2 + "</a></td>");
 i++;
 if(i<list_c.size())
 str2=(String)list_c.get(i);
@@ -93,7 +93,7 @@ out.print("<td>"+str2+"</td>");
 
 i++; str2=(String)list_c.get(i);
 
-out.print("<td><a href=ConferenceDetail?ID="+str1+ ">" + str2 + "</a></td>");
+out.print("<td><a href=ConferenceDetail?Number="+str1+ ">" + str2 + "</a></td>");
 
 i++; str2=(String)list_c.get(i);
 
@@ -117,7 +117,7 @@ i++;
 				<thead>
 					<tr>
 						<% if((String)list_a.get(0)=="true")
-                out.print("<th width=\"5%\">ID</th><th width=\"30%\">公告标题</th><th  width=\"10%\">开始时间</th><th width=\"15%\">地点</th><th width=\"30%\">总结标题</th><th width=\"10%\">结束时间</th>");%>
+                out.print("<th width=\"5%\">Number</th><th width=\"30%\">公告标题</th><th  width=\"10%\">开始时间</th><th width=\"15%\">地点</th><th width=\"30%\">总结标题</th><th width=\"10%\">结束时间</th>");%>
 	
 
 					</tr>
@@ -134,7 +134,7 @@ String str1=(String)list_a.get(i);
 out.print("<tr><td>"+str1+"</td>");
 i++;
 String str2=(String)list_a.get(i);
-out.print("<td><a href=AcademicTeamworkDetail?ID="+str1+ ">" + str2 + "</a></td>");
+out.print("<td><a href=AcademicTeamworkDetail?Number="+str1+ ">" + str2 + "</a></td>");
 i++;
 if(i<list_a.size())
 str2=(String)list_a.get(i);
@@ -146,7 +146,7 @@ out.print("<td>"+str2+"</td>");
 
 i++; str2=(String)list_a.get(i);
 
-out.print("<td><a href=AcademicTeamworkDetail?ID="+str1+ ">" + str2 + "</a></td>");
+out.print("<td><a href=AcademicTeamworkDetail?Number="+str1+ ">" + str2 + "</a></td>");
 
 i++; str2=(String)list_a.get(i);
 
@@ -169,7 +169,7 @@ i++;
 				<thead>
 					<tr>
 						<% if((String)list_e.get(0)=="true")
-                out.print("<th width=\"5%\">ID</th><th width=\"30%\">公告标题</th><th  width=\"10%\">开始时间</th><th width=\"15%\">地点</th><th width=\"30%\">总结标题</th><th width=\"10%\">结束时间</th>");%>
+                out.print("<th width=\"5%\">Number</th><th width=\"30%\">公告标题</th><th  width=\"10%\">开始时间</th><th width=\"15%\">地点</th><th width=\"30%\">总结标题</th><th width=\"10%\">结束时间</th>");%>
 	
 					</tr>
 				</thead>
@@ -185,7 +185,7 @@ String str1=(String)list_e.get(i);
 out.print("<tr><td>"+str1+"</td>");
 i++;
 String str2=(String)list_e.get(i);
-out.print("<td><a href=ExchangeDetail?ID="+str1+ ">" + str2 + "</a></td>");
+out.print("<td><a href=ExchangeDetail?Number="+str1+ ">" + str2 + "</a></td>");
 i++;
 if(i<list_e.size())
 str2=(String)list_e.get(i);
@@ -197,7 +197,7 @@ out.print("<td>"+str2+"</td>");
 
 i++; str2=(String)list_e.get(i);
 
-out.print("<td><a href=ExchangeDetail?ID="+str1+ ">" + str2 + "</a></td>");
+out.print("<td><a href=ExchangeDetail?Number="+str1+ ">" + str2 + "</a></td>");
 
 i++; str2=(String)list_e.get(i);
 
@@ -221,7 +221,7 @@ i++;
 				<thead>
 					<tr>
 						<% if((String)list_o.get(0)=="true")
-                out.print("<th width=\"5%\">ID</th><th width=\"30%\">公告标题</th><th  width=\"10%\">开始时间</th><th width=\"15%\">地点</th><th width=\"30%\">总结标题</th><th width=\"10%\">结束时间</th>");%>
+                out.print("<th width=\"5%\">Number</th><th width=\"30%\">公告标题</th><th  width=\"10%\">开始时间</th><th width=\"15%\">地点</th><th width=\"30%\">总结标题</th><th width=\"10%\">结束时间</th>");%>
 	
 
 					</tr>
@@ -238,7 +238,7 @@ String str1=(String)list_o.get(i);
 out.print("<tr><td>"+str1+"</td>");
 i++;
 String str2=(String)list_o.get(i);
-out.print("<td><a href=OthersDetail?ID="+str1+ ">" + str2 + "</a></td>");
+out.print("<td><a href=OthersDetail?Number="+str1+ ">" + str2 + "</a></td>");
 i++;
 if(i<list_o.size())
 str2=(String)list_o.get(i);
@@ -250,7 +250,7 @@ out.print("<td>"+str2+"</td>");
 
 i++; str2=(String)list_o.get(i);
 
-out.print("<td><a href=OthersDetail?ID="+str1+ ">" + str2 + "</a></td>");
+out.print("<td><a href=OthersDetail?Number="+str1+ ">" + str2 + "</a></td>");
 
 i++; str2=(String)list_o.get(i);
 

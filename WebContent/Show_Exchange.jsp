@@ -60,86 +60,39 @@ pageEncoding="UTF-8"%>
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<h3 class="text-success animated fadeInDown">
-				以下是本校所有日志：
-			</h3>
-			  <a class="btn btn-primary btn-large" href="SeeAllUser.jsp">点击查看个人日志</a>
-			  <br>
-			   <br>
-			<table class="table table-striped alert alert-info animated fadeInDown" >
-				<thead>
-					<tr>
-						<th>
-							ID
-						</th>
-						<th>
-							来访出访
-						</th>
-						<th>
-							TITLE
-						</th>
-						<th>
-							会议情况
-						</th>
-						<th>
-							研究合作
-						</th>
-						<th>
-							上课授课
-						</th>
-						<th>
-							其他事程
-						</th>
-					</tr>
-				</thead>
-				<tbody>
+				项目所有会议日程：
 <% 
-ArrayList<String>list=(ArrayList<String>)  session.getAttribute("list");
+ArrayList<String>show_list=(ArrayList<String>)  session.getAttribute("list");
 int i=0;
-	if(list.size()>0){
-while(i<list.size())
+String str0="";
+String str1="";
+String str2="";
+String str3="";
+	if(show_list.size()>0){
+while(i<show_list.size())
 {
-String str1=(String)list.get(i);
-out.print("<tr><td>"+str1+"</td>");
+	if(i<show_list.size())
+str0=(String)show_list.get(0);
+if(i==0)i=1;
+if(i<show_list.size())
+str1=(String)show_list.get(i);
 i++;
-String str2=(String)list.get(i);
-out.print("<td>"+str2+"</td>");
+if(i<show_list.size())
+str2=(String)show_list.get(i);
 i++;
-if(i<list.size())
-str2=(String)list.get(i);
-else break;
-out.print("<td>"+str2+"</td>");
+if(i<show_list.size())
+str3=(String)show_list.get(i);
+out.print("<h4 class=\"alert  alert-success animated fadeInDown \"><a href=ExchangeDetail?Number="+str1+ ">" +"<img style=\"width:20px;height:20px;\" src=\"image/tag.png\" />"+ str2+"-------"+str3+ "</a></h4>");
+i++;
+}
+}
 
-i++; str2=(String)list.get(i);
-if(str2.equals("查看详情"))
-out.print("<td><a href=ConferenceShow?ID="+str1+ ">" + str2 + "</a></td>");
-else
-out.print("<td>"+str2+"</td>");
+%>
 
-i++; str2=(String)list.get(i);
-if(str2.equals("查看详情"))
-out.print(" <td><a href=AcademicTeamworkShow?ID="+str1+ ">" + str2 + "</a></td>");
-else
-out.print("<td>"+str2+"</td>");
+<br>
+<br>
 
-i++; str2=(String)list.get(i);
-if(str2.equals("查看详情"))
-out.print(" <td><a href=ExchangeShow?ID="+str1+ ">" + str2 + "</a></td>");
-else
-out.print("<td>"+str2+"</td>");
-
-i++; str2=(String)list.get(i);
-if(str2.equals("查看详情"))
-out.print(" <td><a href=OthersShow?ID="+str1+ ">" + str2 + "</a></td>");
-else
-out.print("<td>"+str2+"</td>");
-
-i++;i++;
-
-	}
-%></td>
-<% }%>
-				</tbody>
-			</table>
+ <% out.print("<h4 class=\"alert  alert-info\" ><a href=CreateExchange?ID="+str0+ ">" + "++++点击这里创建新的活动++++" +"</a>");%>
 		</div>
 	</div>
 </div>
@@ -147,4 +100,3 @@ i++;i++;
 <div  onclick="goToWhere(0)"   style="position: fixed; cursor: pointer; right: 10px; bottom: 150px;"><img  style="width:70px;height:70px;" src="image/top.png" /></div>  
 <div  onclick="goToWhere(1)"   style="position: fixed; cursor: pointer; right: 10px; bottom: 30px;"><img  style="width:70px;height:70px;" src="image/bottum.png" /></div>  
 </body>
-</html>
