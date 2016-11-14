@@ -94,48 +94,6 @@ pageEncoding="UTF-8"%>
 	</div>
 </div>
 
-
-<table>
-<tr>
-<td>1</td>
-</tr>
-<tr>
-<td><%=request.getParameter("num1") %></td>
-<td style="color:red">
-<%=isNum1Right %>
-</td>
-</tr>
-<tr>
-<td> </td>
-</tr>
-<tr>
-<td>2</td>
-</tr>
-<tr>
-<td><%=request.getParameter("num2") %></td>
-<td style="color:red">
-<%=isNum2Right %>
-</td>
-</tr>
-<tr>
-<td> </td>
-</tr>
-<tr>
-<td>3</td>
-</tr>
-<tr>
-<td>：<%=request.getParameter("num3") %></td>
-<td style="color:red">
-<%=isNum3Right %>
-</td>
-</tr>
-<tr>
-<td> </td>
-</tr>
-<tr>
-<td style="color:red"><%=point %><%=point %></td>
-</tr>
-</table>
-
+\
 </body>
 </html>
