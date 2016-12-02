@@ -1,4 +1,4 @@
-package WishAGoodDay;
+﻿package WishAGoodDay;
 import WishAGoodDay.FileUploadAction2.* ;
 import WishAGoodDay.FileUploadAction.* ;
 import java.sql.*;
@@ -46,11 +46,7 @@ public class  Log_Actions{
     private String file1ContentType;
 	
     
-    private File file2;
-    //提交过来的file的名字
-    private String file2FileName;
-    //提交过来的file的MIME类型
-    private String file2ContentType;
+   
     
     
     
