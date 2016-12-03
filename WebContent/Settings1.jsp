@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
@@ -90,11 +90,11 @@ pageEncoding="UTF-8"%>
                 <div class="jumbotron">
 
 				<p>
-				<img  style="width:25px;height:25px;" src="image/user.png" />Your ID:  
+				<img  style="width:26px;height:26px;" src="image/user.png" />Your ID:  
 				</p>
 				 <p>
 				<br>
-				<img  style="width:25px;height:25px;" src="image/email.png" />Your Registered Email:  
+				<img  style="width:26px;height:26px;" src="image/email.png" />Your Registered Email:  
 				</p>
 			</div>
 				</div>
