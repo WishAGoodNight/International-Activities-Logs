@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
@@ -76,6 +76,16 @@ font-weight: bold;">
 				</div>
 				<div class="col-md-4">
 					<div class="thumbnail">
+						<img alt="300x200" src="image/image3.jpg" />
+						<div class="caption">
+							<h3>
+								面向新时代国际合作会议
+							</h3>
+							<p>
+								历史迎来的五年，哈尔滨工业大学也应该乘风破浪，载上国际文化交流的大船，愈行愈远！
+							</p>
+						</div>
+<div class="thumbnail">
 						<img alt="300x200" src="image/image3.jpg" />
 						<div class="caption">
 							<h3>
