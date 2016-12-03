@@ -59,25 +59,7 @@ public class  Log_Actions{
     
    //这个List存放的是文件的名字，和List<File>中的文件相对应
     private List<String> PicFileName;
-    
-    private List<String> PicContentType;
-	//for search
-	String Search_Name;
-	String Search_Time1;
-	String Search_Time2;
-	boolean Search_Conference;
-	boolean Search_AcademicTeamwork;
-	boolean Search_Exchange;
-	boolean Search_Others;
-	//for create
-	int ID;
-	boolean InOrOut;
-    String  Name;
-	boolean Conference;
-	boolean AcademicTeamwork;
-    boolean Exchange;
-    boolean Others;
-    int Item_end=0;
+  0;
     //for conference
     String c_Title1;
     String c_StartTime;
