@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page import ="java.io.*,java.util.*"%>
@@ -57,19 +57,7 @@ ArrayList<String>list_o=(ArrayList<String>)  session.getAttribute("list_o");
 			</div>
 <!--  For Conference-->
 
-                <% if((String)list_c.get(0)=="true")
-                out.print("<div class=\"alert alert-dismissable alert-info  animated fadeInLeft\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\" disabled=\"true\">Conference Logs</button>");%>
-	
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<% if((String)list_c.get(0)=="true")
-                out.print("<th width=\"5%\">Number</th><th width=\"30%\">公告标题</th><th width=\"10%\">开始时间</th><th width=\"15%\">地点</th><th width=\"30%\">总结标题</th><th width=\"10%\">结束时间</th>");%>
-	
-
-					</tr>
-				</thead>
-				<tbody>
+               
 <% 
 
 int i=1;
