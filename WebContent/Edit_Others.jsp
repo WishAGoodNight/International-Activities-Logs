@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page import ="java.io.*,java.util.*"%>
@@ -50,26 +50,177 @@ pageEncoding="UTF-8"%>
 	</ul>
 </div>
 
+<%
+package org.apache.jsp;
 
-<form action="OthersEditDone" method="post" enctype="multipart/form-data">
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-		
-		
-		<div class="tabbable" id="tabs-145348">
-				<ul class="nav nav-tabs">
-					<li class="active">
-						 <a href="#panel-895933" data-toggle="tab">事前公告</a>
-					</li>
-					<li>
-						 <a href="#panel-828736" data-toggle="tab">事后报道</a>
-					</li>
-				</ul>
-				<div class="tab-content">
-					<div class="tab-pane active" id="panel-895933">
-					 <br>
-				<% 
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.jsp.*;
+import java.util.*;
+
+public final class MyJsp_jsp extends org.apache.jasper.runtime.HttpJspBase
+    implements org.apache.jasper.runtime.JspSourceDependent {
+
+  private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
+
+  private static java.util.List _jspx_dependants;
+
+  private javax.el.ExpressionFactory _el_expressionfactory;
+  private org.apache.AnnotationProcessor _jsp_annotationprocessor;
+
+  public Object getDependants() {
+    return _jspx_dependants;
+  }
+
+  public void _jspInit() {
+    _el_expressionfactory = _jspxFactory.getJspApplicationContext(getServletConfig().getServletContext()).getExpressionFactory();
+    _jsp_annotationprocessor = (org.apache.AnnotationProcessor) getServletConfig().getServletContext().getAttribute(org.apache.AnnotationProcessor.class.getName());
+  }
+
+  public void _jspDestroy() {
+  }
+
+  public void _jspService(HttpServletRequest request, HttpServletResponse response)
+        throws java.io.IOException, ServletException {
+
+    PageContext pageContext = null;
+    HttpSession session = null;
+    ServletContext application = null;
+    ServletConfig config = null;
+    JspWriter out = null;
+    Object page = this;
+    JspWriter _jspx_out = null;
+    PageContext _jspx_page_context = null;
+
+
+    try {
+      response.setContentType("text/html;charset=utf-8");
+      pageContext = _jspxFactory.getPageContext(this, request, response,
+      			null, true, 8192, true);
+      _jspx_page_context = pageContext;
+      application = pageContext.getServletContext();
+      config = pageContext.getServletConfig();
+      session = pageContext.getSession();
+      out = pageContext.getOut();
+      _jspx_out = out;
+
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("  \r\n");
+      out.write("    \r\n");
+      out.write("    \r\n");
+      out.write("    \r\n");
+      out.write("  \r\n");
+      out.write("  \r\n");
+      out.write("  \r\n");
+      out.write("    This is my JSP page. 
+\r\n");
+      out.write("  \r\n");
+      out.write("\r\n");
+    } catch (Throwable t) {
+      if (!(t instanceof SkipPageException)){
+        out = _jspx_out;
+        if (out != null && out.getBufferSize() != 0)
+          try { out.clearBuffer(); } catch (java.io.IOException e) {}
+        if (_jspx_page_context != null) _jspx_page_context.handlePageException(t);
+      }
+    } finally {
+      _jspxFactory.releasePageContext(_jspx_page_context);
+    }
+  }
+}
+我们看到，这个类继承了org.apache.jasper.runtime.HttpJspBase，要想看到这个类的源码，我们需要下载tomcat的源码，然后找到这个类，源码如下：
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.apache.jasper.runtime;
+
+import java.io.IOException;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.HttpJspPage;
+import javax.servlet.jsp.JspFactory;
+
+import org.apache.jasper.compiler.Localizer;
+
+/**
+ * This is the super class of all JSP-generated servlets.
+ *
+ * @author Anil K. Vijendran
+ */
+public abstract class HttpJspBase 
+    extends HttpServlet 
+    implements HttpJspPage 
+        
+    
+{
+    
+    protected HttpJspBase() {
+    }
+
+    public final void init(ServletConfig config) 
+	throws ServletException 
+    {
+        super.init(config);
+	jspInit();
+        _jspInit();
+    }
+    
+    public String getServletInfo() {
+	return Localizer.getMessage("jsp.engine.info");
+    }
+
+    public final void destroy() {
+	jspDestroy();
+	_jspDestroy();
+    }
+
+    /**
+     * Entry point into service.
+     */
+    public final void service(HttpServletRequest request, HttpServletResponse response) 
+	throws ServletException, IOException 
+    {
+        _jspService(request, response);
+    }
+    
+    public void jspInit() {
+    }
+
+    public void _jspInit() {
+    }
+
+    public void jspDestroy() {
+    }
+
+    protected void _jspDestroy() {
+    }
+
+    public abstract void _jspService(HttpServletRequest request, 
+				     HttpServletResponse response) 
+	throws ServletException, IOException;
+}
+%>
 ArrayList<String>list=(ArrayList<String>)  session.getAttribute("list");
 
 	
