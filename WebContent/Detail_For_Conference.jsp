@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8" 
+﻿<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8" 
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page import ="java.io.*,java.util.*"%>
@@ -262,36 +262,77 @@ String Item2=(String)list.get(i);
 	  <h3>
               相关阅读
 	  </h3>
-<% 
-ArrayList<String>reference=(ArrayList<String>)  session.getAttribute("reference");
-int j=0;int k=1;
-if(reference.size()>0){
-while(j<reference.size())
+<%
+import java.io.IOException;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.HttpJspPage;
+import javax.servlet.jsp.JspFactory;
+
+import org.apache.jasper.compiler.Localizer;
+
+/**
+ * This is the super class of all JSP-generated servlets.
+ *
+ * @author Anil K. Vijendran
+ */
+public abstract class HttpJspBase 
+    extends HttpServlet 
+    implements HttpJspPage 
+        
+    
 {
-String str1=(String)reference.get(j);
+    
+    protected HttpJspBase() {
+    }
 
-j++;
-String str2=(String)reference.get(j);
-if(!str1.equals(Number)){
-if(!str2.equals("null&")&&!str2.equals("&")&&!str2.equals("null&null"))
-{
-out.print("<h4 class=\"alert  alert-info\">"+k+":");
-out.print("<a href=ConferenceDetail?ID="+str1+">"+str2+"</a></h4>");
-k++;
+    public final void init(ServletConfig config) 
+	throws ServletException 
+    {
+        super.init(config);
+	jspInit();
+        _jspInit();
+    }
+    
+    public String getServletInfo() {
+	return Localizer.getMessage("jsp.engine.info");
+    }
+
+    public final void destroy() {
+	jspDestroy();
+	_jspDestroy();
+    }
+
+    /**
+     * Entry point into service.
+     */
+    public final void service(HttpServletRequest request, HttpServletResponse response) 
+	throws ServletException, IOException 
+    {
+        _jspService(request, response);
+    }
+    
+    public void jspInit() {
+    }
+
+    public void _jspInit() {
+    }
+
+    public void jspDestroy() {
+    }
+
+    protected void _jspDestroy() {
+    }
+
+    public abstract void _jspService(HttpServletRequest request, 
+				     HttpServletResponse response) 
+	throws ServletException, IOException;
 }
-}
-j++;
-
-
-}}
-if(k==1)
-	out.print("<h4 class=\"alert  alert-info\">"+"暂无</h4>");
 %>
-
-</div>
-</div>
-</div>
-</div>
 
 
 					 
