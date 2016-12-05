@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page import ="java.io.*,java.util.*"%>
@@ -227,7 +227,39 @@ String Item2=(String)list.get(i);
 		</div>
 	</div>
 </div>
+				</h1>
+				<p>
+					<% out.print(Content2);%>
+										<%
+					if(Image!=null)
+					if(!Image.equals(""))
+					{
+						out.print("<br>");
+						int start=0;
+						int end=0;
+						for(int counter=0;counter+3<Image.length();counter++)
+						{
+							if(Image.charAt(counter+1)=='/'&&Image.charAt(counter+2)=='/'&&Image.charAt(counter+3)=='/')
+							{//out.print(Image.substring(start,counter+1));
+								out.print("<img src=\""+Image.substring(start,counter+1)+"\" width=\"800\">");
+							out.print("<br>");
+							start=counter+4;}
+							
+						}
+					}
+					%>
+				</p>
+				<p>
+					 <%  out.print(" <a class=\"btn btn-primary btn-large\"  href=ExchangeEdit?Number="+Number+ ">" +" Edit "+ "</a>");%>
 					 
+				</p>
+				 <% if(Item2!=null)out.print("<a href=\""+Item2+"\">附件下载</a>");%>
+			</div>
+		</div>
+	</div>
+</div>
+					 
+				 
 					 
  
 			
