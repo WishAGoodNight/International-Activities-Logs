@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page import ="java.io.*,java.util.*"%>
@@ -98,18 +98,7 @@ i++;}
 %>
 <div class="form-group">
            
-					 <label for="exampleInputFile">添加文件</label><input type="file" name="file1" id="exampleInputFile" />
 					
-					<p class="help-block">
-						这里添加压缩包
-					</p>
-				</div>
- 
-					</div>
-					<div class="tab-pane" id="panel-828736">
- 
-					 </br>
-					 <%
 					 i++;
 out.print("<label>Number</label><input type=\"text\" class=\"form-control\"  value = \""+str1+"\"  readonly required/>");
 str=(String)list.get(i);
