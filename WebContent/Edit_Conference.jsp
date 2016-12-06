@@ -66,7 +66,7 @@ pageEncoding="UTF-8"%>
 					<h3> <a href="#panel-895933" data-toggle="tab">事前公告</a></h3>
 					</li>
 					<li>
-						 <a href="#panel-828736" data-toggle="tab">事后报道</a>
+						<h3> <a href="#panel-828736" data-toggle="tab">事后报道</a></h3>
 					</li>
 				</ul>
 				<div class="tab-content">
@@ -78,7 +78,7 @@ ArrayList<String>list=(ArrayList<String>)  session.getAttribute("list");
 	
 int i=0;
 String str1=(String)list.get(i);
-out.print("<label>Number</label><input name=\"Number\" type=\"text\" class=\"form-control\"  value = \""+str1+"\"  readonly required/>");
+out.print("<label>Number</label><input name=\"Number\" type=\"text\" class=\"form-control\"  value = \""<h3>+str1+</h3>"\"  readonly required/>");
 i++;
 String str=null;
 if(i<list.size()){
