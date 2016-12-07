@@ -19,6 +19,71 @@ pageEncoding="UTF-8"%>
 
 <style type="text/css">  
 
+关闭边栏
+网络编程教程模板无忧>建站教程>网络编程>JSP教程>收藏分享查看评论JSP教程大中小
+
+JSP实例 服务器端判断表单是否重复提交_JSP教程
+3/512345
+编辑Tag赚U币
+教程Tag：暂无Tag,欢迎添加,赚取U币!
+织梦DedeCMS视频教程企业网站必备神器!获取访客联系方式! 获取访客QQ,手机号码!
+
+推荐：JSP在电子商务网站开发的运用
+在电子商务网站开发中，网站所达到的要求越来越严格，因此使用的技术也越来越广，让网站在使用的时候能够达到完美。JSP技术在电子商务网站建设中的运用，大大改善商城开发的难题。 JSP在开发电子商务网站中将网页逻辑与网页设计和显示分离，支持可重用的基于组件的设计
+
+ 在服务器端判断表单是否重复提交，主要可以考虑在页面之间通过Session共享标志变量的方法来实现，即在客户端页面设置Session中的标志变量，然后在服务器段对Session中的标志变量进行判断。
+
+　　1.新建一个ServerTest.jsp文件，代码如下：
+
+<%@ page language="java" contentType="text/html; charset=Gb2312"
+pageEncoding="Gb2312"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<title>提交页面</title>
+</head>
+<%
+//设置标志变量SubmitFlag值ServerTest.jsp
+session.putValue("SubmitFlag","ServerTest.jsp");
+%>
+<body bgcolor="#ffffff">
+<form name="form_client" action="ServerSubmit.jsp">
+<input type="checkbox" name="check_1" checked=true/>人在江湖
+<input type="submit" name="submitok"/>
+</form>
+</body>
+</html>
+
+ 
+
+　　2.新建一个ServerSubmit.jsp,代码如下：
+
+<%@ page language="java" contentType="text/html; charset=Gb2312"
+pageEncoding="Gb2312"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Gb2312">
+<title>服务器端程序</title>
+<%
+String PageFlag;
+PageFlag=(String) session.getValue("SubmitFlag");
+if(PageFlag=="Over"){
+out.println("重复提交页面！");
+}else{
+//设置标志变量SubmitFlag值为Over，表示已经提交
+session.putValue("SubmitFlag","Over");
+out.println("正常业务逻辑处理...请等待！！！");
+}
+%>
+</head>
+<body>
+</body>
+</html>
+
     </style>  
     <script type="text/javascript">  
         var goToWhere = function (where)  
