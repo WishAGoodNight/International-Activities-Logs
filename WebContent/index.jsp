@@ -88,12 +88,7 @@ font-weight: bold;">
 <div class="thumbnail">
 						<img alt="300x200" src="image/image3.jpg" />
 						<div class="caption">
-							<h3>
-								面向新时代国际合作会议
-							</h3>
-							<p>
-								历史迎来的五年，哈尔滨工业大学也应该乘风破浪，载上国际文化交流的大船，愈行愈远！
-							</p>
+							
 						</div>
 					</div>
 				</div>
