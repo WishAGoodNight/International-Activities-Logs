@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page import ="java.io.*,java.util.*"%>
@@ -67,10 +67,10 @@ pageEncoding="UTF-8"%>
 		<div class="tabbable" id="tabs-663860">
 				<ul class="nav nav-tabs">
 					<li class="active">
-						 <a href="#panel-271268" data-toggle="tab">事前公告</a>
+						<h3> <a href="#panel-271268" data-toggle="tab">事前公告</a></h3>
 					</li>
 					<li>
-						 <a href="#panel-248050" data-toggle="tab">事后记录</a>
+						<h3> <a href="#panel-248050" data-toggle="tab">事后记录</a></h3>
 					</li>
 				</ul>
 				<div class="tab-content">
