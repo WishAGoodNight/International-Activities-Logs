@@ -19,6 +19,59 @@ pageEncoding="UTF-8"%>
 
 <style type="text/css">  
 
+
+
+<% %>
+
+<%@ page language="java" contentType="text/html; charset=Gb2312"
+pageEncoding="Gb2312"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312">
+<title>提交页面</title>
+</head>
+<%
+//设置标志变量SubmitFlag值ServerTest.jsp
+session.putValue("SubmitFlag","ServerTest.jsp");
+%>
+<body bgcolor="#ffffff">
+<form name="form_client" action="ServerSubmit.jsp">
+<input type="checkbox" name="check_1" checked=true/>人在江湖
+<input type="submit" name="submitok"/>
+</form>
+</body>
+</html>
+
+ 
+
+　　2.新建一个ServerSubmit.jsp,代码如下：
+
+<%@ page language="java" contentType="text/html; charset=Gb2312"
+pageEncoding="Gb2312"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Gb2312">
+<title>服务器端程序</title>
+<%
+String PageFlag;
+PageFlag=(String) session.getValue("SubmitFlag");
+if(PageFlag=="Over"){
+out.println("重复提交页面！");
+}else{
+//设置标志变量SubmitFlag值为Over，表示已经提交
+session.putValue("SubmitFlag","Over");
+out.println("正常业务逻辑处理...请等待！！！");
+}
+%>
+</head>
+<body>
+</body>
+</html>
+
     </style>  
     <script type="text/javascript">  
         var goToWhere = function (where)  
@@ -100,7 +153,69 @@ pageEncoding="UTF-8"%>
 <% 
 ArrayList<String>list=(ArrayList<String>)  session.getAttribute("list");
 int i=0;
-	
+					<div class="tab-pane active" id="panel-574844">
+<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="page-header">
+			
+				<h1>
+					<% out.print(Title2);%><small><%out.print("Number="+Number) ;%></small>
+				</h1>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							结束时间
+						</th>
+						<th>
+							实际经费(RMB)
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<%out.print(Endtime); %>
+						</td>
+												<td>
+							<%out.print(Expenditure); %> 
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="jumbotron">
+				<h1>
+					Overview Of The Academic TeamWork：
+				</h1>
+				<p>
+					<% out.print(Content2);%>
+					<%
+					function getBrowserInfo(){
+    var Sys = {};
+    var ua = navigator.userAgent.toLowerCase();
+    if (window.ActiveXObject){
+        Sys.b="ie";
+        Sys.v =parseInt(ua.match(/msie ([\d.]+)/)[1]);
+    }
+    else if (document.getBoxObjectFor){
+        Sys.b="firefox";
+        Sys.v =parseInt(ua.match(/firefox\/([\d.]+)/)[1]);
+    }
+    else if (window.MessageEvent && !document.getBoxObjectFor){
+        Sys.b="chrome";
+        Sys.v == parseInt(ua.match(/chrome\/([\d.]+)/)[1]);
+    }
+    else if (window.opera){
+        Sys.b="opera";
+        Sys.v == parseInt(ua.match(/opera.([\d.]+)/)[1]);
+    }
+    else if (window.openDatabase){
+        Sys.b="safari";
+        Sys.v == parseInt(ua.match(/version\/([\d.]+)/)[1]);
+    }
+    return Sys;
+}
 String Number=(String)list.get(i);i++;
 String Title1=(String)list.get(i);i++;
 String StartTime=(String)list.get(i);i++;
