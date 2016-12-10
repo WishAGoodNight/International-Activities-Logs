@@ -66,15 +66,6 @@ pageEncoding="UTF-8"%>
                  <label class="checkbox-inline">
                  <input type="checkbox"  name = Search_AcademicTeamwork  value="true"><font  color="white">研究合作</font>
                  </label>
-                 <label class="checkbox-inline">
-                 <input type="checkbox"  name = Search_Exchange  value="true"><font  color="white">上课授课</font>
-                 </label>
-                 <label class="checkbox-inline">
-                 <input type="checkbox"  name = Search_Others  value="true"><font  color="white">其他事项</font>
-                 </label>
-                 <br>
-                 <br>
-                 <br>
                  
                  <button type="submit" class="btn btn-default">Submit</button>
 			</form>
