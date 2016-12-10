@@ -26,8 +26,7 @@ pageEncoding="UTF-8"%>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="bootstrap-3.3.7-dist/jquery-3.1.1.min.js"></script>
 
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
