@@ -93,6 +93,24 @@ pageEncoding="UTF-8"%>
 	</ul>
 </div>
 
+ttp://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link href="animate.css" rel="stylesheet" type="text/css"/>
+
+<link href="css/maps.css" rel="stylesheet">
+<link href="css/zzsc2.css" rel="stylesheet">
+<script type="text/javascript" src="js/form.js"></script>
+<script type="text/javascript" src="js/maps.js"></script>
+<script type="text/javascript">$(document).ready(function(){$().orion({speed: 500,animation: "zoom"});});</script>
+<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+<link href='css/css.css' rel='stylesheet' type='text/css'>
+
+
+<link href="animate.css" rel="stylesheet" type="text/css"/>
+<title> Conference details</title>
+                   <style type="text/css"> 
+				
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
