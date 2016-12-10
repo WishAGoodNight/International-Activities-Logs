@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page import ="java.io.*,java.util.*"%>
@@ -68,6 +68,7 @@ pageEncoding="UTF-8"%>
 			<table class="table table-striped alert alert-info animated fadeInDown" >
 				<thead>
 					<tr>
+<h3>
 						<th>
 							ID
 						</th>
@@ -89,7 +90,7 @@ pageEncoding="UTF-8"%>
 						<th>
 							其他事程
 						</th>
-					</tr>
+					</tr></h3>
 				</thead>
 				<tbody>
 <% 
@@ -117,7 +118,8 @@ out.print("<td>"+str2+"</td>");
 
 i++; str2=(String)list.get(i);
 if(str2.equals("查看详情"))
-out.print(" <td><a href=AcademicTeamworkShow?ID="+str1+ ">" + str2 + "</a></td>");
+out.print(" <td><h1><a href=AcademicTeamworkShow?ID="</h1>+str1+ ">" + str2 + "</a>
+</td>");
 else
 out.print("<td>"+str2+"</td>");
 
