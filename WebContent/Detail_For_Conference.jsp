@@ -207,7 +207,95 @@ String Item2=(String)list.get(i);
                 	
                 	window.open (Item1, 'newwindow', 'height=100, width=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
                 }
-                
+<%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						for(int counter=0;counter+3<Image.length();counter++)
+						{
+							if(Image.charAt(counter+1)=='/'&&Image.charAt(counter+2)=='/'&&Image.charAt(counter+3)=='/')
+							{//out.print(Image.substring(start,counter+1));
+								out.print("<img src=\""+Image.substring(start,counter+1)+"\" width=\"800\">");
+							out.print("<br>");
+							start=counter+4;}
+							
+						}
+					}
+					%>
+				</p>
+				<p>
+					 <%  out.print(" <a class=\"btn btn-primary btn-large\"  href=ConferenceEdit?Number="+Number+ ">" +" Edit "+ "</a>");%>
+				</p>
+				 <% if(Item2!=null)out.print("<a href=\""+Item2+"\">附件下载</a>");%>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+  <div class="animated pulse">
+	  <h3>
+              相关阅读
+	  </h3>
+<%
+import java.io.IOException;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.HttpJspPage;
+import javax.servlet.jsp.JspFactory;
+
+import org.apache.jasper.compiler.Localizer;
+
+/**
+ * This is the super class of all JSP-generated servlets.
+ *
+ * @author Anil K. Vijendran
+ */
+public abstract class HttpJspBase 
+    extends HttpServlet 
+    implements HttpJspPage 
+        
+    
+{
+    
+    protected HttpJspBase() {
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%>
                 </script>
                   -->
 				
