@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
@@ -86,6 +86,47 @@ pageEncoding="UTF-8"%>
 			</form>
 		</div>
 	</div>
+<ul class="orion-menu green">
+		<li class="active"><a href="index.jsp">Home</a></li>
+		<li><a href="newlog.jsp">NewLogs</a></li>
+		<li><a href=AllBlogs>AllLogs</a></li>
+		<li><a href="Search.jsp">Search</a></li>
+		<li><a href="Settings1.jsp">Settings</a></li>
+
+		<li class="search">
+		<form action="Search_Action">
+			<input type="text" name="Search_Name"  class="search" />
+			<input type="hidden" name="Search_Time1"/>
+			<input type="hidden"  name = "Search_Conference" value="true" />
+			<input type="hidden" name="Search_AcademicTeamwork" value="true"/>
+			<input type="hidden" name="Search_Exchange" value="true"/>
+			<input type="hidden" name="Search_Others" value="true"/>
+			</form>
+			
+		</li>
+		
+	</ul>
+</div><ul class="orion-menu green">
+		<li class="active"><a href="index.jsp">Home</a></li>
+		<li><a href="newlog.jsp">NewLogs</a></li>
+		<li><a href=AllBlogs>AllLogs</a></li>
+		<li><a href="Search.jsp">Search</a></li>
+		<li><a href="Settings1.jsp">Settings</a></li>
+
+		<li class="search">
+		<form action="Search_Action">
+			<input type="text" name="Search_Name"  class="search" />
+			<input type="hidden" name="Search_Time1"/>
+			<input type="hidden"  name = "Search_Conference" value="true" />
+			<input type="hidden" name="Search_AcademicTeamwork" value="true"/>
+			<input type="hidden" name="Search_Exchange" value="true"/>
+			<input type="hidden" name="Search_Others" value="true"/>
+			</form>
+			
+		</li>
+		
+	</ul>
+</div>
 </div>
 
 </body>
