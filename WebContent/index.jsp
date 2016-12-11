@@ -148,22 +148,7 @@ $(function () {
 color: #FFFFFF;
 font-weight: bold;
 ">开始您的日志之旅</h4>
-		<br>
-			 <a href="Search.jsp"><button type="button" class="btn btn-primary">查&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;询&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;志</button></a>
-			<br>
-			<br>
-		<a href="newlog.jsp"><button type="button" class="btn btn-info">创建一个新的日志</button></a>
-		<br>
-		<br>
-        <a href=AllBlogs><button type="button" class="btn btn-warning">查看管理所有日志</button></a>
-		</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
+	
 <br><br><br><br>
 </body>
 </html>
