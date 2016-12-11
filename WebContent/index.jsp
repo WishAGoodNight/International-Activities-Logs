@@ -14,12 +14,7 @@ pageEncoding="UTF-8"%>
 <!-- 可选的Bootstrap主题文件（一般不使用） -->
 <script src="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>
 
-<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="bootstrap-3.3.7-dist/jquery-3.1.1.min.js"></script>
-
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-
+<!-- jQuery文件
 
 </head>
 <body>
@@ -82,7 +77,7 @@ font-weight: bold;">
 								面向新时代国际合作会议
 							</h3>
 							<p>
-								历史迎来的五年，哈尔滨工业大学也应该乘风破浪，载上国际文化交流的大船，愈行愈远！
+								历史迎来的五年，哈工大应该乘风破浪，载上国际文化交流的大船，愈行愈远！
 							</p>
 						</div>
 <div class="thumbnail">
@@ -148,22 +143,7 @@ $(function () {
 color: #FFFFFF;
 font-weight: bold;
 ">开始您的日志之旅</h4>
-		<br>
-			 <a href="Search.jsp"><button type="button" class="btn btn-primary">查&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;询&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;志</button></a>
-			<br>
-			<br>
-		<a href="newlog.jsp"><button type="button" class="btn btn-info">创建一个新的日志</button></a>
-		<br>
-		<br>
-        <a href=AllBlogs><button type="button" class="btn btn-warning">查看管理所有日志</button></a>
-		</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
+	
 <br><br><br><br>
 </body>
 </html>
