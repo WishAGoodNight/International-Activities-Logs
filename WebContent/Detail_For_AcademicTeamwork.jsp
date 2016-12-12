@@ -46,17 +46,7 @@ session.putValue("SubmitFlag","ServerTest.jsp");
 
  
 
-　　2.新建一个ServerSubmit.jsp,代码如下：
-
-<%@ page language="java" contentType="text/html; charset=Gb2312"
-pageEncoding="Gb2312"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=Gb2312">
-<title>服务器端程序</title>
-<%
+　
 String PageFlag;
 PageFlag=(String) session.getValue("SubmitFlag");
 if(PageFlag=="Over"){
