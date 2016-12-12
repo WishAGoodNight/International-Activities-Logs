@@ -11,14 +11,7 @@ pageEncoding="UTF-8"%>
 <link href="animate.css" rel="stylesheet" type="text/css"/>
 
 <link href="css/maps.css" rel="stylesheet">
-<link href="css/zzsc2.css" rel="stylesheet">
-<script type="text/javascript" src="js/form.js"></script>
-<script type="text/javascript" src="js/maps.js"></script>
-<script type="text/javascript">$(document).ready(function(){$().orion({speed: 500,animation: "zoom"});});</script>
-<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
-<link href='css/css.css' rel='stylesheet' type='text/css'>
-
-
+<link href="css/zzsc2.css"
 <link href="animate.css" rel="stylesheet" type="text/css"/>
 <title> Conference details</title>
                    <style type="text/css"> 
