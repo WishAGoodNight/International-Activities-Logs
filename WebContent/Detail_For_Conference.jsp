@@ -1,4 +1,4 @@
-﻿<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8" 
+<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8" 
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page import ="java.io.*,java.util.*"%>
@@ -11,7 +11,14 @@ pageEncoding="UTF-8"%>
 <link href="animate.css" rel="stylesheet" type="text/css"/>
 
 <link href="css/maps.css" rel="stylesheet">
-<link href="css/zzsc2.css"
+<link href="css/zzsc2.css" rel="stylesheet">
+<script type="text/javascript" src="js/form.js"></script>
+<script type="text/javascript" src="js/maps.js"></script>
+<script type="text/javascript">$(document).ready(function(){$().orion({speed: 500,animation: "zoom"});});</script>
+<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+<link href='css/css.css' rel='stylesheet' type='text/css'>
+
+
 <link href="animate.css" rel="stylesheet" type="text/css"/>
 <title> Conference details</title>
                    <style type="text/css"> 
@@ -62,15 +69,19 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<%String User=(String)  session.getAttribute("User");
+%>
+<div id="Layer1" style="position:absolute; width:100%; height:100%; z-index:-1;top:0;left:0;">    
+<img src="image/b2.jpg" height="100%" width="100%" style="position:fixed;top:0;left:0;"/>    
+</div>   
 <div class="content">
 	<ul class="orion-menu green">
-		<li class="active"><a href="index.jsp">Home</a></li>
-		<li><a href="newlog.jsp">NewLogs</a></li>
-		<li><a href=AllBlogs>AllLogs</a></li>
-		<li><a href="Search.jsp">Search</a></li>
-		<li><a href="Settings1.jsp">Settings</a></li>
-
+		<li class="active"><a href="index.jsp">主页</a></li>
+		<li><a href="newlog.jsp">新的日志</a></li>
+		<li><a href=SeeAllUser?User=<%=User%>>所有日志</a></li>
+		<li><a href="Search.jsp">搜索日志</a></li>
+		<li><a href=Graph?User=<%=User%>>数据统计</a></li>
+		<li><a href="Settings1.jsp">个人设置</a></li>
 		<li class="search">
 		<form action="Search_Action">
 			<input type="text" name="Search_Name"  class="search" />
@@ -86,34 +97,21 @@ pageEncoding="UTF-8"%>
 	</ul>
 </div>
 
-ttp://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<link href="animate.css" rel="stylesheet" type="text/css"/>
 
-<link href="css/maps.css" rel="stylesheet">
-<link href="css/zzsc2.css" rel="stylesheet">
-<script type="text/javascript" src="js/form.js"></script>
-<script type="text/javascript" src="js/maps.js"></script>
-<script type="text/javascript">$(document).ready(function(){$().orion({speed: 500,animation: "zoom"});});</script>
-<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
-<link href='css/css.css' rel='stylesheet' type='text/css'>
-
-
-<link href="animate.css" rel="stylesheet" type="text/css"/>
-<title> Conference details</title>
-                   <style type="text/css"> 
-				
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<div class="tabbable" id="tabs-329239">
 				<ul class="nav nav-tabs">
+			
 					<li>
-						 <a href="#panel-705027" data-toggle="tab">事前公告</a>
+							 <h3>
+						 <a href="#panel-705027" data-toggle="tab">事前公告</a>		
+						 	 </h3>
 					</li>
 					<li class="active">
-						 <a href="#panel-574844" data-toggle="tab">事后记录</a>
+								 <h3>
+						 <a href="#panel-574844" data-toggle="tab">事后记录</a>			 </h3>
 					</li>
 				</ul>
 				<div class="tab-content">
@@ -135,7 +133,8 @@ String Title2=(String)list.get(i);i++;
 String Endtime=(String)list.get(i);i++;
 String Content2=(String)list.get(i);i++;
 String Image=(String)list.get(i);i++;
-String Item2=(String)list.get(i);
+String Item2=(String)list.get(i);i++;
+String user=(String)list.get(i);
 %>
 
  
@@ -149,34 +148,40 @@ String Item2=(String)list.get(i);
 				<thead>
 					<tr>
 						<th>
-							开始时间
+						<h3>
+				
+							开始时间		</h3>
 						</th>
 						<th>
-							地点
+								<h3>
+							地点		</h3>
 						</th>
 						<th>
-							赞助
+								<h3>
+							赞助		</h3>
 						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>
-							<%out.print(StartTime); %>
+									<h4><%out.print(StartTime); %></h4>
 						</td>
 						<td>
-							<%out.print(Position); %> 
+						
+						<h4>	<%out.print(Position); %> </h4>
 						</td>
 						<td>
-							<%out.print(Sponsor); %>
+						
+						<h4>	<%out.print(Sponsor); %></h4>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			<div class="jumbotron">
-				<h1>
-					Preview Of The Conference：
-				</h1>
+				<h2>
+					会议展望：
+				</h2>
 				<p>
 					<% 
 					//Content1.replaceAll("\\r\\n","<br>" );
@@ -188,7 +193,8 @@ String Item2=(String)list.get(i);
 					%>
 				</p>		
 				<p>
-					<%out.print(" <a class=\"btn btn-primary btn-large\"  href=ConferenceEdit?Number="+Number+ ">" +" Edit "+ "</a>");%>
+					<%if(user.equals(User))
+						out.print(" <a class=\"btn btn-primary btn-large\"  href=ConferenceEdit?Number="+Number+ ">" +"编辑 "+ "</a>");%>
 				</p>
 				
 	            
@@ -200,95 +206,7 @@ String Item2=(String)list.get(i);
                 	
                 	window.open (Item1, 'newwindow', 'height=100, width=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
                 }
-<%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-						for(int counter=0;counter+3<Image.length();counter++)
-						{
-							if(Image.charAt(counter+1)=='/'&&Image.charAt(counter+2)=='/'&&Image.charAt(counter+3)=='/')
-							{//out.print(Image.substring(start,counter+1));
-								out.print("<img src=\""+Image.substring(start,counter+1)+"\" width=\"800\">");
-							out.print("<br>");
-							start=counter+4;}
-							
-						}
-					}
-					%>
-				</p>
-				<p>
-					 <%  out.print(" <a class=\"btn btn-primary btn-large\"  href=ConferenceEdit?Number="+Number+ ">" +" Edit "+ "</a>");%>
-				</p>
-				 <% if(Item2!=null)out.print("<a href=\""+Item2+"\">附件下载</a>");%>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-
-  <div class="animated pulse">
-	  <h3>
-              相关阅读
-	  </h3>
-<%
-import java.io.IOException;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.HttpJspPage;
-import javax.servlet.jsp.JspFactory;
-
-import org.apache.jasper.compiler.Localizer;
-
-/**
- * This is the super class of all JSP-generated servlets.
- *
- * @author Anil K. Vijendran
- */
-public abstract class HttpJspBase 
-    extends HttpServlet 
-    implements HttpJspPage 
-        
-    
-{
-    
-    protected HttpJspBase() {
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%>
+                
                 </script>
                   -->
 				
@@ -309,22 +227,23 @@ public abstract class HttpJspBase
 				<thead>
 					<tr>
 						<th>
+						<h3>
 							结束时间
-						</th>
+</h3>						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>
-							<%out.print(Endtime); %>
+							<h4><%out.print(Endtime); %></h4>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			<div class="jumbotron">
-				<h1>
-					Overview Of The Conference：
-				</h1>
+				<h2>
+					会议总结：
+				</h2>
 				<p>
 					<% out.print(Content2);%>
 					<%
@@ -347,7 +266,14 @@ public abstract class HttpJspBase
 					%>
 				</p>
 				<p>
-					 <%  out.print(" <a class=\"btn btn-primary btn-large\"  href=ConferenceEdit?Number="+Number+ ">" +" Edit "+ "</a>");%>
+					<%  //if(user.equals(User))
+					//	 out.print(" <a class=\"btn btn-primary btn-large\"  href=ConferenceEdit?Number="+Number+ ">" +" Edit "+ "</a>");%>
+						 
+						  <%  if(user.equals(User))
+						 {
+						 out.print(" <a class=\"btn btn-primary btn-large\"  href=ConferenceEdit?Number="+Number+ ">" +" 编辑 "+ "</a>");
+						 out.print(" <a class=\"btn btn-primary btn-large\"  href=Issue?Number="+Number+ "&Sort=1>" +" 发布信息 "+ "</a>");
+						 }%>
 				</p>
 				 <% if(Item2!=null)out.print("<a href=\""+Item2+"\">附件下载</a>");%>
 			</div>
@@ -361,77 +287,36 @@ public abstract class HttpJspBase
 	  <h3>
               相关阅读
 	  </h3>
-<%
-import java.io.IOException;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.HttpJspPage;
-import javax.servlet.jsp.JspFactory;
-
-import org.apache.jasper.compiler.Localizer;
-
-/**
- * This is the super class of all JSP-generated servlets.
- *
- * @author Anil K. Vijendran
- */
-public abstract class HttpJspBase 
-    extends HttpServlet 
-    implements HttpJspPage 
-        
-    
+<% 
+ArrayList<String>reference=(ArrayList<String>)  session.getAttribute("reference");
+int j=0;int k=1;
+if(reference.size()>0){
+while(j<reference.size())
 {
-    
-    protected HttpJspBase() {
-    }
+String str1=(String)reference.get(j);
 
-    public final void init(ServletConfig config) 
-	throws ServletException 
-    {
-        super.init(config);
-	jspInit();
-        _jspInit();
-    }
-    
-    public String getServletInfo() {
-	return Localizer.getMessage("jsp.engine.info");
-    }
-
-    public final void destroy() {
-	jspDestroy();
-	_jspDestroy();
-    }
-
-    /**
-     * Entry point into service.
-     */
-    public final void service(HttpServletRequest request, HttpServletResponse response) 
-	throws ServletException, IOException 
-    {
-        _jspService(request, response);
-    }
-    
-    public void jspInit() {
-    }
-
-    public void _jspInit() {
-    }
-
-    public void jspDestroy() {
-    }
-
-    protected void _jspDestroy() {
-    }
-
-    public abstract void _jspService(HttpServletRequest request, 
-				     HttpServletResponse response) 
-	throws ServletException, IOException;
+j++;
+String str2=(String)reference.get(j);
+if(!str1.equals(Number)){
+if(!str2.equals("null&")&&!str2.equals("&")&&!str2.equals("null&null"))
+{
+out.print("<h4 class=\"alert  alert-info\">"+k+":");
+out.print("<a href=ConferenceDetail?Number="+str1+">"+str2+"</a></h4>");
+k++;
 }
+}
+j++;
+
+
+}}
+if(k==1)
+	out.print("<h4 class=\"alert  alert-info\">"+"暂无</h4>");
 %>
+
+</div>
+</div>
+</div>
+</div>
 
 
 					 

@@ -1,4 +1,4 @@
-﻿<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
+<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page import ="java.io.*,java.util.*"%>
@@ -12,25 +12,37 @@ pageEncoding="UTF-8"%>
 <script type="text/javascript" src="js/maps.js"></script>
 <script type="text/javascript">$(document).ready(function(){$().orion({speed: 500,animation: "zoom"});});</script>
 <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
-<link href='css/css.css' rel='sty
+<link href='css/css.css' rel='stylesheet' type='text/css'>
+
+
+
+<title> Conference Edit</title>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
 <!-- 可选的Bootstrap主题文件（一般不使用） -->
 <script src="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>
 
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="bootstrap-3.3.7-dist/jquery-3.1.1.min.js"></script>
 
-
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<div id="Layer1" style="position:absolute; width:100%; height:100%; z-index:-1;top:0;left:0;">    
+<img src="image/b2.jpg" height="100%" width="100%" style="position:fixed;top:0;left:0;"/>    
+</div>   
+<%String User=(String)  session.getAttribute("User");
+%>
 <div class="content">
 	<ul class="orion-menu green">
-		<li class="active"><a href="index.jsp">Home</a></li>
-		<li><a href="newlog.jsp">NewLogs</a></li>
-		<li><a href=AllBlogs>AllLogs</a></li>
-		<li><a href="Search.jsp">Search</a></li>
-		<li><a href="Settings1.jsp">Settings</a></li>
-
+		<li class="active"><a href="index.jsp">主页</a></li>
+		<li><a href="newlog.jsp">新的日志</a></li>
+		<li><a href=SeeAllUser?User=<%=User%>>所有日志</a></li>
+		<li><a href="Search.jsp">搜索日志</a></li>
+		<li><a href=Graph?User=<%=User%>>数据统计</a></li>
+		<li><a href="Settings1.jsp">个人设置</a></li>
 		<li class="search">
 		<form action="Search_Action">
 			<input type="text" name="Search_Name"  class="search" />
@@ -40,10 +52,11 @@ pageEncoding="UTF-8"%>
 			<input type="hidden" name="Search_Exchange" value="true"/>
 			<input type="hidden" name="Search_Others" value="true"/>
 			</form>
+			
 		</li>
+		
 	</ul>
 </div>
-
 
 
 <form action="ConferenceEditDone" method="post" enctype="multipart/form-data">
@@ -55,10 +68,10 @@ pageEncoding="UTF-8"%>
 		<div class="tabbable" id="tabs-145348">
 				<ul class="nav nav-tabs">
 					<li class="active">
-					<h3> <a href="#panel-895933" data-toggle="tab">事前公告</a></h3>
+						 <a href="#panel-895933" data-toggle="tab">事前公告</a>
 					</li>
 					<li>
-						<h3> <a href="#panel-828736" data-toggle="tab">事后报道</a></h3>
+						 <a href="#panel-828736" data-toggle="tab">事后报道</a>
 					</li>
 				</ul>
 				<div class="tab-content">
@@ -70,7 +83,7 @@ ArrayList<String>list=(ArrayList<String>)  session.getAttribute("list");
 	
 int i=0;
 String str1=(String)list.get(i);
-out.print("<label>Number</label><input name=\"Number\" type=\"text\" class=\"form-control\"  value = \""<h3>+str1+</h3>"\"  readonly required/>");
+out.print("<label>Number</label><input name=\"Number\" type=\"text\" class=\"form-control\"  value = \""+str1+"\"  readonly required/>");
 i++;
 String str=null;
 if(i<list.size()){

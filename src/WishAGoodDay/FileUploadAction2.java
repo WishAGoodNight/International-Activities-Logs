@@ -6,7 +6,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 public class FileUploadAction2 extends ActionSupport {
-    public static String LOCATION="/home/sion/new eclipse/eclipse/workplace/IAL/WebContent/Pictures/";
+    public static String LOCATION="/home/fansongyuan/new eclipse/eclipse/workplace/IAL222/WebContent/Pictures/";
   //if windows, uses \\
     public static String Seperator="/";
     public static String execute1(List<File> file, List<String> fileFileName,List<String> fileContentType) throws Exception

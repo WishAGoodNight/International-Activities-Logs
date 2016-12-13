@@ -32,7 +32,9 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<div id="Layer1" style="position:absolute; width:100%; height:100%; z-index:-1;top:0;left:0;">    
+<img src="image/b2.jpg" height="100%" width="100%" style="position:fixed;top:0;left:0;"/>    
+</div>   
 
 <div class="container">
 	<div class="row clearfix">
@@ -49,7 +51,7 @@ pageEncoding="UTF-8"%>
 
 // 以下方式定时跳转  
   
-setTimeout("javascript:location.href='index.jsp'", 1000);   
+setTimeout("javascript:location.href=\"AllBlogs\"", 1000);   
   
 </script>  
 

@@ -1,44 +1,93 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>jquery图表插件Highcharts之线条图表</title>
 
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>CSS3墨绿色下拉菜单 - huiyi8素材</title>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/highcharts.js"></script>
+		<!--[if IE]>
+			<script type="text/javascript" src="js/excanvas.compiled.js"></script>
+		<![endif]-->
+		
 
-<link href="css/maps.css" rel="stylesheet">
-<link href="css/zzsc2.css" rel="stylesheet">
-<script type="text/javascript" src="js/form.js"></script>
-<script type="text/javascript" src="js/maps.js"></script>
-<script type="text/javascript">$(document).ready(function(){$().orion({speed: 500,animation: "zoom"});});</script>
-<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
-<link href='css/css.css' rel='stylesheet' type='text/css'>
-
-</head>
-
-<body>
-
-<div class="content">
-	<ul class="orion-menu green">
-		<li class="active"><a href="index.jsp">Home</a></li>
-		<li><a href="newlog.jsp">NewLogs</a></li>
-		<li><a href=AllBlogs>AllLogs</a></li>
-		<li><a href="Search.jsp">Search</a></li>
-		<li><a href="#">Settings</a></li>
-
-		<li class="search">
-		<form action="Search_Action">
-			<input type="text" name="Search_Name"  class="search" />
-			<input type="hidden" name="Search_Time1"/>
-			<input type="hidden"  name = "Search_Conference" value="true" />
-			<input type="hidden" name="Search_AcademicTeamwork" value="true"/>
-			<input type="hidden" name="Search_Exchange" value="true"/>
-			<input type="hidden" name="Search_Others" value="true"/>
-			</form>
-		</li>
-	</ul>
-</div>
-
-</body>
-
+		<script type="text/javascript">
+		var chart;
+		//var x = Final1[1];
+		$(document).ready(function() {
+			chart = new Highcharts.Chart({
+				chart: {
+					renderTo: 'container',
+					defaultSeriesType: 'line',
+					margin: [50, 150, 60, 80]
+				},
+				title: {
+					text: '项目频率统计图',
+					style: {
+						margin: '10px 100px 0 0' // center it
+					}
+				},
+				subtitle: {
+					text: '',
+					style: {
+						margin: '0 100px 0 0' // center it
+					}
+				},
+				xAxis: {
+					categories: ['一月', '二月', '三月', '四月', '五月', '六月', 
+						'七月', '八月', '九月', '十月', '十一月', '十二月'],
+					title: {
+						text: 'Month'
+					}
+				},
+				yAxis: {
+					title: {
+						text: ''
+					},
+					plotLines: [{
+						value: 0,
+						width: 1,
+						color: '#808080'
+					}]
+				},
+				tooltip: {
+					formatter: function() {
+			                return '<b>'+ this.series.name +'</b><br/>'+
+							this.x +': '+ this.y +'';
+					}
+				},
+				legend: {
+					layout: 'vertical',
+					style: {
+						left: 'auto',
+						bottom: 'auto',
+						right: '10px',
+						top: '100px'
+					}
+				},
+				series: [{
+					name: '会议情况',
+					data: [12, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+				}, {
+					name: '研究合作',
+					data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+				}, {
+					name: '上课授课',
+					data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
+				}, {
+					name: '其他事程',
+					data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+				}]
+			});
+			
+			
+		});
+		</script>
+		
+	</head>
+	<body>
+		
+		<!-- 3. Add the container -->
+		<div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
+	</body>
 </html>

@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
@@ -29,15 +29,18 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<%String User=(String)  session.getAttribute("User");
+%>
+<%String Email=(String)  session.getAttribute("Email");
+%>
 <div class="content">
 	<ul class="orion-menu green">
-		<li class="active"><a href="index.jsp">Home</a></li>
-		<li><a href="newlog.jsp">NewLogs</a></li>
-		<li><a href=AllBlogs>AllLogs</a></li>
-		<li><a href="Search.jsp">Search</a></li>
-		<li><a href="Settings1.jsp">Settings</a></li>
-
+		<li class="active"><a href="index.jsp"><h3>主页</h3></a></li>
+		<li><a href="newlog.jsp"><h3>新的日志</h3></a></li>
+		<li><a href=SeeAllUser?User=<%=User%>><h3>所有日志</h3></a></li>
+		<li><a href="Search.jsp"><h3>搜索日志</h3></a></li>
+		<li><a href=Graph?User=<%=User%>><h3>数据统计</h3></a></li>
+		<li><a href="Settings1.jsp"><h3>个人设置</h3></a></li>
 		<li class="search">
 		<form action="Search_Action">
 			<input type="text" name="Search_Name"  class="search" />
@@ -52,6 +55,7 @@ pageEncoding="UTF-8"%>
 		
 	</ul>
 </div>
+
 
 <div class="container">
 	<div class="row clearfix">
@@ -62,15 +66,21 @@ pageEncoding="UTF-8"%>
 			<br>
 			<form action="newblog">
 				<div class="form-group">
-					 <label for="exampleInputPassword1"><font  color="white">Title</font></label><input type="text" name="Name" placeholder="这里输入项目名称" class="form-control" required/>
+					 <label for="exampleInputPassword1"><font  color="white"><h3>主题</h3></font></label><input type="text" name="Name" placeholder="这里输入项目名称" class="form-control" required/>
 				</div>
-	           <font  color="white">本校出访OR外校来访:</font>     <br><input name ="InOrOut"  type="radio" value="true" checked>
+				<div class="form-group">
+					 <font  color="white"><h3>项目时间</h3></font><input type="date" name="Date"  class="form-control" required/>
+				</div>
+				 <h4>
+	           <font  color="white"><h3>本校出访 OR 外校来访:</h3></font>     <br><input name ="InOrOut"  type="radio" value="true" checked>
+	          
                <font  color="white">本校出访</font>&nbsp;
                <input name ="InOrOut" type="radio"  value="false">
                <font  color="white">外校来访</font>
-                
+                </h4>
                <br>
                <br>
+                <h4>
                <font  color="white">参与活动：</font>
                <input name = Conference type="checkbox"  value="true" >
                <font  color="white">交流会议</font>
@@ -80,53 +90,14 @@ pageEncoding="UTF-8"%>
                <font  color="white">交换生项目 </font>
                <input name = Others type="checkbox" value="true" >
               <font  color="white"> 其他事程</font>
+               </h4>
                <br>
                <br>
-               <button type="submit" class="btn btn-default">Submit</button>
+               <button type="submit" class="btn btn-default">提交</button>
+               <% out.print("<input type=\"hidden\" name=\"User\" value=\""+User+"\"/>");%>
 			</form>
 		</div>
 	</div>
-<ul class="orion-menu green">
-		<li class="active"><a href="index.jsp">Home</a></li>
-		<li><a href="newlog.jsp">NewLogs</a></li>
-		<li><a href=AllBlogs>AllLogs</a></li>
-		<li><a href="Search.jsp">Search</a></li>
-		<li><a href="Settings1.jsp">Settings</a></li>
-
-		<li class="search">
-		<form action="Search_Action">
-			<input type="text" name="Search_Name"  class="search" />
-			<input type="hidden" name="Search_Time1"/>
-			<input type="hidden"  name = "Search_Conference" value="true" />
-			<input type="hidden" name="Search_AcademicTeamwork" value="true"/>
-			<input type="hidden" name="Search_Exchange" value="true"/>
-			<input type="hidden" name="Search_Others" value="true"/>
-			</form>
-			
-		</li>
-		
-	</ul>
-</div><ul class="orion-menu green">
-		<li class="active"><a href="index.jsp">Home</a></li>
-		<li><a href="newlog.jsp">NewLogs</a></li>
-		<li><a href=AllBlogs>AllLogs</a></li>
-		<li><a href="Search.jsp">Search</a></li>
-		<li><a href="Settings1.jsp">Settings</a></li>
-
-		<li class="search">
-		<form action="Search_Action">
-			<input type="text" name="Search_Name"  class="search" />
-			<input type="hidden" name="Search_Time1"/>
-			<input type="hidden"  name = "Search_Conference" value="true" />
-			<input type="hidden" name="Search_AcademicTeamwork" value="true"/>
-			<input type="hidden" name="Search_Exchange" value="true"/>
-			<input type="hidden" name="Search_Others" value="true"/>
-			</form>
-			
-		</li>
-		
-	</ul>
-</div>
 </div>
 
 </body>

@@ -27,14 +27,18 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
+<%String User=(String)  session.getAttribute("User");
+%>
 <div class="content">
 	<ul class="orion-menu green">
-		<li class="active"><a href="index.jsp">Home</a></li>
-		<li><a href="newlog.jsp">NewLogs</a></li>
-		<li><a href= AllBlogs>AllLogs</a></li>
-		<li><a href="Search.jsp">Search</a></li>
-		<li><a href="Settings1.jsp">Settings</a></li>
-
+	
+		<li class="active"><a href="index.jsp"><h3>主页</h3></a></li>
+		<li><a href="newlog.jsp"><h3>新的日志</h3></a></li>
+		<li><a href=SeeAllUser?User=<%=User%>><h3>所有日志</h3></a></li>
+		<li><a href="Search.jsp"><h3>搜索日志</h3></a></li>
+		<li><a href=Graph?User=<%=User%>><h3>数据统计</h3></a></li>
+		<li><a href="Settings1.jsp"><h3>个人设置</h3></a></li>
+	
 		<li class="search">
 		<form action="Search_Action">
 			<input type="text" name="Search_Name"  class="search" />
@@ -50,20 +54,25 @@ pageEncoding="UTF-8"%>
 	</ul>
 </div>
 
+
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			<h3 >
-			<font  color="white">
-				维度查询
+			<h2 >
+			<font  color="blue">
+				多维度查询
 				</font>
-			</h3>
+			</h2>
 			<form action="Search_Action">
 				<div class="form-group">
-					 <label><font  color="white">标题</font></label><input type="text" name="Search_Name"   class="form-control"  />
+				<h3 >
+					 <label><font  color="white">按标题查询</font></label><input type="text" name="Search_Name"   class="form-control"  />
+					 </h3>
 				</div>
 				<div class="form-group">
-					 <label><font  color="white">时间段</font></label><input type="date" name="Search_Time1"  class="form-control"   style="width:200px" />至<input type="date" class="form-control"  name="Search_Time2" style="width:200px" />
+				<h3 >
+					 <label><font  color="white">按时间段查询</font></label><input type="date" name="Search_Time1"  class="form-control"   style="width:200px" />至<input type="date" class="form-control"  name="Search_Time2" style="width:200px" />
+				</h3>
 				</div>
 				<!--  div class="form-group">
 					 <label for="exampleInputFile">File input</label><input type="file" id="exampleInputFile" />
@@ -71,7 +80,9 @@ pageEncoding="UTF-8"%>
 						Example block-level help text here.
 					</p>
 				</div-->
-				 <font  color="white">选择活动类别：</font><br>
+				<h3>
+				 <font  color="white">按活动类别查询：</font><br></h3>
+				 <h4>
 				 <label class="checkbox-inline">
                  <input type="checkbox"  name = Search_Conference   value="true"><font  color="white">会议情况</font>
                  </label>
@@ -84,16 +95,17 @@ pageEncoding="UTF-8"%>
                  <label class="checkbox-inline">
                  <input type="checkbox"  name = Search_Others  value="true"><font  color="white">其他事项</font>
                  </label>
+                 </h4>
                  <br>
                  <br>
                  <br>
                  
-                 <button type="submit" class="btn btn-default">Submit</button>
+                 <button type="submit" class="btn btn-default">查询</button>
 			</form>
 		</div>
 	</div>
 </div>
 
-\
+
 </body>
 </html>

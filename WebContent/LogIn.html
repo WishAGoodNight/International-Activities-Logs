@@ -1,0 +1,109 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>国际合作日志</title>
+		<!--用百度的静态资源库的cdn安装bootstrap环境-->
+		<!-- Bootstrap 核心 CSS 文件 -->
+		<link href="Bootstrap/bootstrap.min.css" rel="stylesheet">
+		<!--font-awesome 核心我CSS 文件-->
+		<link href="Bootstrap/font-awesome.min.css" rel="stylesheet">
+		<!-- 在bootstrap.min.js 之前引入 -->
+		<script src="Bootstrap/jquery.min.js"></script>
+		<!-- Bootstrap 核心 JavaScript 文件 -->
+		<script src="Bootstrap/bootstrap.min.js"></script>
+		<!--jquery.validate-->
+		
+		
+		<script type="text/javascript" src="js/jquery.validate.min.js" ></script>
+		<script type="text/javascript" src="js/message.js" ></script>
+		<style type="text/css">
+		
+			body{background: url(img/9.jpg) no-repeat;background-size: cover;font-size: 16px;}
+			.form{background: rgba(255,255,255,0.2);width:400px;margin:100px auto;}
+			#login_form{display: block;}
+			#register_form{display: none;}
+			.fa{display: inline-block;top: 27px;left: 6px;position: relative;color: #ccc;}
+			input[type="text"],input[type="password"]{padding-left:26px;}
+			.checkbox{padding-left:21px;}
+		</style>
+	</head>
+	<body>
+	<center>
+			<h3 style="font-family: hel>vetica, sans-serif;
+color: 		#FF0000;
+font-size: 2em;
+font-weight: bold;">
+				           欢迎来到哈尔滨工业大学国际交流管理平台
+			</h3> 
+			</center>
+			<br>
+			<br>
+	<div class="container">
+		<div class="form row">
+			<div class="form-horizontal col-sm-offset-3 col-md-offset-3" id="login_form" >
+				<h2 class="form-title">Login for account</h2>
+				<form action="login" method="post">
+				   <div class="col-sm-9 col-md-9">
+					<div class="form-group">
+					<h3>
+					<input class="form-control required" type="text" placeholder="教职工号" name="UserID" autofocus="autofocus" maxlength="20"  />
+					</div>
+					<div class="form-group">
+							 
+							<input class="form-control required" type="password" placeholder="密码(最大16位)" name="Passport" maxlength="16"/>
+					</div>
+					</h3>
+					<div class="form-group">
+						<label class="checkbox">
+							<input type="checkbox" name="remember" value="1"/> <h4>Remember me</h4>
+						</label>
+						<hr />
+						<a href="javascript:;" id="register_btn" class=""><h3>新用户</h3></a>
+					</div>
+					<div class="form-group">
+						<input type="submit" class="btn btn-success pull-right" value="登录 "/>   
+					</div>
+					</form>
+				</div>
+			
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+
+		<div class="form row">
+			<form class="form-horizontal col-sm-offset-3 col-md-offset-3" id="register_form"  action="NewAccount" method="post">
+				<h3 class="form-title">Create A New Account</h3>
+				<div class="col-sm-9 col-md-9">
+					<div class="form-group">
+						
+						<input class="form-control required" type="text" placeholder="教(职)工号" name="UserID" autofocus="autofocus"/>
+					</div>
+					<div class="form-group">
+							 
+							<input class="form-control required" type="password" placeholder="输入密码" id="register_password" name="Passport"/>
+					</div>
+					<div class="form-group">
+							 
+							<input class="form-control required" type="password" placeholder="再次输入密码" name="rpassword"/>
+					</div>
+					<div class="form-group">
+							 
+							<input class="form-control required" type="text" placeholder="邮箱" name="Email"/>
+					</div>
+					<div class="form-group">
+						<input type="submit" class="btn btn-success pull-right" value="Sign Up "/>
+						<a href="LogIn.html" id="register_btn" class="">Back</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		
+	<script type="text/javascript" src="js/main.js" ></script>
+	</body>
+</html>

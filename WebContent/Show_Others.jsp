@@ -1,3 +1,4 @@
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
@@ -32,15 +33,21 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<div class="content">
+<s:action name="OthersShow" executeResult="true" />
+<%String User=(String)  session.getAttribute("User");
+%>
+<%String Email=(String)  session.getAttribute("Email");
+%>
+<div id="Layer1" style="position:absolute; width:100%; height:100%; z-index:-1;top:0;left:0;">    
+<img src="image/b2.jpg" height="100%" width="100%" style="position:fixed;top:0;left:0;"/>    
+</div>  <div class="content">
 	<ul class="orion-menu green">
-		<li class="active"><a href="index.jsp">Home</a></li>
-		<li><a href="newlog.jsp">NewLogs</a></li>
-		<li><a href=AllBlogs>AllLogs</a></li>
-		<li><a href="Search.jsp">Search</a></li>
-		<li><a href="Settings1.jsp">Settings</a></li>
-
+		<li class="active"><a href="index.jsp"><h3>主页</h3></a></li>
+		<li><a href="newlog.jsp"><h3>新的日志</h3></a></li>
+		<li><a href=SeeAllUser?User=<%=User%>><h3>所有日志</h3></a></li>
+		<li><a href="Search.jsp"><h3>搜索日志</h3></a></li>
+		<li><a href=Graph?User=<%=User%>><h3>数据统计</h3></a></li>
+		<li><a href="Settings1.jsp"><h3>个人设置</h3></a></li>
 		<li class="search">
 		<form action="Search_Action">
 			<input type="text" name="Search_Name"  class="search" />
@@ -56,6 +63,8 @@ pageEncoding="UTF-8"%>
 	</ul>
 </div>
 
+
+
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -68,6 +77,7 @@ String str0="";
 String str1="";
 String str2="";
 String str3="";
+String str4="";
 	if(show_list.size()>0){
 while(i<show_list.size())
 {
@@ -84,6 +94,9 @@ if(i<show_list.size())
 str3=(String)show_list.get(i);
 out.print("<h4 class=\"alert  alert-success animated fadeInDown \"><a href=OthersDetail?Number="+str1+ ">" +"<img style=\"width:20px;height:20px;\" src=\"image/tag.png\" />"+ str2+"-------"+str3+ "</a></h4>");
 i++;
+if(i<show_list.size())
+str4=(String)show_list.get(i);
+i++;
 }
 }
 
@@ -92,7 +105,7 @@ i++;
 <br>
 <br>
 
- <% out.print("<h4 class=\"alert  alert-info\" ><a href=CreateOthers?ID="+str0+ ">" + "++++点击这里创建新的活动++++" +"</a>");%>
+ <% if(str4.equals(User))out.print("<h4 class=\"alert  alert-info\" ><a href=CreateOthers?ID="+str0+ "&User="+User+">"+ "点击这里创建新的活动" +"</a>");%>
 		</div>
 	</div>
 </div>

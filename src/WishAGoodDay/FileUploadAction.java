@@ -11,7 +11,7 @@ public class FileUploadAction extends ActionSupport
 
     
 
-    public static String LOCATION="/home/sion/new eclipse/eclipse/workplace/IAL/WebContent/Files/";
+    public static String LOCATION="/home/fansongyuan/new eclipse/eclipse/workplace/IAL222/WebContent/Files/";
   //if windows, uses \\
     public static String Seperator="/";
 

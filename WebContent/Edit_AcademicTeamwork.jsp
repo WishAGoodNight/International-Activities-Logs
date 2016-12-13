@@ -1,4 +1,4 @@
-﻿<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
+<%@ page language="java" import="java.net.*" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page import ="java.io.*,java.util.*"%>
@@ -13,7 +13,12 @@ pageEncoding="UTF-8"%>
 <script type="text/javascript">$(document).ready(function(){$().orion({speed: 500,animation: "zoom"});});</script>
 <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
 <link href='css/css.css' rel='stylesheet' type='text/css'>
-、
+
+
+<title> Conference Edit</title>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
 <!-- 可选的Bootstrap主题文件（一般不使用） -->
 <script src="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>
 
@@ -24,15 +29,19 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<div id="Layer1" style="position:absolute; width:100%; height:100%; z-index:-1;top:0;left:0;">    
+<img src="image/b2.jpg" height="100%" width="100%" style="position:fixed;top:0;left:0;"/>    
+</div>   
+<%String User=(String)  session.getAttribute("User");
+%>
 <div class="content">
 	<ul class="orion-menu green">
-		<li class="active"><a href="index.jsp">Home</a></li>
-		<li><a href="newlog.jsp">NewLogs</a></li>
-		<li><a href=AllBlogs>AllLogs</a></li>
-		<li><a href="Search.jsp">Search</a></li>
-		<li><a href="Settings1.jsp">Settings</a></li>
-
+		<li class="active"><a href="index.jsp">主页</a></li>
+		<li><a href="newlog.jsp">新的日志</a></li>
+		<li><a href=SeeAllUser?User=<%=User%>>所有日志</a></li>
+		<li><a href="Search.jsp">搜索日志</a></li>
+		<li><a href=Graph?User=<%=User%>>数据统计</a></li>
+		<li><a href="Settings1.jsp">个人设置</a></li>
 		<li class="search">
 		<form action="Search_Action">
 			<input type="text" name="Search_Name"  class="search" />
@@ -42,9 +51,12 @@ pageEncoding="UTF-8"%>
 			<input type="hidden" name="Search_Exchange" value="true"/>
 			<input type="hidden" name="Search_Others" value="true"/>
 			</form>
+			
 		</li>
+		
 	</ul>
 </div>
+
 <form action="AcademicTeamworkEditDone" method="post" enctype="multipart/form-data">
 <div class="container">
 	<div class="row clearfix">
@@ -93,7 +105,18 @@ i++;}
 %>
 <div class="form-group">
            
+					 <label for="exampleInputFile">添加文件</label><input type="file" name="file1" id="exampleInputFile" />
 					
+					<p class="help-block">
+						这里添加压缩包
+					</p>
+				</div>
+ 
+					</div>
+					<div class="tab-pane" id="panel-828736">
+ 
+					 </br>
+					 <%
 					 i++;
 out.print("<label>Number</label><input type=\"text\" class=\"form-control\"  value = \""+str1+"\"  readonly required/>");
 str=(String)list.get(i);

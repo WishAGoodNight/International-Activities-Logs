@@ -19,7 +19,7 @@ pageEncoding="UTF-8"%>
 	function signOut(){
 		var r = window.confirm("确认登出？");
 		if (r == true)
-			window.location.href="index.jsp";
+			window.location.href="LogIn.html";
 		else
 			window.location.href="#";
 	}
@@ -41,15 +41,17 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<div class="content">
+<%String User=(String)  session.getAttribute("User");
+%>
+<%String Email=(String)  session.getAttribute("Email");
+%><div class="content">
 	<ul class="orion-menu green">
-		<li class="active"><a href="index.jsp">Home</a></li>
-		<li><a href="newlog.jsp">NewLogs</a></li>
-		<li><a href=AllBlogs>AllLogs</a></li>
-		<li><a href="Search.jsp">Search</a></li>
-		<li><a href="Settings1.jsp">Settings</a></li>
-
+		<li class="active"><a href="index.jsp"><h3>主页</h3></a></li>
+		<li><a href="newlog.jsp"><h3>新的日志</h3></a></li>
+		<li><a href=SeeAllUser?User=<%=User%>><h3>所有日志</h3></a></li>
+		<li><a href="Search.jsp"><h3>搜索日志</h3></a></li>
+		<li><a href=Graph?User=<%=User%>><h3>数据统计</h3></a></li>
+		<li><a href="Settings1.jsp"><h3>个人设置</h3></a></li>
 		<li class="search">
 		<form action="Search_Action">
 			<input type="text" name="Search_Name"  class="search" />
@@ -59,8 +61,13 @@ pageEncoding="UTF-8"%>
 			<input type="hidden" name="Search_Exchange" value="true"/>
 			<input type="hidden" name="Search_Others" value="true"/>
 			</form>
+			
 		</li>
-	</ul>  
+		
+	</ul>
+</div>
+
+
 	  
 	  
 	 <div class="container">
@@ -77,9 +84,9 @@ pageEncoding="UTF-8"%>
   <input id="toggle1" type="checkbox" checked >
   <label for="toggle1" class="animate">MENU<i class="fa fa-bars float-right"></i></label>
   <ul class="animate">
-    <a href="Settings1.jsp"><li class="animate">个人信息<i class="fa fa-user float-right"></i></li></a>
-    <a href="Settings2.jsp"><li class="animate">编辑信息<i class="fa fa-cog float-right"></i></li></a>
-    <a onclick="signOut()"><li class="animate">登出账户<i class="fa fa-home float-right"></i></li></a>
+    <a href="Settings1.jsp"><li class="animate"><h4>个人信息</h4><i class="fa fa-user float-right"></i></li></a>
+    <a href="Settings2.jsp"><li class="animate"><h4>编辑信息</h4><i class="fa fa-cog float-right"></i></li></a>
+    <a onclick="signOut()"><li class="animate"><h4>登出账户</h4><i class="fa fa-home float-right"></i></li></a>
   </ul>
 </dropdown>
 				</div>
@@ -90,17 +97,18 @@ pageEncoding="UTF-8"%>
                 <div class="jumbotron">
 
 				<p>
-              <form role="form">
+              <form action="EditAccount" method="post">
+              <% out.print("<input type=\"hidden\" name=\"UserID\" value=\""+User+"\"/>");%>
 				<div class="form-group">
-					 <label for="exampleInputEmail1">更改您的邮箱：</label><input type="text" class="form-control" id="exampleInputEmail1" />
+					 <label for="exampleInputEmail1"><h4>更改您的邮箱:</h4></label><input type="email" class="form-control" id="exampleInputEmail1" name="Email" required/>
 				</div>
 				<div class="form-group">
-					 <label for="exampleInputPassword1">输入密码</label><input type="password" class="form-control" id="exampleInputPassword1" />
+					 <label for="exampleInputPassword1"><h4>输入密码</h4></label><input type="password" class="form-control" id="exampleInputPassword1" name="Passport" required/>
 				</div>
 				<div class="form-group">
-					 <label for="exampleInputPassword1">重复输入密码</label><input type="password" class="form-control" id="exampleInputPassword1" />
+					 <label for="exampleInputPassword1"><h4>重复输入密码</h4></label><input type="password" class="form-control" id="exampleInputPassword1" name="rpassword" required/>
 				</div>
-				 <button type="submit" class="btn btn-default">确认修改</button>
+				 <button type="submit" class="btn btn-default"><h4>确认修改</h4></button>
 			</form>
 				</p>
 			</div>
@@ -110,7 +118,7 @@ pageEncoding="UTF-8"%>
 	</div>
 </div>
 
-	
+	<script type="text/javascript" src="js/main.js" ></script>
 	
 	
 	

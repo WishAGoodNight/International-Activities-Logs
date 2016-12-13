@@ -1,4 +1,4 @@
-﻿package WishAGoodDay;
+package WishAGoodDay;
 import WishAGoodDay.FileUploadAction2.* ;
 import WishAGoodDay.FileUploadAction.* ;
 import java.sql.*;
@@ -45,11 +45,14 @@ public class  Log_Actions{
     //提交过来的file的MIME类型
     private String file1ContentType;
 	
+    private File file2;
+    //提交过来的file的名字
+    private String file2FileName;
+    //提交过来的file的MIME类型
+    private String file2ContentType;
+    int Sort;
     
-   
-    
-    
-    
+    String User;
     /*
      * For pictures
      * 
@@ -59,7 +62,26 @@ public class  Log_Actions{
     
    //这个List存放的是文件的名字，和List<File>中的文件相对应
     private List<String> PicFileName;
-  0;
+    
+    private List<String> PicContentType;
+	//for search
+	String Search_Name;
+	String Search_Time1;
+	String Search_Time2;
+	boolean Search_Conference;
+	boolean Search_AcademicTeamwork;
+	boolean Search_Exchange;
+	boolean Search_Others;
+	//for create
+	int ID;
+	boolean InOrOut;
+    String  Name;
+    String Date;
+	boolean Conference;
+	boolean AcademicTeamwork;
+    boolean Exchange;
+    boolean Others;
+    int Item_end=0;
     //for conference
     String c_Title1;
     String c_StartTime;
@@ -105,7 +127,6 @@ public class  Log_Actions{
     String o_Endtime;
     String o_Content2;
     String o_Image;
-    
     int Number;
     public ArrayList<String> list=null;
     public ArrayList<String> reference=null;
@@ -160,7 +181,7 @@ public String Logdetail(){
 	String username = "root";
 	String password = "1234"; // 加载驱动程序以连接数据库
 	ArrayList<String> list2= new ArrayList<String>();
-	try { 
+	try {
 	Class.forName("com.mysql.jdbc.Driver" ); 
 	conn = DriverManager.getConnection( url,username, password ); 
 	String sql = "SELECT * FROM Items";  
@@ -174,6 +195,7 @@ public String Logdetail(){
     String Exchange=null;
     String Others=null;
     String Item_end=null;
+    String Date=null;
     while(rs.next()){
     	ID=rs.getString("ID");
     	InOrOut=rs.getString("InOrOut");
@@ -182,8 +204,10 @@ public String Logdetail(){
     	AcademicTeamwork=rs.getString("AcademicTeamwork");
     	Exchange=rs.getString("Exchange");
     	Others=rs.getString("Others");
+    	Date=rs.getString("Date");
     	Item_end=rs.getString("Item_end");
     	list2.add(ID);
+    	list2.add(Date);
     	if(InOrOut.equals("0"))
     	list2.add("外校来访");
     	else
@@ -205,7 +229,7 @@ public String Logdetail(){
     	
     	
     	list2.add(Item_end);
-    	System.out.println(list2);
+    	//System.out.println(list2);
     }
 	 rs.close();  
 	}catch(Exception e)
@@ -222,6 +246,77 @@ return "SUCCESS";
 
 }
 
+public String LogdetailUser(){
+	
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库
+	ArrayList<String> list2= new ArrayList<String>();
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	String sql = "SELECT * FROM Items where User='"+getUser()+"'";  
+	System.out.println(sql);
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	String ID=null;
+    String InOrOut=null;
+    String Name=null;
+    String Conference=null;
+    String AcademicTeamwork=null;
+    String Exchange=null;
+    String Others=null;
+    String Item_end=null;
+    String Date=null;
+    while(rs.next()){
+    	ID=rs.getString("ID");
+    	Date=rs.getString("Date");
+    	InOrOut=rs.getString("InOrOut");
+    	Name=rs.getString("Name");
+    	Conference=rs.getString("Conference");
+    	AcademicTeamwork=rs.getString("AcademicTeamwork");
+    	Exchange=rs.getString("Exchange");
+    	Others=rs.getString("Others");
+    	Item_end=rs.getString("Item_end");
+    	list2.add(ID);
+    	list2.add(Date);
+    	if(InOrOut.equals("0"))
+    	list2.add("外校来访");
+    	else
+    	list2.add("本校出访");
+    	list2.add(Name);
+    	if(Conference.equals("1"))
+    	list2.add("查看详情"); 
+    	else list2.add("无"); 
+    	if(AcademicTeamwork.equals("1"))
+    	list2.add("查看详情");
+    	else list2.add("无"); 
+    	if(Exchange.equals("1"))
+    	list2.add("查看详情");
+    	else list2.add("无"); 
+    	
+    	if(Others.equals("1"))
+        list2.add("查看详情"); 
+        else list2.add("无"); 
+    	
+    	
+    	list2.add(Item_end);
+    	//System.out.println(list2);
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+this.list=list2;
+ServletRequest request=ServletActionContext.getRequest();
+HttpServletRequest req=(HttpServletRequest) request;
+HttpSession session=req.getSession();
+session.setAttribute("list",list);
+return "SUCCESS";
+
+
+}
 public String Detail_c() {
 	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
 	String username = "root";
@@ -252,6 +347,7 @@ public String Detail_c() {
     String Image=null;
     String Item1=null;
     String Item2=null;
+    String User=null;
     while(rs.next()){
     	Number=rs.getString("Number");
     	list2.add(Number);
@@ -329,6 +425,8 @@ public String Detail_c() {
     	list2.add(Image);
     	Item2=rs.getString("Item2");
        	list2.add(Item2);
+       	User=rs.getString("User");
+    	list2.add(User);
     	System.out.println(list2);
     	
     }
@@ -359,7 +457,7 @@ public void reference_c(){
 	ArrayList<String> reference1= new ArrayList<String>();
 	try{
 		Class.forName("com.mysql.jdbc.Driver" ); 
-		conn = DriverManager.getConnection( url,username, password ); 
+		conn = DriverManager.getConnection( url,username, password); 
 	Statement stmt= conn.createStatement();
 	ResultSet rs = stmt.executeQuery(sql); 
 	String Number=null;
@@ -436,7 +534,7 @@ public String Edit_c() throws Exception{
 	
 	List<String> Names=getPicFileName();
 	//picture
-	if(getPic()!=null)
+	if(getPic()!=null&&Pic.size()!=0)
 	{     
 		//for(int i=0;i<Pic.size();i++)
 			//System.out.println(Names.get(i));
@@ -456,16 +554,17 @@ public String Edit_c() throws Exception{
 	return "SUCCESS";
 }
 
-
-public String insertblog(){
-	connSQL();
-	int counter=0;
-	if(!isConference())counter++;
-	if(!isAcademicTeamwork())counter++;
-	if(!isExchange())counter++;
-	setItem_end(counter);
-	String instruction="insert into Items (InOrOut,Name,Conference,AcademicTeamwork,Exchange,Item_end,Others) Values ("
-	+isInOrOut()+",'"+getName()+"',"+isConference()+","+isAcademicTeamwork()+","+isExchange()+","+getItem_end()+","+isOthers()+")";
+//getSort()  getNumber()
+public String Issued(){
+	
+	boolean jud = Judge();
+	if(jud==false)
+		return "FALSE";
+	
+connSQL();
+	String instruction="insert into Issued (Number,Sort) Values ("
+	+getNumber()+","+getSort()+");";
+	
 	try {
 		statement = conn.prepareStatement(instruction);
 		statement.executeUpdate();
@@ -477,6 +576,64 @@ public String insertblog(){
 		System.out.println("插入时出错：");
 		e.printStackTrace();
 	}
+	
+	return "SUCCESS";
+}
+
+
+public boolean Judge() {
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	
+	
+	String sql = "select * from Issued where Sort = " + getSort() + " and Number = " + getNumber();  
+	System.out.println(sql);
+	try{
+		System.out.println("hehe1");
+		Class.forName("com.mysql.jdbc.Driver"); 
+		System.out.println("hehe2");
+		conn = DriverManager.getConnection( url,username, password); 
+		System.out.println("hehe3");
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+	System.out.println("hehe4");
+    if(rs.next())
+    return false;
+    else return true;
+    
+ 
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    } 
+	return true;
+}
+
+public String insertblog(){
+	connSQL();
+	int counter=0;
+	if(!isConference())counter++;
+	if(!isAcademicTeamwork())counter++;
+	if(!isExchange())counter++;
+	setItem_end(counter);
+	String instruction="insert into Items (InOrOut,Name,Conference,AcademicTeamwork,Exchange,Item_end,Others,User,Date) Values ("
+	+isInOrOut()+",'"+getName()+"',"+isConference()+","+isAcademicTeamwork()+","+isExchange()+","+getItem_end()+","+isOthers()+",'"+getUser()+"','"+getDate()+"')";
+	System.out.println(instruction);
+	try {
+		statement = conn.prepareStatement(instruction);
+		statement.executeUpdate();
+        
+	} catch (SQLException e) {
+		System.out.println("插入数据库时出错：");
+		e.printStackTrace();
+	} catch (Exception e) {
+		System.out.println("插入时出错：");
+		e.printStackTrace();
+	}
+	
+	
+	
 	String sql="select ID from Items where Name = '"+getName()+"'";
 	System.out.println(sql);
 	if(isConference())
@@ -522,6 +679,7 @@ public String Detail_a(){
     String Image=null;
     String Item1=null;
     String Item2=null;
+    String User=null;
     while(rs.next()){
     	Number=rs.getString("Number");
     	list2.add(Number);
@@ -597,7 +755,9 @@ public String Detail_a(){
     	list2.add(Image);
     	Item2=rs.getString("Item2");
     	list2.add(Item2);
-    	System.out.println(list2);
+    	User=rs.getString("User");
+    	list2.add(User);
+    	//System.out.println(list2);
     }
 	 rs.close();  
 	}catch(Exception e)
@@ -757,6 +917,7 @@ public String Detail_e(){
     String Image=null;
     String Item1=null;
     String Item2=null;
+    String User=null;
     while(rs.next()){
     	Number=rs.getString("Number");
     	list2.add(Number);
@@ -834,6 +995,8 @@ public String Detail_e(){
     	list2.add(Image);
     	Item2=rs.getString("Item2");
     	list2.add(Item2);
+    	User=rs.getString("User");
+    	list2.add(User);
     	System.out.println(list2);
     }
 	 rs.close();  
@@ -991,7 +1154,7 @@ public void create_c(String x){
 	{System.out.println("cannot find the driver!");
 	e.printStackTrace();
     }
-    String instruction="insert into Conference (ID) Value( "+value+")";
+    String instruction="insert into Conference (ID,User) Value( "+value+",'"+getUser()+"')";
     System.out.println(instruction);
     try {
 		statement = conn.prepareStatement(instruction);
@@ -1022,7 +1185,7 @@ public void create_a(String x){
 	{System.out.println("cannot find the driver!");
 	e.printStackTrace();
     }
-    String instruction="insert into AcademicTeamwork (ID) Value( "+value+")";
+    String instruction="insert into AcademicTeamwork (ID,User) Value( "+value+",'"+getUser()+"')";
     System.out.println(instruction);
     try {
 		statement = conn.prepareStatement(instruction);
@@ -1053,7 +1216,7 @@ public void create_e(String x){
 	{System.out.println("cannot find the driver!");
 	e.printStackTrace();
     }
-    String instruction="insert into Exchange (ID) Value( "+value+")";
+    String instruction="insert into Exchange (ID,User) Value( "+value+",'"+getUser()+"')";
     try {
 		statement = conn.prepareStatement(instruction);
 		statement.executeUpdate();
@@ -1084,7 +1247,7 @@ public void create_o(String x){
 	{System.out.println("cannot find the driver!");
 	e.printStackTrace();
     }
-    String instruction="insert into Others (ID) Value( "+value+")";
+    String instruction="insert into Others (ID,User) Value( "+value+",'"+getUser()+"')";
     System.out.println(instruction);
     try {
 		statement = conn.prepareStatement(instruction);
@@ -1110,7 +1273,7 @@ public String Create_o(){
 	{System.out.println("cannot find the driver!");
 	e.printStackTrace();
     }
-    String instruction="insert into Others (ID) Value( "+value+")";
+    String instruction="insert into Others (ID,User) Value( "+value+",'"+getUser()+"')";
     try {
 		statement = conn.prepareStatement(instruction);
 		statement.executeUpdate();
@@ -1136,7 +1299,7 @@ public String Create_c(){
 	{System.out.println("cannot find the driver!");
 	e.printStackTrace();
     }
-    String instruction="insert into Conference (ID) Value( "+value+")";
+    String instruction="insert into Conference (ID,User) Value( "+value+",'"+getUser()+"')";
     try {
 		statement = conn.prepareStatement(instruction);
 		statement.executeUpdate();
@@ -1162,7 +1325,7 @@ public String Create_a(){
 	{System.out.println("cannot find the driver!");
 	e.printStackTrace();
     }
-    String instruction="insert into AcademicTeamwork (ID) Value( "+value+")";
+    String instruction="insert into AcademicTeamwork (ID,User) Value( "+value+",'"+User+"')";
     try {
 		statement = conn.prepareStatement(instruction);
 		statement.executeUpdate();
@@ -1188,7 +1351,7 @@ public String Create_e(){
 	{System.out.println("cannot find the driver!");
 	e.printStackTrace();
     }
-    String instruction="insert into Exchange (ID) Value( "+value+")";
+    String instruction="insert into Exchange (ID,User) Value( "+value+",'"+getUser()+"')";
     try {
 		statement = conn.prepareStatement(instruction);
 		statement.executeUpdate();
@@ -1501,6 +1664,325 @@ deconnSQL();
 }
 
 
+public String JCDetail() {
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	String user=User;
+	int value=Number;
+	String titletemp1="";
+	String titletemp2="";
+	String temp=null;
+	String s1 = JCDetail2();
+	s1 = JCDetail3();
+	s1 = JCDetail4();
+	s1 = JCVisit();
+	int goal1 [] = new int [205];
+	for (int i = 0; i <= 200; i++) {
+		goal1[i] = 0;
+	}
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	String sql = "SELECT * FROM Conference where User ="+user;  
+	System.out.println(sql);
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+    int fn;
+    while(rs.next()){
+    	String now = rs.getString("StartTime");
+    	String tmp = "";
+    	if(now == null) {
+    		continue;
+    	}
+    	tmp += now.charAt(5);
+    	tmp += now.charAt(6);
+    	fn = Integer.parseInt(tmp);
+    	goal1[fn]++; 
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+	 ServletRequest request=ServletActionContext.getRequest();
+	 HttpServletRequest req=(HttpServletRequest) request;
+	 HttpSession session=req.getSession();
+	 session.setAttribute("Final1",goal1);
+	 return "SUCCESS";
+}
+
+public void ForStudents() {
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	int f1 [] = new int [205];
+	int f2 [] = new int [205];
+	for (int i = 0; i <= 200; i++) {
+		f1[i] = f2[i] = 0;
+	}
+	int Count = 0;
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	String sql = "SELECT * FROM Issued";  
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+    int fn;
+    while(rs.next()){
+    	String now = rs.getString("Number");
+    	fn = Integer.parseInt(now);
+ 
+    	f1[++Count] = fn; 
+    	now = rs.getString("Sort");
+    	fn = Integer.parseInt(now);
+    	f2[Count] = fn; 
+    	//System.out.println(f1[Count] + " -f- " + f2[Count]);
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+		String tmpf = JCsql(Count, f1, f2);
+
+}
+
+public String JCsql(int Count, int f1[], int f2[]) {
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	String s1 [] = new String [205];
+	String s2 [] = new String [205];
+	int tmp1, tmp2;
+	for (int i = 1; i <= Count; i++) {
+		tmp1 = f1[i]; tmp2 = f2[i];
+		try { 
+		Class.forName("com.mysql.jdbc.Driver" );
+		conn = DriverManager.getConnection( url,username, password ); 
+		String sql=null;
+		if(f2[i]==1)
+			sql = "SELECT * FROM Conference where Number = "+ f1[i];  
+		if(f2[i]==2)
+			sql = "SELECT * FROM AcademicTeamwork where Number = "+ f1[i];  
+		if(f2[i]==3)
+			sql = "SELECT * FROM Exchange where Number = "+ f1[i];  
+		if(f2[i]==4)
+			sql = "SELECT * FROM Others where Number = "+ f1[i];
+			System.out.println(sql);
+			Statement stmt= conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql); 
+			String now1, now2;
+		    while(rs.next()){
+		    	now1 = rs.getString("Title1");
+		    	now2 = rs.getString("Title2");
+		    	System.out.println(now1 + " now " + now2);
+		    	s1[i] = now1; 
+		    	s2[i] = now2; 
+		    }
+		rs.close();  
+		}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+}
+	 ServletRequest request=ServletActionContext.getRequest();
+	 HttpServletRequest req=(HttpServletRequest) request;
+	 HttpSession session=req.getSession();
+	 session.setAttribute("s1",s1);
+	 session.setAttribute("s2",s2);
+	 session.setAttribute("fg",f2);
+	 session.setAttribute("Count",Count);
+	return "SUCCESS";
+}
+
+public String JCDetail2() {
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	int value=Number;
+	String user=User;
+	String titletemp1="";
+	String titletemp2="";
+	String temp=null;
+	int goal2 [] = new int [205];
+	for (int i = 0; i <= 200; i++) {
+		goal2[i] = 0;
+	}
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	String sql = "SELECT * FROM AcademicTeamwork where User = "+user;  
+	System.out.println(sql);
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+    int fn;
+    while(rs.next()){
+    	String now = rs.getString("StartTime");
+    	String tmp = "";
+    	if(now == null) {
+    		continue;
+    	}
+    	tmp += now.charAt(5);
+    	tmp += now.charAt(6);
+    	fn = Integer.parseInt(tmp);
+    	goal2[fn]++; 
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+	 ServletRequest request=ServletActionContext.getRequest();
+	 HttpServletRequest req=(HttpServletRequest) request;
+	 HttpSession session=req.getSession();
+	 session.setAttribute("Final2",goal2);
+	 return "SUCCESS";
+}
+
+public String JCDetail3() {
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	int value=Number;
+	String user=User;
+	String titletemp1="";
+	String titletemp2="";
+	String temp=null;
+	int goal3 [] = new int [205];
+	for (int i = 0; i <= 200; i++) {
+		goal3[i] = 0;
+	}
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	String sql = "SELECT * FROM Exchange where User="+user;  
+	System.out.println(sql);
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+    int fn;
+    while(rs.next()){
+    	String now = rs.getString("StartTime");
+    	String tmp = "";
+    	if(now == null) {
+    		continue;
+    	}
+    	tmp += now.charAt(5);
+    	tmp += now.charAt(6);
+    	fn = Integer.parseInt(tmp);
+    	goal3[fn]++; 
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+	 ServletRequest request=ServletActionContext.getRequest();
+	 HttpServletRequest req=(HttpServletRequest) request;
+	 HttpSession session=req.getSession();
+	 session.setAttribute("Final3",goal3);
+	 return "SUCCESS";
+}
+
+public String JCDetail4() {
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	int value=Number;
+	String user=User;
+	String titletemp1="";
+	String titletemp2="";
+	String temp=null;
+	int goal4 [] = new int [205];
+	for (int i = 0; i <= 200; i++) {
+		goal4[i] = 0;
+	}
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	String sql = "SELECT * FROM Others where user="+user;  
+	System.out.println(sql);
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+    int fn;
+    while(rs.next()){
+    	String now = rs.getString("StartTime");
+    	String tmp = "";
+    	if(now == null) {
+    		continue;
+    	}
+    	tmp += now.charAt(5);
+    	tmp += now.charAt(6);
+    	fn = Integer.parseInt(tmp);
+    	goal4[fn]++; 
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+	 ServletRequest request=ServletActionContext.getRequest();
+	 HttpServletRequest req=(HttpServletRequest) request;
+	 HttpSession session=req.getSession();
+	 session.setAttribute("Final4",goal4);
+	 return "SUCCESS";
+}
+
+
+public String JCVisit() {
+	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
+	String username = "root";
+	String password = "1234"; // 加载驱动程序以连接数据库 
+	int value=Number;
+	String user=User;
+	String titletemp1="";
+	String titletemp2="";
+	String temp=null;
+	int goalOut [] = new int [205];
+	int goalIn [] = new int[205];
+	for (int i = 0; i <= 200; i++) {
+		goalOut[i] = 0;
+		goalIn[i] = 0;
+	}
+	try { 
+	Class.forName("com.mysql.jdbc.Driver" ); 
+	conn = DriverManager.getConnection( url,username, password ); 
+	String sql = "SELECT * FROM Items where user="+user;  
+	System.out.println(sql);
+	Statement stmt= conn.createStatement();
+	ResultSet rs = stmt.executeQuery(sql); 
+    int fn;
+    while(rs.next()){
+    	String now = rs.getString("Date");
+    	String tmp = "";
+    	if(now == null) {
+    		continue;
+    	}
+    	tmp += now.charAt(5);
+    	tmp += now.charAt(6);
+    	fn = Integer.parseInt(tmp);
+    	String Choice = rs.getString("InOrOut");
+    	if (Choice == null) continue;
+    	if (Choice.charAt(0) == '1') {
+    		goalOut[fn]++;
+    	} else {
+    		goalIn[fn]++;
+    	}
+    }
+	 rs.close();  
+	}catch(Exception e)
+	{System.out.println("cannot find the driver!");
+	e.printStackTrace();
+    }
+	 ServletRequest request=ServletActionContext.getRequest();
+	 HttpServletRequest req=(HttpServletRequest) request;
+	 HttpSession session=req.getSession();
+	 session.setAttribute("goalOut",goalOut);
+	 session.setAttribute("goalIn", goalIn);
+	 return "SUCCESS";
+}
+
+
 public String Detail_o() {
 	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
 	String username = "root";
@@ -1531,6 +2013,7 @@ public String Detail_o() {
     String Image=null;
     String Item1=null;
     String Item2=null;
+    String User=null;
     while(rs.next()){
     	Number=rs.getString("Number");
     	list2.add(Number);
@@ -1608,6 +2091,8 @@ public String Detail_o() {
     	list2.add(Image);
     	Item2=rs.getString("Item2");
        	list2.add(Item2);
+       	User=rs.getString("User");
+    	list2.add(User);
     	System.out.println(list2);
     	
     }
@@ -1837,7 +2322,7 @@ public String Delete()
 
 
 
-public String Show_o()
+public void Show_o()
 {
 	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
 	String username = "root";
@@ -1856,6 +2341,7 @@ public String Show_o()
     String Title1=null;
     String Title2=null;
     String ID=null;
+    String User=null;
     int counter=0;
     while(rs.next()){
     	
@@ -1863,14 +2349,15 @@ public String Show_o()
     	Number=rs.getString("Number");
     	Title1=rs.getString("Title1");
     	Title2=rs.getString("Title2");
-    	System.out.println("----------------------------------");
+    	User=rs.getString("User");
     	if(counter==0)
     	list2.add(ID);
     	list2.add(Number);
     	list2.add(Title1);
     	list2.add(Title2);
+    	list2.add(User);
     	counter++;
-    	System.out.println(list2);
+    	//System.out.println(list2);
     }
 	 rs.close();  
 	}catch(Exception e)
@@ -1882,11 +2369,10 @@ ServletRequest request=ServletActionContext.getRequest();
 HttpServletRequest req=(HttpServletRequest) request;
 HttpSession session=req.getSession();
 session.setAttribute("list",show_list);
-return "SUCCESS";
 	}
 
 
-public String Show_c()
+public void Show_c()
 {
 	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
 	String username = "root";
@@ -1905,6 +2391,7 @@ public String Show_c()
     String Title1=null;
     String Title2=null;
     String ID=null;
+    String User=null;
     int counter=0;
     while(rs.next()){
     	
@@ -1912,11 +2399,13 @@ public String Show_c()
     	Number=rs.getString("Number");
     	Title1=rs.getString("Title1");
     	Title2=rs.getString("Title2");
+    	User=rs.getString("User");
     	if(counter==0)
     	list2.add(ID);
     	list2.add(Number);
     	list2.add(Title1);
     	list2.add(Title2);
+    	list2.add(User);
     	counter++;
     	System.out.println(list2);
     }
@@ -1924,17 +2413,17 @@ public String Show_c()
 	}catch(Exception e)
 	{System.out.println("cannot find the driver!");
 	e.printStackTrace();
-	return "FALSE";
+	
     }
 this.show_list=list2;
 ServletRequest request=ServletActionContext.getRequest();
 HttpServletRequest req=(HttpServletRequest) request;
 HttpSession session=req.getSession();
 session.setAttribute("list",show_list);
-return "SUCCESS";
+
 	}
 
-public String Show_a()
+public void Show_a()
 {
 	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
 	String username = "root";
@@ -1953,6 +2442,7 @@ public String Show_a()
     String Title1=null;
     String Title2=null;
     String ID=null;
+    String User=null;
     int counter=0;
     while(rs.next()){
     	
@@ -1960,11 +2450,13 @@ public String Show_a()
     	Number=rs.getString("Number");
     	Title1=rs.getString("Title1");
     	Title2=rs.getString("Title2");
+    	User=rs.getString("User");
     	if(counter==0)
     	list2.add(ID);
     	list2.add(Number);
     	list2.add(Title1);
     	list2.add(Title2);
+    	list2.add(User);
     	counter++;
     	System.out.println(list2);
     }
@@ -1972,19 +2464,17 @@ public String Show_a()
 	}catch(Exception e)
 	{System.out.println("cannot find the driver!");
 	e.printStackTrace();
-	return "FALSE";
     }
 this.show_list=list2;
 ServletRequest request=ServletActionContext.getRequest();
 HttpServletRequest req=(HttpServletRequest) request;
 HttpSession session=req.getSession();
 session.setAttribute("list",show_list);
-return "SUCCESS";
 	}
 
 
 
-public String Show_e()
+public void Show_e()
 {
 	String url = "jdbc:mysql://localhost:3306/IAL?characterEncoding=UTF-8";
 	String username = "root";
@@ -2003,6 +2493,7 @@ public String Show_e()
     String Title1=null;
     String Title2=null;
     String ID=null;
+    String User=null;
     int counter=0;
     while(rs.next()){
     	
@@ -2010,11 +2501,13 @@ public String Show_e()
     	Number=rs.getString("Number");
     	Title1=rs.getString("Title1");
     	Title2=rs.getString("Title2");
+        User=rs.getString("User");
     	if(counter==0)
     	list2.add(ID);
     	list2.add(Number);
     	list2.add(Title1);
     	list2.add(Title2);
+    	list2.add(User);
     	counter++;
     	System.out.println(list2);
     }
@@ -2022,14 +2515,12 @@ public String Show_e()
 	}catch(Exception e)
 	{System.out.println("cannot find the driver!");
 	e.printStackTrace();
-	return "FALSE";
     }
 this.show_list=list2;
 ServletRequest request=ServletActionContext.getRequest();
 HttpServletRequest req=(HttpServletRequest) request;
 HttpSession session=req.getSession();
 session.setAttribute("list",show_list);
-return "SUCCESS";
 	}
 
 public int getID() {
@@ -2478,6 +2969,24 @@ public int getNumber() {
 }
 public void setNumber(int number) {
 	Number = number;
+}
+public String getUser() {
+	return User;
+}
+public void setUser(String User) {
+	this.User = User;
+}
+public String getDate() {
+	return Date;
+}
+public void setDate(String Date) {
+	this.Date = Date;
+}
+public int getSort() {
+	return Sort;
+}
+public void setSort(int Sort) {
+	this.Sort = Sort;
 }
 
 }

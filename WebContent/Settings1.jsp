@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
@@ -19,7 +19,7 @@ pageEncoding="UTF-8"%>
 	function signOut(){
 		var r = window.confirm("确认登出？");
 		if (r == true)
-			window.location.href="index.jsp";
+			window.location.href="LogIn.html";
 		else
 			window.location.href="#";
 	}
@@ -41,15 +41,17 @@ pageEncoding="UTF-8"%>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<div class="content">
+<%String User=(String)  session.getAttribute("User");
+%>
+<%String Email=(String)  session.getAttribute("Email");
+%><div class="content">
 	<ul class="orion-menu green">
-		<li class="active"><a href="index.jsp">Home</a></li>
-		<li><a href="newlog.jsp">NewLogs</a></li>
-		<li><a href=AllBlogs>AllLogs</a></li>
-		<li><a href="Search.jsp">Search</a></li>
-		<li><a href="Settings1.jsp">Settings</a></li>
-
+		<li class="active"><a href="index.jsp"><h3>主页</h3></a></li>
+		<li><a href="newlog.jsp"><h3>新的日志</h3></a></li>
+		<li><a href=SeeAllUser?User=<%=User%>><h3>所有日志</h3></a></li>
+		<li><a href="Search.jsp"><h3>搜索日志</h3></a></li>
+		<li><a href=Graph?User=<%=User%>><h3>数据统计</h3></a></li>
+		<li><a href="Settings1.jsp"><h3>个人设置</h3></a></li>
 		<li class="search">
 		<form action="Search_Action">
 			<input type="text" name="Search_Name"  class="search" />
@@ -59,9 +61,13 @@ pageEncoding="UTF-8"%>
 			<input type="hidden" name="Search_Exchange" value="true"/>
 			<input type="hidden" name="Search_Others" value="true"/>
 			</form>
+			
 		</li>
-	</ul>  
-	  
+		
+	</ul>
+</div>
+
+
 	  
 	 <div class="container">
 	<div class="row clearfix">
@@ -77,9 +83,9 @@ pageEncoding="UTF-8"%>
   <input id="toggle1" type="checkbox" checked >
   <label for="toggle1" class="animate">MENU<i class="fa fa-bars float-right"></i></label>
   <ul class="animate">
-    <a href="Settings1.jsp"><li class="animate">个人信息<i class="fa fa-user float-right"></i></li></a>
-    <a href="Settings2.jsp"><li class="animate">编辑信息<i class="fa fa-cog float-right"></i></li></a>
-    <a onclick="signOut()"><li class="animate">登出账户<i class="fa fa-home float-right"></i></li></a>
+    <a href="Settings1.jsp"><li class="animate"><h4>个人信息</h4><i class="fa fa-user float-right"></i></li></a>
+    <a href="Settings2.jsp"><li class="animate"><h4>编辑信息</h4><i class="fa fa-cog float-right"></i></li></a>
+    <a onclick="signOut()"><li class="animate"><h4>登出账户</h4><i class="fa fa-home float-right"></i></li></a>
   </ul>
 </dropdown>
 				</div>
@@ -90,11 +96,11 @@ pageEncoding="UTF-8"%>
                 <div class="jumbotron">
 
 				<p>
-				<img  style="width:26px;height:26px;" src="image/user.png" />Your ID:  
+				<h3><img  style="width:25px;height:25px;" src="image/user.png" />Your ID:  <%out.print(User); %></h3>
 				</p>
 				 <p>
 				<br>
-				<img  style="width:26px;height:26px;" src="image/email.png" />Your Registered Email:  
+				<h3><img  style="width:25px;height:25px;" src="image/email.png" />Your Registered Email:  <%out.print(Email); %></h3>
 				</p>
 			</div>
 				</div>

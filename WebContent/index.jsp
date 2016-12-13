@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
@@ -14,28 +14,36 @@ pageEncoding="UTF-8"%>
 <!-- 可选的Bootstrap主题文件（一般不使用） -->
 <script src="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"></script>
 
-<!-- jQuery文件
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="bootstrap-3.3.7-dist/jquery-3.1.1.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
 
-<div id="Layer1" style="position:absolute; width:100%; height:100%; z-index:-1">    
-<img src="image/hit.jpg" height="100%" width="100%"/>    
+<div id="Layer1" style="position:absolute; width:100%; height:100%; z-index:-1;top:0;left:0;">    
+<img src="image/hit.jpg" height="100%" width="100%" style="position:fixed;top:0;left:0;"/>    
 </div>    
 
-
+<%String User=(String)  session.getAttribute("User");
+%>
 
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 		<br>
+		<center>
 			<h1  style="font-family: helvetica, sans-serif;
-color: #797D7A;
+color: 	#F0E68C;
 font-size: 2em;
 font-weight: bold;">
-				INTERNATIONAL ACTIVITY LOGS FOR HIT
+			欢迎来到哈尔滨工业大学国际交流管理平台
 			</h1> 
 			<br>
+			</center>
 			<br>
 			
 			
@@ -77,13 +85,8 @@ font-weight: bold;">
 								面向新时代国际合作会议
 							</h3>
 							<p>
-								历史迎来的五年，哈工大应该乘风破浪，载上国际文化交流的大船，愈行愈远！
+								历史迎来的五年，哈尔滨工业大学也应该乘风破浪，载上国际文化交流的大船，愈行愈远！
 							</p>
-						</div>
-<div class="thumbnail">
-						<img alt="300x200" src="image/image3.jpg" />
-						<div class="caption">
-							
 						</div>
 					</div>
 				</div>
@@ -96,7 +99,7 @@ font-weight: bold;">
 		<div class="col-md-12 column animated fadeIn">
 					<div class="row clearfix">
 				<div class="col-md-6 column">
-				     		<h4  style="font-family: helvetica, sans-serif;
+				     					<h4  style="font-family: helvetica, sans-serif;
 color: #FFFFFF;
 font-weight: bold;
 ">在这里您能干些什么：</h4>
@@ -116,10 +119,10 @@ font-weight: bold;
 			data-content="查看本地用户或者所有用户创立的所有日志">
 		查看个人和所有日志
 	</button>
-	<button type="button" class="btn btn-warning" title="Related Contents"  
+	<button type="button" class="btn btn-warning" title="Related Statistics"  
 			data-container="body" data-toggle="popover" data-placement="right" 
-			data-content="您可以查看最近时间的相关内容">
-		查看日志相关的内容
+			data-content="您可以某段时间的数据统计图">
+		查看日志统计数据
 	</button>
 </div>
 <script>
@@ -143,7 +146,22 @@ $(function () {
 color: #FFFFFF;
 font-weight: bold;
 ">开始您的日志之旅</h4>
-	
+		<br>
+			 <a href="Search.jsp"><button type="button" class="btn btn-primary">查&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;询&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;志</button></a>
+			<br>
+			<br>
+		<a href="newlog.jsp"><button type="button" class="btn btn-info">创建一个新的日志</button></a>
+		<br>
+		<br>
+        <a href=SeeAllUser?User=<%=User%>><button type="button" class="btn btn-warning">查看管理所有日志</button></a>
+		</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <br><br><br><br>
 </body>
 </html>
